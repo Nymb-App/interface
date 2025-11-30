@@ -1,4 +1,4 @@
-import journeyBg from "../../assets/journey-bg.png";
+import journeyBg from "../../../assets/journey-bg.png";
 import { Container } from "../../container";
 
 const journeyHighlights = [
