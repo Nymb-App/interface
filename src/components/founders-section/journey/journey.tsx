@@ -1,5 +1,13 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import UnicornScene from "unicornstudio-react";
 import journeyBg from "../../../assets/journey-bg.png";
 import { Container } from "../../container";
+import { PlusJourneyIconSvg } from "../../icons/plus-journey-icon-svg";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const journeyHighlights = [
   {
@@ -17,19 +25,78 @@ const journeyHighlights = [
 ];
 
 export function Journey() {
-  return (
-    <div className="bg-black text-white">
-      <div className="relative overflow-hidden">
-        <img
-          src={journeyBg}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0)_40%,rgba(0,0,0,0.9)_100%)]" />
+  const sectionRef = useRef<HTMLElement>(null);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const horizontalRef = useRef<HTMLDivElement>(null);
 
-        <Container className="relative flex min-h-[666px] items-center overflow-hidden py-[168px]">
-          <div className="flex w-full md:w-[200%]">
-            <div className="flex w-full md:w-1/2 shrink-0 items-center justify-center px-4">
+  useGSAP(
+    () => {
+      const pinEl = pinRef.current;
+      const trackEl = horizontalRef.current;
+
+      if (!pinEl || !trackEl) return;
+
+      const getScrollDistance = () => {
+        const slideCount = trackEl.children.length;
+        if (slideCount <= 1) return 0;
+
+        const viewportWidth = pinEl.offsetWidth || window.innerWidth;
+        return Math.max(viewportWidth * (slideCount - 1), 0);
+      };
+
+      const distance = getScrollDistance();
+      if (!distance) return;
+
+      gsap.to(trackEl, {
+        x: () => -getScrollDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: pinEl,
+          start: "top top",
+          end: () => `+=${getScrollDistance()}`,
+          scrub: 1,
+          pin: true,
+          pinReparent: true,
+          anticipatePin: 0,
+          invalidateOnRefresh: true,
+        },
+      });
+    },
+    { scope: sectionRef }
+  );
+
+  return (
+    <section ref={sectionRef} className="bg-black text-white">
+      {/* Десктопная версия - горизонтальный скролл */}
+      <div
+        ref={pinRef}
+        className="hidden md:flex relative h-screen items-center overflow-hidden"
+      >
+        {/* Фон на всю ширину pinned-секции */}
+        <div className="absolute inset-0 size-full">
+          <UnicornScene
+            showPlaceholderOnError
+            showPlaceholderWhileLoading
+            placeholder={journeyBg}
+            jsonFilePath={"/webgl/warp-line.json"}
+            scale={1}
+            dpi={1}
+            fps={60}
+            production={true}
+            lazyLoad={true}
+            altText="WebGL journey scene"
+            ariaLabel="Animated WebGL journey scene"
+            className="absolute inset-0 size-full rotate-90"
+          />
+        </div>
+
+        <Container className="relative z-10 w-full">
+          <div
+            ref={horizontalRef}
+            className="flex items-center will-change-transform"
+          >
+            {/* Первый блок - заголовок */}
+            <div className="min-w-screen flex items-center justify-center px-8">
               <div className="space-y-2 text-center">
                 <p className="text-[32px] md:text-[56px] lg:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
@@ -44,27 +111,71 @@ export function Journey() {
               </div>
             </div>
 
-            <div className="hidden w-full md:flex md:w-1/2 shrink-0 items-center justify-center px-4">
-              <div className="flex flex-col items-end gap-6">
-                <div className="flex flex-col gap-4 md:flex-row md:gap-8">
-                  {journeyHighlights.map((item) => (
-                    <div
-                      key={item.id}
-                      className="flex max-w-[417px] items-center rounded-[999px] border border-[#B6FF00] bg-[#141C00] px-8 py-5 shadow-[0_0_60px_rgba(182,255,0,1)]"
-                    >
-                      <p className="text-left text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.06em] text-white">
+            {/* Блоки с highlights */}
+            {journeyHighlights.map((item, index) => (
+              <div
+                key={index}
+                className="min-w-screen shrink-0 flex items-center justify-center px-8"
+              >
+                <div className="flex flex-col items-center">
+                  {/* Текстовый блок сверху */}
+                  <div className="mb-8">
+                    <div className="flex max-w-[417px] items-center rounded-[999px] border border-[#B6FF00] bg-[#141C00] px-8 py-5 shadow-[0_0_60px_rgba(182,255,0,0.8)]">
+                      <p className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.06em] text-white text-center">
                         {item.lines[0]}
                         <br />
                         {item.lines[1]}
                       </p>
                     </div>
-                  ))}
+                  </div>
+                  {/* Иконка снизу */}
+                  <div className="mt-8">
+                    <PlusJourneyIconSvg />
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
           </div>
         </Container>
       </div>
-    </div>
+
+      {/* Мобильная версия - вертикальный список */}
+      <div className="md:hidden relative py-[168px]">
+        <Container>
+          <div className="space-y-8">
+            <div className="flex flex-col items-center gap-8 px-4">
+              <div className="space-y-2 text-center">
+                <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-white">
+                  Even after
+                  <br />
+                  all key launches,
+                </p>
+                <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                  Nymb&apos;s journey
+                  <br />
+                  only begins.
+                </p>
+              </div>
+            </div>
+
+            {journeyHighlights.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center gap-4 px-4"
+              >
+                <div className="flex max-w-[417px] items-center rounded-[999px] border border-[#B6FF00] bg-[#141C00] px-8 py-5 shadow-[0_0_60px_rgba(182,255,0,1)]">
+                  <p className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.06em] text-white">
+                    {item.lines[0]}
+                    <br />
+                    {item.lines[1]}
+                  </p>
+                </div>
+                <PlusJourneyIconSvg />
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
+    </section>
   );
 }
