@@ -1,84 +1,17 @@
-import nftN1 from "../../assets/nft-n1.png";
-import nftN2 from "../../assets/nft-n2.png";
-import nftN3 from "../../assets/nft-n3.png";
+import type { ReactNode } from "react";
+import UnicornScene from 'unicornstudio-react';
 import { cn } from "../../lib/utils";
+import { Button } from "../ui/button";
+
+
 import { Container } from "../container";
 import { HeadingSection } from "../heading-section";
 
+
 import NymbLogo from '../../assets/brand/logo.png';
-
-const nftCards = [
-  {
-    id: "N1",
-    leftLabel: "5 000 LEFT",
-    titleTop: "Starting Your Journey",
-    titleBottom: "Entry Point to NYMB Ecosystem",
-    accent: "#B6FF00",
-    image: nftN1,
-    borderColor: "rgba(190, 255, 4, 0.3)",
-  },
-  {
-    id: "N2",
-    leftLabel: "250 LEFT",
-    titleTop: "Growing Together",
-    titleBottom: "Balanced Income & Opportunity",
-    accent: "#35F4FF",
-    image: nftN2,
-    borderColor: "rgba(5, 148, 255, 0.4)",
-  },
-  {
-    id: "N3",
-    leftLabel: "100 LEFT",
-    titleTop: "Leading the Revolution",
-    titleBottom: "Maximum Share in Success",
-    accent: "#FF3BFF",
-    image: nftN3,
-    borderColor: "rgba(255, 73, 255, 0.4)",
-  },
-];
-
-const nftTableRows = [
-  {
-    label: "",
-    values: ["$ 100 per nft", "$ 2 000 per nft", "$ 10 000 per nft"],
-  },
-  {
-    label: "Supply",
-    values: ["5 000", "250", "100"],
-  },
-  {
-    label: "Lock Period",
-    values: ["6 months", "6 months", "6 months"],
-  },
-  {
-    label: "Income from Community Pool",
-    values: ["10% Monthly Lottery", "20% Steady Payouts", "30% Steady Payouts"],
-  },
-  {
-    label: "Annual Gains",
-    values: ["Up to 60–180% when you hit", "15–45%", "42–126%"],
-  },
-  {
-    label: "TGE Whitelist",
-    values: [
-      "Priority",
-      "Bigger allocation + Priority",
-      "VIP allocation + Priority",
-    ],
-  },
-  {
-    label: "Discounts Up to",
-    values: ["10%", "15%", "40%"],
-  },
-  {
-    label: "Staking Boost",
-    values: ["+10%", "+25%", "+60%"],
-  },
-  {
-    label: "DAO Power",
-    values: ["Limited voting", "Standard voting", "VIP priority votes"],
-  },
-];
+import nftN2Placeholder from "../../assets/nft-n2.png";
+import nftN3Placeholder from "../../assets/nft-n3.png";
+import nftN1Placeholder from "../../assets/nft-n1.png";
 
 export function NftSection() {
   return (
@@ -98,27 +31,50 @@ export function NftSection() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-10">
-            <Card id={0} />
-            <Card id={1} />
-            <Card id={2} />
+          <div className="inline-flex w-full">
+            <Card
+              id={0}
+              pricePerNft={100}
+              supply={5000}
+              income={10}
+              annualGains="Up to 60-180%"
+              discount={10}
+              stakingBoost={10}
+            />
+            <Card
+              id={1}
+              pricePerNft={2000}
+              supply={250}
+              income={20}
+              annualGains="15-45%"
+              discount={15}
+              stakingBoost={25}
+            />
+            <Card
+              id={2}
+              pricePerNft={5000}
+              supply={100}
+              income={70}
+              annualGains="42-126%"
+              discount={40}
+              stakingBoost={60}
+            />
           </div>
 
           <div className="mt-10 grid grid-cols-2">
-            <p className="text-xs font-normal uppercase tracking-[0.25em] text-[#B6FF00]">
-              Telegram mini-app
-            </p>
-            <div>
-              <p className="max-w-3xl text-[18px] md:text-[20px] leading-relaxed text-white">
-                Join Nymb&apos;s Telegram mini-app now. Start swiping, invite
-                friends, complete tasks, battle players, and climb the
-                leaderboards.{" "}
-                <span className="text-[#B6FF00]">Every second counts.</span>{" "}
+            <HeadingSection
+              title="TELEGRAM MINI-APP"
+            />
+            <div className="flex flex-col gap-10">
+              <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-10 text-white">
+                <span className="text-[#B6FF00]">Join Nymb's</span> Telegram mini-app <span className="text-[#B6FF00]">now</span>. Start
+                <span className="text-[#B6FF00]"> swiping, invite friends, complete tasks, battle players,</span> and
+                climb the leaderboards. <span className="text-[#B6FF00]">Every second counts. </span>
                 Start earning yours today.
               </p>
-              <button className="mt-2 rounded-full bg-[#B6FF00] px-8 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-black">
-                Open app
-              </button>
+              <a href="https://t.me/nymb_twa_bot/nymb" target="_blank" className="text-base sm:text-lg font-pixel w-fit text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
+                OPEN APP
+              </a>
             </div>
           </div>
         </div>
@@ -138,7 +94,7 @@ function Card({
   stakingBoost = 10,
 }:{
   id?: number,
-  pricePerNFT?: number,
+  pricePerNft?: number,
   supply?: number,
   lockPeriod?: number,
   income?: number,
@@ -147,10 +103,89 @@ function Card({
   stakingBoost?: number,
 }){
   return (
-    <div className="flex flex-col">
+    <div className="relative flex flex-col w-full">
       {/* Top card */}
-      <div className=""></div>
+      <img
+        src={id === 0 ? nftN1Placeholder : id === 1 ? nftN2Placeholder : nftN3Placeholder}
+        alt="Logo"
+        className={cn("absolute right-0 -top-8 w-[300px] h-auto z-50",
+          id === 1 &&'w-[280px] -top-12',
+          id === 2 && 'w-[210px] -top-18'
+        )}
+      />
 
+      <div
+        className={cn(
+          "relative flex flex-col w-full overflow-hidden ",
+          id === 0 && 'h-[348px] border-t border-l border-b border-[#B6FF00]/40',
+          id === 1 && 'h-[368px] border-t border-l border-b -mt-5 border-[#35F4FF]/40',
+          id === 2 && 'h-[388px] border -mt-10 border-[#FF3BFF]/40',
+        )}
+      >
+        <UnicornScene
+          showPlaceholderOnError
+          showPlaceholderWhileLoading
+          placeholder={
+            id === 0 ? nftN1Placeholder :
+            id === 1 ? nftN2Placeholder :
+            nftN3Placeholder
+          }
+          jsonFilePath={`/webgl/nft-bg_n${id+1}.json`}
+          scale={1}
+          dpi={1}
+          fps={60}
+          production={true}
+          lazyLoad={true}
+          altText="WebGL scene"
+          ariaLabel="Animated WebGL scene"
+          className='absolute w-[110%]'
+        />
+        <div className="absolute flex flex-col justify-between w-full h-full top-5 left-5">
+          <span className={cn(
+            "text-base font-pixel text-[#B6FF00]",
+            id === 1 && 'text-[#35F4FF]',
+            id === 2 && 'text-[#FF3BFF]'
+          )}>
+            {
+              id === 0 ? "5 000 LEFT" :
+              id === 1 ? "250 LEFT" :
+              "100 LEFT"
+            }
+          </span>
+
+          <div className="flex flex-col gap-8 w-full h-full justify-end pb-10">
+            <span className={cn(
+              "font-pixel text-7xl text-[#B6FF00]",
+              id === 1 && 'text-[#35F4FF]',
+              id === 2 && 'text-[#FF3BFF]'
+            )}>
+              N{id + 1}
+            </span>
+            <p className="font-[550] font-dm-sans text-white">
+              {id === 0 && (
+                <>
+                  Starting Your Journey<br />
+                  Entry Point to NYMB Ecosystem
+                </>
+              )}
+              {id === 1 && (
+                <>
+                  Growing Together<br />
+                  Balanced Income & Opportunity
+                </>
+              )}
+              {id === 2 && (
+                <>
+                  Leading the Revolution<br />
+                  Maximum Share in Success
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Content Card */}
       <div className={cn(
           "flex flex-col w-full border-l border-b",
           id === 0 && "border-[#B6FF00]",
@@ -158,43 +193,79 @@ function Card({
           id === 2 && "border-[#FF3BFF]",
         )}
       >
-        <div className="w-full font-pixel text-xl px-3 py-6 text-white text-center inline-flex items-baseline justify-center gap-1 bg-linear-to-r from-[#B6FF00]/15 to-[#B6FF00]/0">
+        <div className={cn(
+            "w-full font-pixel text-xl px-3 py-6 text-white text-center inline-flex items-baseline justify-center gap-1 bg-linear-to-r from-[#B6FF00]/15 to-[#B6FF00]/0",
+            id === 0 && 'from-[#B6FF00]/15 to-[#B6FF00]/0',
+            id === 1 && 'from-[#35F4FF]/15 to-[#35F4FF]/0',
+            id === 2 && 'from-[#FF3BFF]/15 to-[#FF3BFF]/0',
+          )}
+        >
           <span className="text-[#B6FF00]">$</span>
           {pricePerNft.toLocaleString('en-US')}
           <span className="font-dm-sans text-white/40 text-base">per nft</span>
         </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+        <Row>
           {supply.toLocaleString('en-US')}
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {lockPeriod.toLocaleString('en-US')}
+        </Row>
+        <Row>
+          {lockPeriod.toLocaleString('en-US')}%
+          <span className="font-dm-sans text-white/40 text-base">month</span>
+        </Row>
+        <Row>
+          {income.toLocaleString('en-US')}%
           <span className="font-dm-sans text-white/40 text-base">when you hit</span>
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          <div className="inline-flex gap-2">
+        </Row>
+        <Row>
+          {annualGains}
+          <span className="font-dm-sans text-white/40 text-base">when you hit</span>
+        </Row>
+        <Row>
+          <div className="inline-flex items-center gap-2">
             <img className="size-6" src={NymbLogo} alt="Logo" />
             <span className="">Nymb</span>
           </div>
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          Priority
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {discount.toLocaleString('en-US')}
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {supply.toLocaleString('en-US')}
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {supply.toLocaleString('en-US')}
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {supply.toLocaleString('en-US')}
-        </div>
-        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
-          {supply.toLocaleString('en-US')}
-        </div>
+        </Row>
+        <Row>
+          {id === 0 ? "Priority" : id === 1 ? "Bigger allocation" : "VIP allocation"}
+          <span className="font-dm-sans text-white/40 text-base">+ Priority</span>
+        </Row>
+        <Row>
+          {discount.toLocaleString('en-US')}%
+        </Row>
+        <Row>
+          +{stakingBoost.toLocaleString('en-US')}%
+        </Row>
+        <Row className="pb-4">
+          {id === 0 ? "Limited voting" : id === 1 ? "Standard voting" : "VIP priority votes"}
+        </Row>
+
+        <Button
+          variant={'ghost'}
+          className={cn(
+            "w-full h-14 font-pixel text-xl gap-1 rounded-none  hover:bg-transparent cursor-pointer",
+            id === 0 && 'text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]',
+            id === 1 && 'text-[#35F4FF] border-t border-l border-b border-[#35F4FF] hover:text-[#35F4FF]',
+            id === 2 && 'text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]',
+          )}
+        >
+          MINT N{id + 1}
+        </Button>
       </div>
+
     </div>
   )
+}
+
+function Row({
+  className,
+  children
+}: {
+  className?: string,
+  children: ReactNode
+}) {
+  return (
+    <div className={cn("w-full font-dm-sans text-xl px-6 py-3 text-white flex flex-col", className)}>
+      {children}
+    </div>
+  );
 }
