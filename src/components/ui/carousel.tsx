@@ -59,7 +59,7 @@ export const CarouselContent = React.forwardRef<
   }
 
   return (
-    <div className="overflow-hidden" ref={context.viewportRef}>
+    <div className="" ref={context.viewportRef}>
       <div ref={ref} className={cn("flex -ml-4", className)} {...props} />
     </div>
   );

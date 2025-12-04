@@ -1,58 +1,51 @@
 import logoNymbWhite from "../assets/logo-nymb-white.svg";
+import { SocialLinks } from "../lib/constants";
+import { cn } from "../lib/utils";
+import { ConnectButton } from "./connect-wallet";
 import { InstagramIconSvg } from "./icons/instagram-icon-svg";
 import { TelegramIconSvg } from "./icons/telegram-icon-svg";
 import { TwitterIconSvg } from "./icons/twitter-icon-svg";
-import { LinkButton } from "./ui/link-button";
 
-export function Header() {
+export function Header({
+  className,
+}:{
+  className?: string,
+}) {
   return (
-    <header className="flex items-center justify-between px-20 pt-6">
-      <div className="mr-auto">
-        <a href="#">
-          <img src={logoNymbWhite} alt="Nymb" className="h-10 w-auto" />
-        </a>
-      </div>
+    <header className={cn("inline-flex items-center justify-between", className)}>
+      <a href="#" className="h-10">
+        <img src={logoNymbWhite} alt="Nymb" className="size-full" />
+      </a>
 
-      <div>
-        <nav>
-          <ul className="flex gap-12">
-            <li>
-              <a className="font-dm" href="#">
-                mission
-              </a>
-            </li>
-            <li>
-              <a href="#">phases</a>
-            </li>
-            <li>
-              <a href="#">founders</a>
-            </li>
-            <li>
-              <a href="#">nft</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <div className="inline-flex items-center gap-12 text-white">
+        <ul className="gap-8 font-pixel uppercase hidden lg:inline-flex">
+          <li>
+            <a href="#mission">mission</a>
+          </li>
+          <li>
+            <a href="#phases">phases</a>
+          </li>
+          <li>
+            <a href="#founders">founders</a>
+          </li>
+          <li>
+            <a href="#nft">nft</a>
+          </li>
+        </ul>
 
-      {/* <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-[#B6FF00]">
-          <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[#B6FF00]/60">
-            <div className="h-[13px] w-[13px] rounded-full border border-[#B6FF00] border-t-0" />
-          </div>
-          <span>Every minute of life</span>
-        </div> */}
-      <div className="flex gap-10 ml-10">
-        <a href="#">
-          <InstagramIconSvg />
-        </a>
-        <a href="#">
-          <TwitterIconSvg />
-        </a>
-        <a href="#">
-          <TelegramIconSvg />
-        </a>
-      </div>
-      <div className="ml-14">
-        <LinkButton label="CONNECT" className="!rounded-none" />
+        <div className="hidden sm:inline-flex items-center gap-6">
+          <a href={SocialLinks.Instagram} target="_blank">
+            <InstagramIconSvg />
+          </a>
+          <a href={SocialLinks.Twitter} target="_blank">
+            <TwitterIconSvg />
+          </a>
+          <a href={SocialLinks.Telegram} target="_blank">
+            <TelegramIconSvg />
+          </a>
+        </div>
+
+        <ConnectButton className="h-10 hidden sm:block" />
       </div>
     </header>
   );

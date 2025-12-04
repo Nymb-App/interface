@@ -163,7 +163,6 @@ export function NftSection() {
           </div>
         </div>
       </Container>
-      <Footer />
     </section>
   );
 }
