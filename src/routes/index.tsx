@@ -5,6 +5,7 @@ import { MissionSection } from "../components/mission-section/mission-section";
 import { NftSection } from "../components/nft-section/nft-section";
 import { Header } from "../components/header";
 import { Footer } from "../components/footer";
+import { Journey } from "../components/founders-section/journey/journey";
 
 function HeroPage() {
   return (
@@ -14,6 +15,7 @@ function HeroPage() {
       <HeroSection classNameContainer="max-w-[1440px] mx-auto"/>
       <MissionSection />
       <FoundersSection />
+      <Journey />
       <NftSection />
 
       <Footer />

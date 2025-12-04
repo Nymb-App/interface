@@ -1,9 +1,11 @@
 import nftN1 from "../../assets/nft-n1.png";
 import nftN2 from "../../assets/nft-n2.png";
 import nftN3 from "../../assets/nft-n3.png";
+import { cn } from "../../lib/utils";
 import { Container } from "../container";
-import { Footer } from "../footer";
-import { NftCard } from "./nft-card/nft-card";
+import { HeadingSection } from "../heading-section";
+
+import NymbLogo from '../../assets/brand/logo.png';
 
 const nftCards = [
   {
@@ -84,64 +86,22 @@ export function NftSection() {
       <Container className="py-[120px]">
         <div className="flex flex-col gap-20">
           <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
-            <p className="text-sm font-normal uppercase tracking-[-0.03em] text-[#B6FF00]">
-              NFT
-            </p>
-            <p className="max-w-[954px] text-[28px] md:text-[32px] lg:text-[40px] font-medium leading-[1.2] tracking-[-0.06em] text-white">
-              Become a strategic partner in Nymb through exclusive NFT ownership
-              — unlocking equity rights, revenue sharing, priority access to
-              drops, and boosted ecosystem rewards.
+            <HeadingSection
+              title="NFT"
+              navLink="nft"
+            />
+            <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-7 text-white">
+              Become a strategic <span className="text-[#B6FF00]">partner</span> in <span className="text-[#B6FF00]">Nymb </span>
+              through <span className="text-[#B6FF00]">exclusive NFT</span> ownership - <span className="text-[#B6FF00]">unlocking </span>
+              equity rights, <span className="text-[#B6FF00]">revenue sharing, priority access</span> to
+              drops, and <span className="text-[#B6FF00]">boosted</span> ecosystem <span className="text-[#B6FF00]">rewards.</span>
             </p>
           </div>
 
           <div className="flex flex-col gap-10">
-            <div className="relative overflow-x-auto">
-              <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_0%_100%,rgba(182,255,0,0.24),transparent_60%),radial-gradient(circle_at_100%_0%,rgba(53,244,255,0.24),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(255,59,255,0.2),transparent_60%)]" />
-
-              <div className="relative grid min-w-[1040px] gap-6 md:grid-cols-3">
-                {nftCards.map((card) => (
-                  <NftCard key={card.id} card={card} />
-                ))}
-              </div>
-            </div>
-
-            <div className="overflow-x-auto">
-              <div className="min-w-[1040px] border-t border-white/10 pt-6">
-                <div className="space-y-3 text-xs md:text-sm">
-                  {nftTableRows.map((row) => (
-                    <div
-                      key={row.label || row.values.join("-")}
-                      className="grid grid-cols-4 gap-x-10"
-                    >
-                      <div className="whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.25em] text-[#B6FF00]">
-                        {row.label}
-                      </div>
-                      {row.values.map((value, index) => (
-                        <div
-                          key={index}
-                          className="text-left text-[13px] md:text-sm text-white/80"
-                        >
-                          {value}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 grid grid-cols-4 gap-x-10">
-                  <div />
-                  <button className="border border-[#B6FF00] px-4 py-2 text-left text-xs font-semibold uppercase tracking-[0.25em] text-[#B6FF00]">
-                    MINT N1
-                  </button>
-                  <button className="border border-[#35F4FF] px-4 py-2 text-left text-xs font-semibold uppercase tracking-[0.25em] text-[#35F4FF]">
-                    MINT N2
-                  </button>
-                  <button className="border border-[#FF3BFF] px-4 py-2 text-left text-xs font-semibold uppercase tracking-[0.25em] text-[#FF3BFF]">
-                    MINT N3
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Card id={0} />
+            <Card id={1} />
+            <Card id={2} />
           </div>
 
           <div className="mt-10 grid grid-cols-2">
@@ -165,4 +125,76 @@ export function NftSection() {
       </Container>
     </section>
   );
+}
+
+function Card({
+  id = 0,
+  pricePerNft = 100,
+  supply = 5000,
+  lockPeriod = 6,
+  income = 10,
+  annualGains = 'Up to 60-180%',
+  discount = 10,
+  stakingBoost = 10,
+}:{
+  id?: number,
+  pricePerNFT?: number,
+  supply?: number,
+  lockPeriod?: number,
+  income?: number,
+  annualGains?: string,
+  discount?: number,
+  stakingBoost?: number,
+}){
+  return (
+    <div className="flex flex-col">
+      {/* Top card */}
+      <div className=""></div>
+
+      <div className={cn(
+          "flex flex-col w-full border-l border-b",
+          id === 0 && "border-[#B6FF00]",
+          id === 1 && "border-[#35F4FF]",
+          id === 2 && "border-[#FF3BFF]",
+        )}
+      >
+        <div className="w-full font-pixel text-xl px-3 py-6 text-white text-center inline-flex items-baseline justify-center gap-1 bg-linear-to-r from-[#B6FF00]/15 to-[#B6FF00]/0">
+          <span className="text-[#B6FF00]">$</span>
+          {pricePerNft.toLocaleString('en-US')}
+          <span className="font-dm-sans text-white/40 text-base">per nft</span>
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {supply.toLocaleString('en-US')}
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {lockPeriod.toLocaleString('en-US')}
+          <span className="font-dm-sans text-white/40 text-base">when you hit</span>
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          <div className="inline-flex gap-2">
+            <img className="size-6" src={NymbLogo} alt="Logo" />
+            <span className="">Nymb</span>
+          </div>
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          Priority
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {discount.toLocaleString('en-US')}
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {supply.toLocaleString('en-US')}
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {supply.toLocaleString('en-US')}
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {supply.toLocaleString('en-US')}
+        </div>
+        <div className="w-full font-dm-sans text-xl px-3 py-6 text-white flex flex-col">
+          {supply.toLocaleString('en-US')}
+        </div>
+      </div>
+    </div>
+  )
 }

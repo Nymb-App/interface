@@ -17,7 +17,7 @@ export function MissionSection() {
                 title="MISSION"
                 navLink="mission"
               />
-              <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-none tracking-[-0.06em] text-white">
+              <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 text-white">
                 Bring <span className="text-[#B6FF00]">meaning</span> back to <span className="text-[#B6FF00]">time spent online.</span> To
                 make <span className="text-[#B6FF00]">social media</span> useful, rewarding, and alive again. We
                 integrate <span className="text-[#B6FF00]">Web3 technology</span>, tokenized rewards, and real-

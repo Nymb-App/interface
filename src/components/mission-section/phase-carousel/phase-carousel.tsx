@@ -78,12 +78,16 @@ export function PhaseCarousel() {
                   className={cn('relative border-2 border-white/10', phase.id === current && "border-[#B6FF00]")}
                 >
                   <img
-                    className="absolute -top-15 right-[-15px] z-10"
+                    className={cn(
+                      "absolute -top-15 right-[-15px] z-10",
+                      phase.id === 1 && "right-0",
+                      phase.id === 2 && "top-0 right-0",
+                    )}
                     src={phase.image}
                     alt=""
                   />
                   <div
-                    className={cn('overflow-hidden relative flex-col w-[238px] h-[220px] flex gap-8 ')}
+                    className={cn('font-inter overflow-hidden relative flex-col flex gap-8 px-5 py-6 z-10')}
                   >
                     <div className="relative flex items-center gap-4 text-sm font-light uppercase tracking-[-0.03em] text-white/40">
                       <span>{phase.phaseLabel}</span>
@@ -93,12 +97,12 @@ export function PhaseCarousel() {
                     </div>
 
                     <div className="relative flex flex-col gap-4">
-                      <p className="text-[28px] md:text-[32px] lg:text-[40px] font-medium leading-[1.2] tracking-[-0.06em] text-white">
+                      <p className="font-dm-sans text-2xl text-white">
                         {phase.titleLines[0]}
                         <br />
                         {phase.titleLines[1]}
                       </p>
-                      <p className="max-w-[496px] text-[18px] md:text-[20px] font-normal leading-[1.4] tracking-[-0.03em] text-white/70">
+                      <p className="text-white/70 text-sm">
                         {phase.description}
                       </p>
                     </div>
