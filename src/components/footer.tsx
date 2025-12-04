@@ -1,18 +1,20 @@
 import Marquee from "react-fast-marquee";
-import { Container } from "./container";
+import { SocialLinks } from "../lib/constants";
+import { cn } from "../lib/utils";
 import { InstagramIconSvg } from "./icons/instagram-icon-svg";
 import { TelegramIconSvg } from "./icons/telegram-icon-svg";
 import { TwitterIconSvg } from "./icons/twitter-icon-svg";
-import { cn } from "../lib/utils";
-import { SocialLinks } from "../lib/constants";
 
-export function Footer({className}:{className?: string}) {
+export function Footer({ className }: { className?: string }) {
   return (
-    <footer className={cn("w-full mb-8 sm:min-h-[295px] sm:mb-0 flex flex-col gap-10", className)}>
+    <footer
+      className={cn(
+        "w-full mb-8 sm:min-h-[295px] sm:mb-0 flex flex-col gap-10",
+        className
+      )}
+    >
       <div className="relative w-full overflow-hidden">
-        <Marquee
-          className="overflow-hidden"
-        >
+        <Marquee className="overflow-hidden">
           <span className="text-[#B6FF00] mx-4 font-dm-sans font-bold text-4xl sm:text-[145px]">
             turns time into value turns time into value turns time into value
           </span>
@@ -20,11 +22,19 @@ export function Footer({className}:{className?: string}) {
       </div>
 
       <div className="mt-4 flex flex-col justify-between sm:flex-row text-white px-4 w-full max-w-[1440px] gap-10 mx-auto">
-        <span className="font-inter opacity-70 text-center">Nymb. All Rights Reserved 2025</span>
+        <span className="font-inter opacity-70 text-center">
+          Nymb. All Rights Reserved 2025
+        </span>
         <div className="flex gap-10 mx-auto sm:mx-0">
-          <a href={SocialLinks.Instagram}><InstagramIconSvg /></a>
-          <a href={SocialLinks.Twitter}><TwitterIconSvg /></a>
-          <a href={SocialLinks.Telegram}><TelegramIconSvg /></a>
+          <a href={SocialLinks.Instagram}>
+            <InstagramIconSvg />
+          </a>
+          <a href={SocialLinks.Twitter}>
+            <TwitterIconSvg />
+          </a>
+          <a href={SocialLinks.Telegram}>
+            <TelegramIconSvg />
+          </a>
         </div>
       </div>
     </footer>
