@@ -1,6 +1,9 @@
 import useEmblaCarousel, {
+  // @ts-ignore
   type EmblaCarouselType,
+  // @ts-ignore
   type EmblaOptionsType,
+  // @ts-ignore
   type EmblaPluginType,
 } from "embla-carousel-react";
 import * as React from "react";
