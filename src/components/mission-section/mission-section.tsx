@@ -7,6 +7,7 @@ import { PhaseCarousel } from "./phase-carousel/phase-carousel";
 import UnicornScene from 'unicornstudio-react';
 import { FlickeringGrid } from '../flickering-grid';
 import { cn } from '@/lib/utils';
+import { HeadingWithDescription } from '../ui/heading-with-description';
 
 export function MissionSection({className}:{className?: string}) {
   return (
@@ -14,21 +15,24 @@ export function MissionSection({className}:{className?: string}) {
       <Container>
         <div className="flex flex-col items-center">
           <div className="flex w-full flex-col">
-            <div className="flex flex-col w-full gap-6 sm:flex-row sm:justify-between">
-              <HeadingSection
-                title="MISSION"
-                navLink="mission"
-              />
-              <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 text-white">
-                Bring <span className="text-[#B6FF00]">meaning</span> back to <span className="text-[#B6FF00]">time spent online.</span> To
-                make <span className="text-[#B6FF00]">social media</span> useful, rewarding, and alive again. We
-                integrate <span className="text-[#B6FF00]">Web3 technology</span>, tokenized rewards, and real-
-                world products into a seamless experience - where living,
-                creating, and connecting finally have <span className="text-[#B6FF00]">tangible worth.</span>
-              </p>
-            </div>
+            <HeadingWithDescription
+              title='MISSION'
+              navLink='mission'
+              description='Bring meaning back to time spent online. To
+                  make social media useful, rewarding, and alive again. We
+                  integrate Web3 technology, tokenized rewards, and real-
+                  world products into a seamless experience - where living,
+                  creating, and connecting finally have tangible worth.'
+              highlightWords={[
+                "meaning",
+                "time spent online.",
+                "social media",
+                "Web3 technology",
+                "tangible worth.",
+              ]}
+            />
 
-            <div className="flex w-full flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between">
+            <div className="mt-15 flex w-full flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between">
               <HeadingSection
                 title="NUMBERS"
               />

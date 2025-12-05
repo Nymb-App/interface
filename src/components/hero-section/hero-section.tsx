@@ -54,7 +54,7 @@ export function HeroSection({
         )}
       >
         <div className="space-y-4 font-dm-sans font-[550]">
-          <Reveal>
+          <Reveal threshold={0}>
             <p className="text-4xl sm:text-7xl text-white font-dm-sans leading-[1.1] tracking-[-0.06em]">
               Nymb Ecosystem
             </p>
@@ -62,11 +62,11 @@ export function HeroSection({
 
 
           <div className="inline-flex flex-wrap items-center gap-1 sm:gap-4 text-white">
-            <Reveal>
+            <Reveal threshold={0}>
               <p className="text-4xl sm:text-7xl w-full sm:w-fit">that turns</p>
             </Reveal>
 
-            <Reveal className="inline-flex items-center gap-1">
+            <Reveal threshold={0} className="inline-flex items-center gap-1">
               <img className="size-12 sm:size-max" src={timeIcon} alt="time" />
               <p className="text-4xl sm:text-7xl">time into value</p>
             </Reveal>
@@ -74,17 +74,17 @@ export function HeroSection({
         </div>
 
         <p className="max-w-[519px] text-[24px] font-inter leading-[1.4] tracking-[-0.03em] text-white mt-4">
-          <Reveal duration={2}>
+          <Reveal threshold={0} duration={2}>
             Every minute of life becomes <span className="text-[#B6FF00]">real value</span>
           </Reveal>
-          <Reveal duration={2}>
+          <Reveal threshold={0} duration={2}>
             through <span className="text-[#B6FF00]">gamification</span> and{" "}
             <span className="text-[#B6FF00]">tokenization.</span>
           </Reveal>
         </p>
 
 
-        <Reveal duration={1} delay={1} className="mt-10 hidden sm:flex flex-row">
+        <Reveal threshold={0} duration={1} delay={1} className="mt-10 hidden sm:flex flex-row">
           <Button className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-[26px] rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
             Become our Partner
           </Button>
@@ -97,12 +97,12 @@ export function HeroSection({
         </Reveal>
 
         <div className="mt-10 flex flex-col sm:hidden">
-          <Reveal className="flex" duration={1} delay={1}>
+          <Reveal threshold={0} className="flex" duration={1} delay={1}>
             <Button className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-[26px] rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
               Become our Partner
             </Button>
           </Reveal>
-          <Reveal className="flex" duration={1} delay={1}>
+          <Reveal threshold={0} className="flex" duration={1} delay={1}>
             <Button
               variant={"ghost"}
               className="text-base sm:w-fit w-full sm:text-lg font-pixel px-4 py-6 text-[#B6FF00] rounded-none border-2 border-[#B6FF00] font-normal uppercase tracking-[0.12rem] hover:bg-transparent hover:text-[#B6FF00]"

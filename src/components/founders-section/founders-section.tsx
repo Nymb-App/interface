@@ -2,27 +2,30 @@ import IgorIvanov from "../../assets/founders/igor-ivanov.png";
 import VitaliiTereshchenko from "../../assets/founders/vitalii-tereshchenko.png";
 import { Container } from "../container";
 import { HeadingSection } from "../heading-section";
+import { HeadingWithDescription } from "../ui/heading-with-description";
 
 export function FoundersSection() {
   return (
     <section className="bg-black text-white">
       <Container>
         <div className="flex flex-col items-end gap-5 sm:gap-20">
-          <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
-            <HeadingSection title="FOUNDERS" navLink="founders" />
-            <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 text-white">
-              We're not competing with the past -{" "}
-              <span className="text-[#B6FF00]">we're building</span> what comes
-              next.{" "}
-              <span className="text-[#B6FF00]">
-                An ecosystem where content has value
-              </span>
-              , users are co-owners, and{" "}
-              <span className="text-[#B6FF00]">time</span> becomes the
-              <span className="text-[#B6FF00]">new</span> digital{" "}
-              <span className="text-[#B6FF00]">currency.</span>
-            </p>
-          </div>
+          <HeadingWithDescription
+            title='FOUNDERS'
+            navLink='founders'
+            description="We're not competing with
+              the past - we're building what
+              comes next. An ecosystem where
+              content has value, users are co-owners,
+              and time becomes the new digital currency."
+            highlightWords={[
+              "we're building",
+              "next.",
+              "ecosystem where content has value",
+              "time",
+              "new",
+              "currency.",
+            ]}
+          />
 
           <div className="inline-flex items-center justify-center w-full gap-0 sm:gap-10">
             <AvatarCard

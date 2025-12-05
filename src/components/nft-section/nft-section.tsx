@@ -15,13 +15,14 @@ import nftN1Placeholder from "../../assets/nft-n1.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
 import { LuShieldCheck } from "react-icons/lu";
+import { HeadingWithDescription } from "../ui/heading-with-description";
 
-export function NftSection({className}:{className?: string}) {
+export function NftSection({ className }: { className?: string }) {
   return (
     <section className={cn("text-white", className)}>
       <Container>
         <div className="flex flex-col gap-20">
-          <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          {/* <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <HeadingSection
               title="NFT"
               navLink="nft"
@@ -32,7 +33,23 @@ export function NftSection({className}:{className?: string}) {
               equity rights, <span className="text-[#B6FF00]">revenue sharing, priority access</span> to
               drops, and <span className="text-[#B6FF00]">boosted</span> ecosystem <span className="text-[#B6FF00]">rewards.</span>
             </p>
-          </div>
+          </div> */}
+          <HeadingWithDescription
+            title='FOUNDERS'
+            navLink='founders'
+            description="Become a strategic partner in Nymb
+              through exclusive NFT ownership - unlocking equity
+              rights, revenue sharing, priority access
+              to drops, and boosted ecosystem rewards."
+            highlightWords={[
+              "partner",
+              "Nymb",
+              "exclusive NFT",
+              "revenue sharing, priority access",
+              "boosted",
+              "rewards.",
+            ]}
+          />
 
           {/* Mobile version of cards */}
           <div className="w-full flex flex-col md:hidden gap-20">
@@ -275,7 +292,7 @@ function CardMobile({
 
             <div className="inline-flex">
               <Row className="text-xs text-white/70">
-                Income from<br/>
+                Income from<br />
                 Community Pool
               </Row>
               <Row>
@@ -289,7 +306,7 @@ function CardMobile({
               <Row className="text-[#B6FF00]">
                 <span className="inline-flex items-center gap-1">
                   {annualGains}
-                  {id > 0 ? <LuShieldCheck fill="#B6FF00" className="text-black text-lg"/> : null}
+                  {id > 0 ? <LuShieldCheck fill="#B6FF00" className="text-black text-lg" /> : null}
                 </span>
                 {id === 0 ? <span className="font-dm-sans text-white/40 text-xs">when you hit</span> : null}
               </Row>
