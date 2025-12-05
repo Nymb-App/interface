@@ -35,8 +35,8 @@ export function NftSection({ className }: { className?: string }) {
             </p>
           </div> */}
           <HeadingWithDescription
-            title='FOUNDERS'
-            navLink='founders'
+            title='NFT'
+            navLink='nft'
             description="Become a strategic partner in Nymb
               through exclusive NFT ownership - unlocking equity
               rights, revenue sharing, priority access
