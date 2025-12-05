@@ -29,11 +29,11 @@ export function HeroSection({
           showPlaceholderWhileLoading
           placeholder={HeroFallbackImage}
           jsonFilePath={"/webgl/hero.json"}
-          scale={1}
-          dpi={1}
-          fps={60}
-          production={true}
-          lazyLoad={true}
+          // scale={1}
+          // dpi={1}
+          // fps={60}
+          // production={true}
+          // lazyLoad={true}
           altText="WebGL hero scene"
           ariaLabel="Animated WebGL hero scene"
           className="absolute inset-0 size-full"

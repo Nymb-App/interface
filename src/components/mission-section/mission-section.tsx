@@ -60,10 +60,10 @@ export function MissionSection({className}:{className?: string}) {
                 showPlaceholderWhileLoading
                 placeholder={MissionImage}
                 jsonFilePath={'/webgl/logo_1-step.json'}
-                scale={1}
-                dpi={1}
-                fps={60}
-                production={true}
+                // scale={1}
+                // dpi={1}
+                // fps={60}
+                // production={true}
                 lazyLoad={true}
                 altText="WebGL scene"
                 ariaLabel="Animated WebGL scene"
