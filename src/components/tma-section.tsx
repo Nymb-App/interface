@@ -5,8 +5,8 @@ export function TMASection({ className }: { className?: string }) {
     return (
         <section className={cn("flex flex-col gap-6 px-4 w-full max-w-[1440px]", className)}>
             <HeadingWithDescription
-                title='NFT'
-                navLink='nft'
+                title='TELEGRAM MINI-APP'
+                navLink='tma'
                 description="Join Nymb's Telegram mini-app now.
                     Start swiping, invite friends, complete tasks, battle players,
                     and climb the leaderboards. Every second counts.
@@ -17,6 +17,7 @@ export function TMASection({ className }: { className?: string }) {
                     "swiping, invite friends, complete tasks, battle players,",
                     "Every second counts.",
                 ]}
+                className="mb-5"
             />
             <div className="flex flex-col gap-10">
                 <a
