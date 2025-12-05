@@ -7,7 +7,6 @@ import UnicornScene from "unicornstudio-react";
 import journeyBg from "@/assets/journey-bg.png";
 import plusImg from "@/assets/union.png";
 import { Container } from "../../container";
-import { PlusJourneyIconSvg } from "../../icons/plus-journey-icon-svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
