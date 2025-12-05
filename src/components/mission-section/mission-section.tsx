@@ -1,30 +1,36 @@
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
+import UnicornScene from "unicornstudio-react";
 import MissionImage from "../../assets/mission/Frame 2135556552.png";
 import { Container } from "../container";
+import { FlickeringGrid } from "../flickering-grid";
 import { HeadingSection } from "../heading-section";
+import { HeadingWithDescription } from "../ui/heading-with-description";
+import { Reveal } from "../ui/text-reveal";
 import { PhaseCarousel } from "./phase-carousel/phase-carousel";
-import UnicornScene from 'unicornstudio-react';
-import { FlickeringGrid } from '../flickering-grid';
-import { cn } from '@/lib/utils';
-import { HeadingWithDescription } from '../ui/heading-with-description';
-import { useEffect, useRef, useState } from 'react';
-import { Reveal } from '../ui/text-reveal';
 
-export function MissionSection({className}:{className?: string}) {
+export function MissionSection({ className }: { className?: string }) {
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0,
+    rootMargin: "500px",
+  });
+  console.log(isIntersecting, "isIntersecting");
   return (
-    <section className={cn("bg-black text-white", className)}>
+    <section ref={sectionRef} className={cn("bg-black text-white", className)}>
       <Container>
         <div className="flex flex-col items-center">
           <div className="flex w-full flex-col">
             <HeadingWithDescription
-              title='MISSION'
-              navLink='mission'
-              description='Bring meaning back to time spent online. To
+              title="MISSION"
+              navLink="mission"
+              description="Bring meaning back to time spent online. To
                   make social media useful, rewarding, and alive again. We
                   integrate Web3 technology, tokenized rewards, and real-
                   world products into a seamless experience - where living,
-                  creating, and connecting finally have tangible worth.'
+                  creating, and connecting finally have tangible worth."
               highlightWords={[
                 "meaning",
                 "time spent online.",
@@ -35,12 +41,10 @@ export function MissionSection({className}:{className?: string}) {
             />
 
             <div className="mt-15 flex w-full flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between">
-              <HeadingSection
-                title="NUMBERS"
-              />
+              <HeadingSection title="NUMBERS" />
               <div className="inline-flex justify-between w-full max-w-[954px] gap-10">
-                <NumbersWithSubtitle value={460} subtitle='Industry' />
-                <NumbersWithSubtitle value={5} subtitle='Users' />
+                <NumbersWithSubtitle value={460} subtitle="Industry" />
+                <NumbersWithSubtitle value={5} subtitle="Users" />
               </div>
             </div>
           </div>
@@ -59,7 +63,7 @@ export function MissionSection({className}:{className?: string}) {
                 showPlaceholderOnError
                 showPlaceholderWhileLoading
                 placeholder={MissionImage}
-                jsonFilePath={'/webgl/logo_1-step.json'}
+                jsonFilePath={"/webgl/logo_1-step.json"}
                 // scale={1}
                 // dpi={1}
                 // fps={60}
@@ -67,11 +71,13 @@ export function MissionSection({className}:{className?: string}) {
                 lazyLoad={true}
                 altText="WebGL scene"
                 ariaLabel="Animated WebGL scene"
-                className='overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]'
+                className="overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]"
               />
               <p className="relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
-                <Reveal><span className='text-[#B6FF00]'>1 idea</span> to make</Reveal>
-                <Reveal className='pb-1'>every second count.</Reveal>
+                <Reveal>
+                  <span className="text-[#B6FF00]">1 idea</span> to make
+                </Reveal>
+                <Reveal className="pb-1">every second count.</Reveal>
               </p>
             </div>
           </div>
@@ -81,7 +87,6 @@ export function MissionSection({className}:{className?: string}) {
     </section>
   );
 }
-
 
 interface NumbersWithSubtitleProps {
   value?: number;

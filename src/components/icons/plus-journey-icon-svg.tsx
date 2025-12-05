@@ -33,8 +33,8 @@ export const PlusJourneyIconSvg = ({ className }: { className?: string }) => {
           id="filter0_di_2291_249"
           x="-0.000411987"
           y="-4.57764e-05"
-          width="247.688"
-          height="247.688"
+          width="48"
+          height="48"
           filterUnits="userSpaceOnUse"
           color-interpolation-filters="sRGB"
         >

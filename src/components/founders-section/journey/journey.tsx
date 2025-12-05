@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -24,7 +25,7 @@ const journeyHighlights = [
   },
 ];
 
-export function Journey() {
+export function Journey({ className }: { className?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
@@ -52,12 +53,12 @@ export function Journey() {
         ease: "none",
         scrollTrigger: {
           trigger: pinEl,
-          start: "top top",
+          start: "center center",
           end: () => `+=${getScrollDistance()}`,
           scrub: 1,
           pin: true,
-          pinReparent: true,
-          anticipatePin: 0,
+          pinSpacing: true,
+          // anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
@@ -66,38 +67,39 @@ export function Journey() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-black text-white">
+    <section className={cn("overflow-hidden", className)}>
       {/* Десктопная версия - горизонтальный скролл */}
       <div
         ref={pinRef}
-        className="hidden md:flex relative h-screen items-center overflow-hidden"
+        className="hidden md:flex relative items-center justify-center h-[760px]"
       >
         {/* Фон на всю ширину pinned-секции */}
-        <div className="absolute inset-0 size-full">
+        <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
           <UnicornScene
             showPlaceholderOnError
             showPlaceholderWhileLoading
             placeholder={journeyBg}
             jsonFilePath={"/webgl/warp-line.json"}
+            width="100%"
+            height="100%"
             scale={1}
             dpi={1}
             fps={60}
-            production={true}
+            production={false}
             lazyLoad={true}
-            altText="WebGL journey scene"
-            ariaLabel="Animated WebGL journey scene"
-            className="absolute inset-0 size-full rotate-90"
+            altText="WebGL huli net lazer journey scene"
+            ariaLabel="Animated WebGL huli net lazer journey scene"
+            className="rotate-90 min-w-[760px] min-h-[100vw]"
           />
         </div>
-
-        <Container className="relative z-10 w-full">
+        <div className="relative z-10 w-full h-full">
           <div
             ref={horizontalRef}
-            className="flex items-center will-change-transform"
+            className="grid grid-flow-col auto-cols-[100vw] will-change-transform h-full"
           >
             {/* Первый блок - заголовок */}
-            <div className="min-w-screen flex items-center justify-center px-8">
-              <div className="space-y-2 text-center">
+            <div className="grid place-items-center px-8">
+              <div className="space-y-26 text-center">
                 <p className="text-[32px] md:text-[56px] lg:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
@@ -115,28 +117,20 @@ export function Journey() {
             {journeyHighlights.map((item, index) => (
               <div
                 key={index}
-                className="min-w-screen shrink-0 flex items-center justify-center px-8"
+                className="flex flex-col justify-center items-center"
               >
-                <div className="flex flex-col items-center">
-                  {/* Текстовый блок сверху */}
-                  <div className="mb-8">
-                    <div className="flex max-w-[417px] items-center rounded-[999px] border border-[#B6FF00] bg-[#141C00] px-8 py-5 shadow-[0_0_60px_rgba(182,255,0,0.8)]">
-                      <p className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.06em] text-white text-center">
-                        {item.lines[0]}
-                        <br />
-                        {item.lines[1]}
-                      </p>
-                    </div>
-                  </div>
-                  {/* Иконка снизу */}
-                  <div className="mt-8">
-                    <PlusJourneyIconSvg />
-                  </div>
+                <div className="flex items-center">
+                  <p className="font-dm-sans text-[48px] leading-[120%] tracking-[-0.06em] text-white">
+                    {item.lines[0]}
+                    <br />
+                    {item.lines[1]}
+                  </p>
                 </div>
+                <PlusJourneyIconSvg className="relative z-100" />
               </div>
             ))}
           </div>
-        </Container>
+        </div>
       </div>
 
       {/* Мобильная версия - вертикальный список */}

@@ -1,3 +1,4 @@
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { FaAngleDown } from "react-icons/fa";
 import UnicornScene from "unicornstudio-react";
 import HeroFallbackImage from "../../assets/hero/hero-fallback.png";
@@ -15,43 +16,50 @@ export function HeroSection({
   className?: string;
   classNameContainer?: string;
 }) {
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0,
+    rootMargin: "0px",
+  });
+
   return (
     <div
+      ref={sectionRef}
       className={cn(
         "relative w-full h-screen flex flex-col justify-between overflow-hidden",
         className
       )}
     >
       <Header className="relative z-10 p-6 w-full max-w-[1440px] mx-auto" />
-      <div className="absolute inset-0 size-full opacity-50">
-        <UnicornScene
-          showPlaceholderOnError
-          showPlaceholderWhileLoading
-          placeholder={HeroFallbackImage}
-          jsonFilePath={"/webgl/hero.json"}
-          // scale={1}
-          // dpi={1}
-          // fps={60}
-          // production={true}
-          // lazyLoad={true}
-          altText="WebGL hero scene"
-          ariaLabel="Animated WebGL hero scene"
-          className="absolute inset-0 size-full"
+      {isIntersecting && (
+        <div className="absolute inset-0 size-full opacity-50">
+          <UnicornScene
+            showPlaceholderOnError
+            showPlaceholderWhileLoading
+            placeholder={HeroFallbackImage}
+            jsonFilePath={"/webgl/hero.json"}
+            scale={1}
+            dpi={1}
+            fps={60}
+            production={true}
+            lazyLoad={true}
+            altText="WebGL hero scene"
+            ariaLabel="Animated WebGL hero scene"
+            className="absolute inset-0 size-full"
+          />
+        </div>
+      )}
+      {isIntersecting && (
+        <FlickeringGrid
+          className="absolute top-2 left-2 size-full"
+          squareSize={2}
+          gridGap={10}
+          color="#B6FF00"
+          maxOpacity={0.3}
+          flickerChance={0.1}
         />
-      </div>
-      <FlickeringGrid
-        className="absolute top-2 left-2 size-full"
-        squareSize={2}
-        gridGap={10}
-        color="#B6FF00"
-        maxOpacity={0.3}
-        flickerChance={0.1}
-      />
+      )}
       <div
-        className={cn(
-          "relative z-10 w-full p-6 sm:mb-20",
-          classNameContainer
-        )}
+        className={cn("relative z-10 w-full p-6 sm:mb-44", classNameContainer)}
       >
         <div className="space-y-4 font-dm-sans font-[550]">
           <Reveal threshold={0}>
@@ -59,7 +67,6 @@ export function HeroSection({
               Nymb Ecosystem
             </p>
           </Reveal>
-
 
           <div className="inline-flex flex-wrap items-center gap-1 sm:gap-4 text-white">
             <Reveal threshold={0}>
@@ -75,7 +82,8 @@ export function HeroSection({
 
         <p className="max-w-[519px] text-[24px] font-inter leading-[1.4] tracking-[-0.03em] text-white mt-4">
           <Reveal threshold={0} duration={2}>
-            Every minute of life becomes <span className="text-[#B6FF00]">real value</span>
+            Every minute of life becomes{" "}
+            <span className="text-[#B6FF00]">real value</span>
           </Reveal>
           <Reveal threshold={0} duration={2}>
             through <span className="text-[#B6FF00]">gamification</span> and{" "}
@@ -83,8 +91,12 @@ export function HeroSection({
           </Reveal>
         </p>
 
-
-        <Reveal threshold={0} duration={1} delay={1} className="mt-10 hidden sm:flex flex-row">
+        <Reveal
+          threshold={0}
+          duration={1}
+          delay={1}
+          className="mt-10 hidden sm:flex flex-row"
+        >
           <Button className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-[26px] rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
             Become our Partner
           </Button>
