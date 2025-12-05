@@ -4,7 +4,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import UnicornScene from "unicornstudio-react";
-import journeyBg from "../../../assets/journey-bg.png";
+import journeyBg from "@/assets/journey-bg.png";
+import plusImg from "@/assets/union.png";
 import { Container } from "../../container";
 import { PlusJourneyIconSvg } from "../../icons/plus-journey-icon-svg";
 
@@ -100,12 +101,12 @@ export function Journey({ className }: { className?: string }) {
             {/* Первый блок - заголовок */}
             <div className="grid place-items-center px-8">
               <div className="space-y-26 text-center">
-                <p className="text-[32px] md:text-[56px] lg:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
+                <p className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
                   all key launches,
                 </p>
-                <p className="text-[32px] md:text-[56px] lg:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                <p className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
                   Nymb&apos;s journey
                   <br />
                   only begins.
@@ -117,16 +118,22 @@ export function Journey({ className }: { className?: string }) {
             {journeyHighlights.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col justify-center items-center"
+                className={cn("flex flex-col justify-center mb-[210px]", 'ml-100')}
               >
-                <div className="flex items-center">
+                <div className="flex flex-col justify-start">
                   <p className="font-dm-sans text-[48px] leading-[120%] tracking-[-0.06em] text-white">
                     {item.lines[0]}
                     <br />
                     {item.lines[1]}
                   </p>
                 </div>
-                <PlusJourneyIconSvg className="relative z-100" />
+                <div className="relative h-[100px] w-[200px]">
+                  <img
+                    src={plusImg}
+                    alt="+"
+                    className="absolute w-full h-[200px] -left-[70px] top-0"
+                  />
+                </div>
               </div>
             ))}
           </div>
