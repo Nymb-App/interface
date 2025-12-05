@@ -13,15 +13,15 @@ import { Reveal } from "../ui/text-reveal";
 import { PhaseCarousel } from "./phase-carousel/phase-carousel";
 
 export function MissionSection({ className }: { className?: string }) {
-  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
+  const { ref: sectionRef, isIntersecting: _ } = useIntersectionObserver({
     threshold: 0,
     rootMargin: "500px",
   });
-  console.log(isIntersecting, "isIntersecting");
+
   return (
     <section ref={sectionRef} className={cn("bg-black text-white", className)}>
       <Container>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center px-2">
           <div className="flex w-full flex-col">
             <HeadingWithDescription
               title="MISSION"
@@ -40,9 +40,9 @@ export function MissionSection({ className }: { className?: string }) {
               ]}
             />
 
-            <div className="mt-15 flex w-full flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between">
+            <div className="mt-15 flex w-full flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between lg:justify-center">
               <HeadingSection title="NUMBERS" />
-              <div className="inline-flex justify-between w-full max-w-[954px] gap-10">
+              <div className="inline-flex justify-between lg:justify-around w-full max-w-[954px] gap-10 lg:mr-30">
                 <NumbersWithSubtitle value={460} subtitle="Industry" />
                 <NumbersWithSubtitle value={5} subtitle="Users" />
               </div>
@@ -73,7 +73,7 @@ export function MissionSection({ className }: { className?: string }) {
                 ariaLabel="Animated WebGL scene"
                 className="overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]"
               />
-              <p className="relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
+              <p className="mx-auto relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
                 <Reveal>
                   <span className="text-[#B6FF00]">1 idea</span> to make
                 </Reveal>

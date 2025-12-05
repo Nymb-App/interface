@@ -16,8 +16,10 @@ const phases = [
     phaseLabel: "[ Phase 1 ]",
     tag: "Now",
     titleLines: ["Mini-App", "in Telegram"],
-    description:
-      "Launching a Telegram minigame, gathering first users, and gamifying time",
+    description: [
+      "Launching a Telegram minigame, gathering",
+      "first users, and gamifying time",
+    ],
     highlight: true,
     image: PhaseImage1,
   },
@@ -26,7 +28,10 @@ const phases = [
     phaseLabel: "[ Phase 2 ]",
     tag: null,
     titleLines: ["New Social", "Network"],
-    description: "A future social network with activity tokenization",
+    description: [
+      "A future social network with activity",
+      "tokenization"
+    ],
     highlight: false,
     image: PhaseImage2,
   },
@@ -35,8 +40,10 @@ const phases = [
     phaseLabel: "[ Phase 3 ]",
     tag: null,
     titleLines: ["Physical", "Products"],
-    description:
-      "Linking digital experiences to physical objects (watches, merchandise, devices, etc.)",
+    description: [
+      "Linking digital experiences to physical objects",
+      "(watches, merchandise, devices, etc.)",
+    ],
     highlight: false,
     image: PhaseImage3,
   },
@@ -136,7 +143,9 @@ export function PhaseCarousel() {
                     {phase.titleLines[1]}
                   </p>
                   <p className="text-white/70 text-sm">
-                    {phase.description}
+                    {phase.description[0]}
+                    <br />
+                    {phase.description[1]}
                   </p>
                 </div>
               </div>

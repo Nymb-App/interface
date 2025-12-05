@@ -59,7 +59,7 @@ export function HeroSection({
         />
       )}
       <div
-        className={cn("relative z-10 w-full p-6 sm:mb-44", classNameContainer)}
+        className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
         <div className="space-y-4 font-dm-sans font-[550]">
           <Reveal threshold={0}>

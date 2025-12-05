@@ -3,10 +3,11 @@ import VitaliiTereshchenko from "@/assets/founders/vitalii-tereshchenko.png";
 import { Container } from "../container";
 import { HeadingWithDescription } from "../ui/heading-with-description";
 import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/utils";
 
-export function FoundersSection() {
+export function FoundersSection({className}:{className?: string}) {
   return (
-    <section className="bg-black text-white">
+    <section className={cn("bg-black text-white", className)}>
       <Container>
         <div className="flex flex-col items-end gap-5 sm:gap-20">
           <HeadingWithDescription

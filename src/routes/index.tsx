@@ -9,15 +9,17 @@ import { NftSection } from "../components/nft-section/nft-section";
 
 function HeroPage() {
   return (
-    <div className="w-full min-h-screen flex flex-col overflow-x-hidden">
-      <HeroSection classNameContainer="max-w-[1440px] mx-auto" />
-      <MissionSection className="mt-20" />
-      <FoundersSection />
-      <Journey className="mt-[50px]" />
-      <NftSection className="mt-[50px]" />
-      <TMASection className="mt-14" />
-      <Footer className="mt-10" /> 
-    </div>
+    <>
+      <main className="w-full min-h-screen flex flex-col overflow-x-hidden">
+        <HeroSection classNameContainer="max-w-[1440px] mx-auto" />
+        <MissionSection className="mt-20 sm:mt-28" />
+        <FoundersSection className="sm:mt-18"/>
+        <Journey className="mt-[50px]" />
+        <NftSection className="mt-[50px]" />
+        <TMASection className="mt-14 sm:mt-28" />
+        <Footer className="mt-10" /> 
+      </main>
+    </>
   );
 }
 

@@ -39,9 +39,9 @@ export function HeadingWithDescription({
 
     return (
         <div className={cn("flex flex-col w-full gap-6 sm:flex-row sm:justify-between", className)}>
-            <HeadingSection title={title} navLink={navLink} />
-            <Reveal threshold={0.2}>
-                <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 text-white">
+            <HeadingSection className="w-max text-nowrap" title={title} navLink={navLink} />
+            <Reveal className="inline-flex justify-end w-full" threshold={0.2}>
+                <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 sm:leading-11 text-white sm:-mt-2">
                     {getHighlightedText(description, highlightWords)}
                 </p>
             </Reveal>

@@ -176,21 +176,21 @@ function CardPCTitles({
         <Row className="text-base">
           Supply
         </Row>
-        <Row className="text-base mt-1">
+        <Row className="text-base">
           Lock Period
-          <span className="font-dm-sans text-white/40 text-base">Tradeable After</span>
+          <span className="font-dm-sans text-white/40 text-xs">Tradeable After</span>
         </Row>
         <Row className="text-base">
           Income from<br />
           Community Pool
         </Row >
-        <Row className="text-base mt-3">
+        <Row className="text-base mt-2">
           Annual Gains
         </Row>
-        <Row className="text-base mt-4.5">
+        <Row className="text-base mt-3">
           Token Drops
         </Row>
-        <Row className="text-base mt-5">
+        <Row className="text-base mt-3">
           TGE Whitelist
         </Row>
         <Row className="text-base mt-3">
@@ -198,9 +198,9 @@ function CardPCTitles({
         </Row>
         <Row className="text-base">
           Staking Boost
-          <span className="font-dm-sans text-white/40 text-base">On Base</span>
+          <span className="font-dm-sans text-white/40 text-xs">On Base</span>
         </Row>
-        <Row className="text-base -mt-3.5">
+        <Row className="text-base -mt-4">
           DAO Power
         </Row>
       </div>
