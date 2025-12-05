@@ -22,18 +22,6 @@ export function NftSection({ className }: { className?: string }) {
     <section className={cn("text-white", className)}>
       <Container>
         <div className="flex flex-col gap-20">
-          {/* <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
-            <HeadingSection
-              title="NFT"
-              navLink="nft"
-            />
-            <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-7 text-white">
-              Become a strategic <span className="text-[#B6FF00]">partner</span> in <span className="text-[#B6FF00]">Nymb </span>
-              through <span className="text-[#B6FF00]">exclusive NFT</span> ownership - <span className="text-[#B6FF00]">unlocking </span>
-              equity rights, <span className="text-[#B6FF00]">revenue sharing, priority access</span> to
-              drops, and <span className="text-[#B6FF00]">boosted</span> ecosystem <span className="text-[#B6FF00]">rewards.</span>
-            </p>
-          </div> */}
           <HeadingWithDescription
             title='NFT'
             navLink='nft'

@@ -8,6 +8,8 @@ import UnicornScene from 'unicornstudio-react';
 import { FlickeringGrid } from '../flickering-grid';
 import { cn } from '@/lib/utils';
 import { HeadingWithDescription } from '../ui/heading-with-description';
+import { useEffect, useRef, useState } from 'react';
+import { Reveal } from '../ui/text-reveal';
 
 export function MissionSection({className}:{className?: string}) {
   return (
@@ -68,9 +70,8 @@ export function MissionSection({className}:{className?: string}) {
                 className='overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]'
               />
               <p className="relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
-                <span className='text-[#B6FF00]'>1 idea</span> to make
-                <br />
-                every second count.
+                <Reveal><span className='text-[#B6FF00]'>1 idea</span> to make</Reveal>
+                <Reveal className='pb-1'>every second count.</Reveal>
               </p>
             </div>
           </div>
@@ -82,32 +83,62 @@ export function MissionSection({className}:{className?: string}) {
 }
 
 
-function NumbersWithSubtitle({
+interface NumbersWithSubtitleProps {
+  value?: number;
+  valueLabel?: string;
+  subtitle?: string;
+  threshold?: number; // добавим threshold
+}
+
+export function NumbersWithSubtitle({
   value = 100,
   valueLabel = "B",
   subtitle,
-}: {
-  value?: number,
-  valueLabel?: string,
-  subtitle?: string,
+  threshold = 1,
+}: NumbersWithSubtitleProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [startCount, setStartCount] = useState(false);
 
-}) {
+  useEffect(() => {
+    const element = containerRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setStartCount(true);
+          observer.unobserve(element); // один раз
+        }
+      },
+      { threshold }
+    );
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [threshold]);
+
   return (
-    <CountUp
-      start={0}
-      end={value}
-      duration={2}
-      decimals={0}
-      separator=" "
-      prefix='$'
-      suffix={valueLabel}
-    >
-      {({ countUpRef }) => (
-        <div className='flex flex-col gap-3'>
-          <span className='font-dm-sans text-6xl sm:text-7xl font-[550] text-[#B6FF00]' ref={countUpRef} />
-          <span className='font-inter text-base sm:text-2xl font-light tracking-wide text-white'>{subtitle}</span>
-        </div>
-      )}
-    </CountUp>
+    <div ref={containerRef} className="flex flex-col gap-3">
+      <CountUp
+        start={0}
+        end={startCount ? value : 0} // если ещё не видно, показываем 0
+        duration={2}
+        decimals={0}
+        separator=" "
+        prefix="$"
+        suffix={valueLabel}
+      >
+        {({ countUpRef }) => (
+          <span
+            className="font-dm-sans text-6xl sm:text-7xl font-[550] text-[#B6FF00]"
+            ref={countUpRef}
+          />
+        )}
+      </CountUp>
+      <span className="font-inter text-base sm:text-2xl font-light tracking-wide text-white">
+        {subtitle}
+      </span>
+    </div>
   );
 }

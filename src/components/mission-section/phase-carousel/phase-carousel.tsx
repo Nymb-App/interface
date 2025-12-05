@@ -4,7 +4,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import PhaseImage1 from "../../../assets/mission/phase-carousel/phase-1.png";
 import PhaseImage2 from "../../../assets/mission/phase-carousel/phase-2.png";
@@ -46,6 +46,28 @@ export function PhaseCarousel() {
   const [api, setApi] = useState<CarouselApi | undefined>();
   const [current, setCurrent] = useState(0);
 
+  const intervalRef = useRef<any | null>(null);
+
+  const startAutoScroll = useCallback(() => {
+    if (!api) return;
+    if (intervalRef.current) clearInterval(intervalRef.current);
+
+    intervalRef.current = setInterval(() => {
+      if (api.canScrollNext()) {
+        api.scrollNext();
+      } else {
+        api.scrollTo(0);
+      }
+    }, 6000);
+  }, [api]);
+
+  const stopAutoScroll = useCallback(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
   useEffect(() => {
     if (!api) return;
 
@@ -53,16 +75,26 @@ export function PhaseCarousel() {
       setCurrent(api.selectedScrollSnap());
     };
 
+    startAutoScroll();
+
     onSelect();
     api.on("select", onSelect);
 
     return () => {
       api.off("select", onSelect);
+      stopAutoScroll();
     };
   }, [api]);
 
   return (
-    <div className="flex flex-col items-center gap-6 mt-40 py-10 overflow-x-hidden select-none">
+    <div
+      onMouseEnter={stopAutoScroll}
+      onTouchStart={stopAutoScroll}
+      onMouseLeave={startAutoScroll}
+      onTouchEnd={startAutoScroll}
+      onTouchCancel={startAutoScroll}
+      className="flex flex-col items-center gap-6 mt-40 py-10 overflow-x-hidden select-none"
+    >
       <Carousel
         setApi={setApi}
         opts={{
@@ -71,7 +103,7 @@ export function PhaseCarousel() {
         }}
         className="w-full"
       >
-        <CarouselContent className="pl-5">
+        <CarouselContent className="pl-5" >
           {phases.map((phase) => (
             <CarouselItem
               key={phase.id}
@@ -121,7 +153,7 @@ export function PhaseCarousel() {
               key={phase.id}
               type="button"
               onClick={() => api?.scrollTo(index)}
-              className={`size-2 transition-colors ${isActive ? "bg-[#B6FF00]" : "bg-white/10"}`}
+              className={`size-2 transition-colors cursor-pointer ${isActive ? "bg-[#B6FF00]" : "bg-white/10"}`}
               aria-label={`Go to phase ${index + 1}`}
             />
           );
