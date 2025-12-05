@@ -17,11 +17,11 @@ export function HeroSection({
   return (
     <div
       className={cn(
-        "relative w-full h-screen flex flex-col justify-between",
+        "relative w-full h-screen flex flex-col justify-between overflow-hidden",
         className
       )}
     >
-      <Header className="relative z-10 p-4 w-full max-w-[1440px] mx-auto" />
+      <Header className="relative z-10 p-6 w-full max-w-[1440px] mx-auto" />
       <div className="absolute inset-0 size-full opacity-50">
         <UnicornScene
           showPlaceholderOnError
@@ -39,16 +39,16 @@ export function HeroSection({
         />
       </div>
       <FlickeringGrid
-        className="absolute inset-0 top-2 size-full"
+        className="absolute top-2 left-2 size-full"
         squareSize={2}
-        gridGap={12}
-        color="#b7ff01"
-        maxOpacity={0.4}
-        flickerChance={0.3}
+        gridGap={10}
+        color="#B6FF00"
+        maxOpacity={0.3}
+        flickerChance={0.1}
       />
       <div
         className={cn(
-          "relative z-10 w-full px-4 mb-6 sm:mb-44",
+          "relative z-10 w-full p-6 sm:mb-44",
           classNameContainer
         )}
       >

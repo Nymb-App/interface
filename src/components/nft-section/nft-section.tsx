@@ -14,10 +14,12 @@ import nftN3Placeholder from "../../assets/nft-n3.png";
 import nftN1Placeholder from "../../assets/nft-n1.png";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 
-export function NftSection() {
+import { LuShieldCheck } from "react-icons/lu";
+
+export function NftSection({className}:{className?: string}) {
   return (
-    <section className="bg-black text-white">
-      <Container className="py-[120px]">
+    <section className={cn("text-white", className)}>
+      <Container>
         <div className="flex flex-col gap-20">
           <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <HeadingSection
@@ -96,23 +98,6 @@ export function NftSection() {
               discount={40}
               stakingBoost={60}
             />
-          </div>
-
-          <div className="mt-10 grid grid-cols-2">
-            <HeadingSection
-              title="TELEGRAM MINI-APP"
-            />
-            <div className="flex flex-col gap-10">
-              <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-10 text-white">
-                <span className="text-[#B6FF00]">Join Nymb's</span> Telegram mini-app <span className="text-[#B6FF00]">now</span>. Start
-                <span className="text-[#B6FF00]"> swiping, invite friends, complete tasks, battle players,</span> and
-                climb the leaderboards. <span className="text-[#B6FF00]">Every second counts. </span>
-                Start earning yours today.
-              </p>
-              <a href="https://t.me/nymb_twa_bot/nymb" target="_blank" className="text-base sm:text-lg font-pixel w-fit text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
-                OPEN APP
-              </a>
-            </div>
           </div>
         </div>
       </Container>
@@ -272,7 +257,7 @@ function CardMobile({
             "flex flex-col w-full border border-white/15"
           )}
           >
-            <div className="inline-flex">
+            <div className="inline-flex mt-3">
               <Row className="text-xs text-white/70">Supply</Row>
               <Row>{supply.toLocaleString('en-US')}</Row>
             </div>
@@ -301,9 +286,12 @@ function CardMobile({
 
             <div className="inline-flex items-center">
               <Row className="text-xs text-white/70">Anual gains</Row>
-              <Row>
-                {annualGains}
-                <span className="font-dm-sans text-white/40 text-xs">when you hit</span>
+              <Row className="text-[#B6FF00]">
+                <span className="inline-flex items-center gap-1">
+                  {annualGains}
+                  {id > 0 ? <LuShieldCheck fill="#B6FF00" className="text-black text-lg"/> : null}
+                </span>
+                {id === 0 ? <span className="font-dm-sans text-white/40 text-xs">when you hit</span> : null}
               </Row>
             </div>
 

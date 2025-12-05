@@ -7,7 +7,7 @@ export function FoundersSection() {
   return (
     <section className="bg-black text-white">
       <Container>
-        <div className="flex flex-col items-end gap-20">
+        <div className="flex flex-col items-end gap-5 sm:gap-20">
           <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between">
             <HeadingSection title="FOUNDERS" navLink="founders" />
             <p className="indent-28 max-w-[954px] text-2xl sm:text-[40px] font-dm-sans leading-8 text-white">
@@ -24,7 +24,7 @@ export function FoundersSection() {
             </p>
           </div>
 
-          <div className="inline-flex items-center justify-center w-full gap-10 ">
+          <div className="inline-flex items-center justify-center w-full gap-0 sm:gap-10">
             <AvatarCard
               image={IgorIvanov}
               title="Igor Ivanov"

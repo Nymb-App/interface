@@ -5,11 +5,13 @@ import { Container } from "../container";
 import { HeadingSection } from "../heading-section";
 import { PhaseCarousel } from "./phase-carousel/phase-carousel";
 import UnicornScene from 'unicornstudio-react';
+import { FlickeringGrid } from '../flickering-grid';
+import { cn } from '@/lib/utils';
 
-export function MissionSection() {
+export function MissionSection({className}:{className?: string}) {
   return (
-    <section className="bg-black text-white">
-      <Container className="py-[120px]">
+    <section className={cn("bg-black text-white", className)}>
+      <Container>
         <div className="flex flex-col items-center">
           <div className="flex w-full flex-col">
             <div className="flex flex-col w-full gap-6 sm:flex-row sm:justify-between">
@@ -38,13 +40,20 @@ export function MissionSection() {
           </div>
 
           <div className="flex w-full flex-col items-center gap-8">
-            <div className="relative w-full max-w-7xl h-[225px]">
+            <div className="relative w-full max-w-7xl h-[400px]">
+              <FlickeringGrid
+                className="absolute inset-0 top-2 size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
+                squareSize={2}
+                gridGap={12}
+                color="#b7ff01"
+                maxOpacity={0.4}
+                flickerChance={0.3}
+              />
               <UnicornScene
                 showPlaceholderOnError
                 showPlaceholderWhileLoading
                 placeholder={MissionImage}
                 jsonFilePath={'/webgl/logo_1-step.json'}
-
                 scale={1}
                 dpi={1}
                 fps={60}
@@ -52,9 +61,9 @@ export function MissionSection() {
                 lazyLoad={true}
                 altText="WebGL scene"
                 ariaLabel="Animated WebGL scene"
-                className='overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 size-[225px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]'
+                className='overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]'
               />
-              <p className="relative bottom-5 max-w-[640px] text-center text-3xl sm:text-6xl font-dm-sans font-[550] text-white">
+              <p className="relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
                 <span className='text-[#B6FF00]'>1 idea</span> to make
                 <br />
                 every second count.
