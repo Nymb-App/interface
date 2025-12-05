@@ -141,11 +141,30 @@ export function Journey({ className }: { className?: string }) {
       </div>
 
       {/* Мобильная версия - вертикальный список */}
-      <div className="md:hidden relative py-[168px]">
-        <Container>
+      <div className="md:hidden relative mt-20">
+        {/* Фон на всю ширину pinned-секции */}
+        <div className="absolute -top-41 w-full flex items-center justify-center overflow-hidden">
+          <UnicornScene
+            showPlaceholderOnError
+            showPlaceholderWhileLoading
+            placeholder={journeyBg}
+            jsonFilePath={"/webgl/warp-line.json"}
+            width="100%"
+            height="100%"
+            scale={1}
+            dpi={1}
+            fps={60}
+            production={false}
+            lazyLoad={true}
+            altText="WebGL huli net lazer journey scene"
+            ariaLabel="Animated WebGL huli net lazer journey scene"
+            className="rotate-90 min-w-[450px] min-h-[450px]"
+          />
+        </div>
+        <Container className="relative">
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-8 px-4">
-              <div className="space-y-2 text-center">
+              <div className="space-y-10 text-center">
                 <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
@@ -162,16 +181,18 @@ export function Journey({ className }: { className?: string }) {
             {journeyHighlights.map((item, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center gap-4 px-4"
+                className={cn("relative w-full flex flex-col justify-center items-center", index > 0 && "-mt-15")}
               >
-                <div className="flex max-w-[417px] items-center rounded-[999px] border border-[#B6FF00] bg-[#141C00] px-8 py-5 shadow-[0_0_60px_rgba(182,255,0,1)]">
-                  <p className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.06em] text-white">
-                    {item.lines[0]}
-                    <br />
-                    {item.lines[1]}
-                  </p>
-                </div>
-                <PlusJourneyIconSvg />
+                <img
+                  src={plusImg}
+                  alt="+"
+                  className="size-[200px]"
+                />
+                <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
+                  {item.lines[0]}
+                  <br />
+                  {item.lines[1]}
+                </p>
               </div>
             ))}
           </div>
