@@ -19,8 +19,8 @@ export function TMASection({ className }: { className?: string }) {
                 ]}
                 className="mb-5"
             />
-            <div className="inline-flex gap-10">
-                <div className="w-[190px]" />
+            <div className="inline-flex sm:gap-10">
+                <div className="w-0 sm:w-[190px]" />
                 <a
                     href="https://t.me/nymb_twa_bot/nymb"
                     target="_blank"
