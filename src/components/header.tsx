@@ -6,13 +6,11 @@ import { InstagramIconSvg } from "./icons/instagram-icon-svg";
 import { TelegramIconSvg } from "./icons/telegram-icon-svg";
 import { TwitterIconSvg } from "./icons/twitter-icon-svg";
 
-export function Header({
-  className,
-}:{
-  className?: string,
-}) {
+export function Header({ className }: { className?: string }) {
   return (
-    <header className={cn("inline-flex items-center justify-between", className)}>
+    <header
+      className={cn("inline-flex items-center justify-between", className)}
+    >
       <a href="#" className="h-10">
         <img src={logoNymbWhite} alt="Nymb" className="size-full" />
       </a>
@@ -34,13 +32,28 @@ export function Header({
         </ul>
 
         <div className="hidden sm:inline-flex items-center gap-6">
-          <a href={SocialLinks.Instagram} target="_blank">
+          <a
+            href={SocialLinks.Instagram}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb Instagram profile"
+          >
             <InstagramIconSvg />
           </a>
-          <a href={SocialLinks.Twitter} target="_blank">
+          <a
+            href={SocialLinks.Twitter}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb X (Twitter) profile"
+          >
             <TwitterIconSvg />
           </a>
-          <a href={SocialLinks.Telegram} target="_blank">
+          <a
+            href={SocialLinks.Telegram}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb Telegram channel"
+          >
             <TelegramIconSvg />
           </a>
         </div>

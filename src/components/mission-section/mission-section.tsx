@@ -4,7 +4,7 @@ import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import UnicornScene from "unicornstudio-react";
-import MissionImage from "../../assets/mission/Frame 2135556552.png";
+import MissionImage from "../../assets/mission/Frame 2135556552.webp";
 import { Container } from "../container";
 import { FlickeringGrid } from "../flickering-grid";
 import { HeadingSection } from "../heading-section";
@@ -13,9 +13,9 @@ import { Reveal } from "../ui/text-reveal";
 import { PhaseCarousel } from "./phase-carousel/phase-carousel";
 
 export function MissionSection({ className }: { className?: string }) {
-  const { ref: sectionRef, isIntersecting: _ } = useIntersectionObserver({
+  const { ref: sectionRef, isIntersecting } = useIntersectionObserver({
     threshold: 0,
-    rootMargin: "500px",
+    rootMargin: "300px",
   });
 
   return (
@@ -51,29 +51,33 @@ export function MissionSection({ className }: { className?: string }) {
 
           <div className="flex w-full flex-col items-center gap-8">
             <div className="relative w-full max-w-7xl h-[400px]">
-              <FlickeringGrid
-                className="absolute inset-0 top-2 size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
-                squareSize={2}
-                gridGap={12}
-                color="#b7ff01"
-                maxOpacity={0.4}
-                flickerChance={0.3}
-              />
-              <UnicornScene
-                showPlaceholderOnError
-                showPlaceholderWhileLoading
-                placeholder={MissionImage}
-                jsonFilePath={"/webgl/logo_1-step.json"}
-                // scale={1}
-                // dpi={1}
-                // fps={60}
-                // production={true}
-                lazyLoad={true}
-                altText="WebGL scene"
-                ariaLabel="Animated WebGL scene"
-                className="overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]"
-              />
-              <p className="mx-auto relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-[550] text-white">
+              {isIntersecting && (
+                <FlickeringGrid
+                  className="absolute inset-0 top-2 size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
+                  squareSize={2}
+                  gridGap={12}
+                  color="#b7ff01"
+                  maxOpacity={0.4}
+                  flickerChance={0.3}
+                />
+              )}
+              {isIntersecting && (
+                <UnicornScene
+                  showPlaceholderOnError
+                  showPlaceholderWhileLoading
+                  placeholder={MissionImage}
+                  jsonFilePath={"/webgl/logo_1-step.json"}
+                  // scale={1}
+                  // dpi={1}
+                  // fps={60}
+                  // production={true}
+                  lazyLoad={true}
+                  altText="WebGL scene"
+                  ariaLabel="Animated WebGL scene"
+                  className="overflow-y-hidden absolute left-1/2 top-1/2 -translate-1/2 w-full max-h-[250px] mask-[linear-gradient(180deg,transparent_0%,black_10%,black_95%,transparent_100%)]"
+                />
+              )}
+              <p className="mx-auto relative top-16 max-w-[640px] text-center text-4xl sm:text-6xl font-dm-sans font-medium text-white">
                 <Reveal>
                   <span className="text-[#B6FF00]">1 idea</span> to make
                 </Reveal>

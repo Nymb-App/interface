@@ -4,11 +4,11 @@ import {
   CarouselItem,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
-import PhaseImage1 from "../../../assets/mission/phase-carousel/phase-1.png";
-import PhaseImage2 from "../../../assets/mission/phase-carousel/phase-2.png";
-import PhaseImage3 from "../../../assets/mission/phase-carousel/phase-3.png";
+import { useCallback, useEffect, useRef, useState } from "react";
+import PhaseImage1 from "../../../assets/mission/phase-carousel/phase-1.webp";
+import PhaseImage2 from "../../../assets/mission/phase-carousel/phase-2.webp";
+import PhaseImage3 from "../../../assets/mission/phase-carousel/phase-3.webp";
 
 const phases = [
   {
@@ -28,10 +28,7 @@ const phases = [
     phaseLabel: "[ Phase 2 ]",
     tag: null,
     titleLines: ["New Social", "Network"],
-    description: [
-      "A future social network with activity",
-      "tokenization"
-    ],
+    description: ["A future social network with activity", "tokenization"],
     highlight: false,
     image: PhaseImage2,
   },
@@ -110,26 +107,34 @@ export function PhaseCarousel() {
         }}
         className="w-full"
       >
-        <CarouselContent className="pl-5" >
+        <CarouselContent className="pl-5">
           {phases.map((phase) => (
             <CarouselItem
               key={phase.id}
-              className={cn('relative border-2 border-white/10 max-w-[300px] sm:max-w-none', phase.id === current && "border-[#B6FF00]")}
+              className={cn(
+                "relative border-2 border-white/10 max-w-[300px] sm:max-w-none",
+                phase.id === current && "border-[#B6FF00]"
+              )}
             >
               <img
                 className={cn(
                   "absolute  z-10",
                   phase.id === 0 && "max-w-[200px] -top-15 -right-6",
                   phase.id === 1 && "max-w-[200px] -top-5 right-3",
-                  phase.id === 2 && "top-0 right-3",
+                  phase.id === 2 && "max-w-[200px] top-0 right-3"
                 )}
                 src={phase.image}
-                alt=""
+                alt={phase.phaseLabel}
+                loading="lazy"
+                width={320}
+                height={200}
               />
               <div
-                className={cn('font-inter overflow-hidden relative flex-col flex gap-8 px-5 py-6 z-10')}
+                className={cn(
+                  "font-inter overflow-hidden relative flex-col flex gap-8 px-5 py-6 z-10"
+                )}
               >
-                <div className="relative flex items-center gap-4 text-sm font-light uppercase tracking-[-0.03em] text-white/40">
+                <div className="relative flex items-center gap-4 text-sm font-light uppercase tracking-[-0.03em] text-white/70">
                   <span>{phase.phaseLabel}</span>
                   {phase.tag && (
                     <span className="text-[#B6FF00]">{phase.tag}</span>

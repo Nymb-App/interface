@@ -1,18 +1,18 @@
-import IgorIvanov from "@/assets/founders/igor-ivanov.png";
-import VitaliiTereshchenko from "@/assets/founders/vitalii-tereshchenko.png";
+import IgorIvanov from "@/assets/founders/igor-ivanov.webp";
+import VitaliiTereshchenko from "@/assets/founders/vitalii-tereshchenko.webp";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "../container";
 import { HeadingWithDescription } from "../ui/heading-with-description";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
 
-export function FoundersSection({className}:{className?: string}) {
+export function FoundersSection({ className }: { className?: string }) {
   return (
     <section className={cn("bg-black text-white", className)}>
       <Container>
         <div className="flex flex-col items-end gap-5 sm:gap-20">
           <HeadingWithDescription
-            title='FOUNDERS'
-            navLink='founders'
+            title="FOUNDERS"
+            navLink="founders"
             description="We're not competing with
               the past - we're building what
               comes next. An ecosystem where
@@ -86,7 +86,6 @@ function AvatarCard({
     return () => observer.disconnect();
   }, [threshold]);
 
-
   return (
     <>
       <style>
@@ -108,13 +107,18 @@ function AvatarCard({
         className="flex flex-col gap-5"
         style={{
           opacity: visible ? 1 : 0,
-          animation: visible ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards` : 'none',
+          animation: visible
+            ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards`
+            : "none",
         }}
       >
         <img
           className="h-auto max-w-44 sm:max-w-[320px]"
           src={image}
-          alt="Avatar"
+          alt={title}
+          loading="lazy"
+          width={320}
+          height={320}
         />
         <div className="w-full space-y-1">
           <h1 className="font-dm-sans text-lg sm:text-3xl leading-[1.2] tracking-[-0.06em] text-white">

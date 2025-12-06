@@ -1,11 +1,12 @@
+import journeyBg from "@/assets/journey-bg.webp";
+import plusImg from "@/assets/union.webp";
+import { useSectionReveal } from "@/hooks/use-section-reveal";
 import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import UnicornScene from "unicornstudio-react";
-import journeyBg from "@/assets/journey-bg.png";
-import plusImg from "@/assets/union.png";
 import { Container } from "../../container";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -29,6 +30,11 @@ export function Journey({ className }: { className?: string }) {
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const horizontalRef = useRef<HTMLDivElement>(null);
+  const { ref: revealRef, hasRevealed } = useSectionReveal({
+    threshold: 0,
+    rootMargin: "600px 0px 600px 0px",
+    freezeOnceVisible: true,
+  });
 
   useGSAP(
     () => {
@@ -67,7 +73,13 @@ export function Journey({ className }: { className?: string }) {
   );
 
   return (
-    <section className={cn("overflow-hidden", className)}>
+    <section
+      ref={(node) => {
+        sectionRef.current = node;
+        revealRef(node);
+      }}
+      className={cn("overflow-hidden", className)}
+    >
       {/* Десктопная версия - горизонтальный скролл */}
       <div
         ref={pinRef}
@@ -75,22 +87,24 @@ export function Journey({ className }: { className?: string }) {
       >
         {/* Фон на всю ширину pinned-секции */}
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <UnicornScene
-            showPlaceholderOnError
-            showPlaceholderWhileLoading
-            placeholder={journeyBg}
-            jsonFilePath={"/webgl/warp-line.json"}
-            width="100%"
-            height="100%"
-            scale={1}
-            dpi={1}
-            fps={60}
-            production={false}
-            lazyLoad={true}
-            altText="WebGL huli net lazer journey scene"
-            ariaLabel="Animated WebGL huli net lazer journey scene"
-            className="rotate-90 min-w-[760px] min-h-[100vw]"
-          />
+          {hasRevealed && (
+            <UnicornScene
+              showPlaceholderOnError
+              showPlaceholderWhileLoading
+              placeholder={journeyBg}
+              jsonFilePath={"/webgl/warp-line.json"}
+              width="100%"
+              height="100%"
+              scale={1}
+              dpi={1}
+              fps={60}
+              production={false}
+              lazyLoad={true}
+              altText="WebGL huli net lazer journey scene"
+              ariaLabel="Animated WebGL huli net lazer journey scene"
+              className="rotate-90 min-w-[760px] min-h-[100vw]"
+            />
+          )}
         </div>
         <div className="relative z-10 w-full h-full">
           <div
@@ -117,7 +131,10 @@ export function Journey({ className }: { className?: string }) {
             {journeyHighlights.map((item, index) => (
               <div
                 key={index}
-                className={cn("flex flex-col justify-center mb-[210px]", 'ml-100')}
+                className={cn(
+                  "flex flex-col justify-center mb-[210px]",
+                  "ml-100"
+                )}
               >
                 <div className="flex flex-col justify-start">
                   <p className="font-dm-sans text-[48px] leading-[120%] tracking-[-0.06em] text-white">
@@ -143,26 +160,28 @@ export function Journey({ className }: { className?: string }) {
       <div className="md:hidden relative mt-20">
         {/* Фон на всю ширину pinned-секции */}
         <div className="absolute -top-41 w-full flex items-center justify-center overflow-hidden">
-          <UnicornScene
-            showPlaceholderOnError
-            showPlaceholderWhileLoading
-            placeholder={journeyBg}
-            jsonFilePath={"/webgl/warp-line.json"}
-            width="100%"
-            height="100%"
-            scale={1}
-            dpi={1}
-            fps={60}
-            production={false}
-            lazyLoad={true}
-            altText="WebGL huli net lazer journey scene"
-            ariaLabel="Animated WebGL huli net lazer journey scene"
-            className="rotate-90 min-w-[450px] min-h-[450px]"
-          />
+          {hasRevealed && (
+            <UnicornScene
+              showPlaceholderOnError
+              showPlaceholderWhileLoading
+              placeholder={journeyBg}
+              jsonFilePath={"/webgl/warp-line.json"}
+              width="100%"
+              height="100%"
+              scale={1}
+              dpi={1}
+              fps={60}
+              production={false}
+              lazyLoad={true}
+              altText="WebGL huli net lazer journey scene"
+              ariaLabel="Animated WebGL huli net lazer journey scene"
+              className="rotate-90 min-w-[450px] min-h-[450px]"
+            />
+          )}
         </div>
         <Container className="relative">
           <div className="space-y-8">
-            <div className="flex flex-col items-center gap-8 px-4">
+            <div className="flex flex-col items-center gap-8 px-4 max-sm:relative max-sm:top-[-25px]">
               <div className="space-y-10 text-center">
                 <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
@@ -180,13 +199,12 @@ export function Journey({ className }: { className?: string }) {
             {journeyHighlights.map((item, index) => (
               <div
                 key={index}
-                className={cn("relative w-full flex flex-col justify-center items-center", index > 0 && "-mt-15")}
+                className={cn(
+                  "relative w-full flex flex-col justify-center items-center",
+                  index > 0 && "-mt-15"
+                )}
               >
-                <img
-                  src={plusImg}
-                  alt="+"
-                  className="size-[200px]"
-                />
+                <img src={plusImg} alt="+" className="size-[200px]" />
                 <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
                   {item.lines[0]}
                   <br />

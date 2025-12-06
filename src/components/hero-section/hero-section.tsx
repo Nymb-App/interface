@@ -1,8 +1,8 @@
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { FaAngleDown } from "react-icons/fa";
 import UnicornScene from "unicornstudio-react";
-import HeroFallbackImage from "../../assets/hero/hero-fallback.png";
-import timeIcon from "../../assets/hero/time.png";
+import HeroFallbackImage from "../../assets/hero/hero-fallback.webp";
+import timeIcon from "../../assets/hero/time.webp";
 import { cn } from "../../lib/utils";
 import { FlickeringGrid } from "../flickering-grid";
 import { Header } from "../header";
@@ -61,9 +61,9 @@ export function HeroSection({
       <div
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
-        <div className="space-y-4 font-dm-sans font-[550]">
+        <div className="space-y-4 font-dm-sans font-[500]">
           <Reveal threshold={0}>
-            <p className="text-4xl sm:text-7xl text-white font-dm-sans leading-[1.1] tracking-[-0.06em]">
+            <p className="text-4xl sm:text-7xl text-white font-dm-sans font-normal leading-[1.1] tracking-[-0.06em]">
               Nymb Ecosystem
             </p>
           </Reveal>
@@ -127,9 +127,10 @@ export function HeroSection({
 
       <Button
         variant={"ghost"}
+        aria-label="Scroll to next section"
         className="hidden sm:flex absolute bottom-0 right-0 size-14 rounded-none border-2 border-[#B6FF00] text-[#B6FF00] hover:bg-transparent hover:text-[#B6FF00]"
       >
-        <FaAngleDown />
+        <FaAngleDown aria-hidden="true" />
       </Button>
     </div>
   );
