@@ -1,13 +1,13 @@
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { FaAngleDown } from "react-icons/fa";
 import UnicornScene from "unicornstudio-react";
-import HeroFallbackImage from "../../assets/hero/hero-fallback.png";
-import timeIcon from "../../assets/hero/time.png";
-import { cn } from "../../lib/utils";
-import { FlickeringGrid } from "../flickering-grid";
-import { Header } from "../header";
-import { Button } from "../ui/button";
-import { Reveal } from "../ui/text-reveal";
+import { cn } from "@/lib/utils";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import HeroFallbackImage from "@/assets/hero/hero-fallback.png";
+import timeIcon from "@/assets/hero/time.png";
+import { FlickeringGrid } from "@/components/flickering-grid";
+import { Header } from "@/components/header";
+import { Button } from "@/components/ui/button";
+import { Reveal } from "@/components/ui/text-reveal";
 
 export function HeroSection({
   className,
@@ -61,26 +61,34 @@ export function HeroSection({
       <div
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
-        <div className="space-y-4 font-dm-sans font-[550]">
+        <div className="space-y-1 sm:space-y-4 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
           <Reveal threshold={0}>
-            <p className="text-4xl sm:text-7xl text-white font-dm-sans leading-[1.1] tracking-[-0.06em]">
-              Nymb Ecosystem
+            <p>Nymb Ecosystem</p>
+          </Reveal>
+
+          {/* Pc version */}
+          <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
+            <p className="w-full inline-flex items-center gap-3">
+              that turns
+              <img className="size-16 lg:size-max" src={timeIcon} alt="time" />
+              time into value
             </p>
           </Reveal>
 
-          <div className="inline-flex flex-wrap items-center gap-1 sm:gap-4 text-white">
-            <Reveal threshold={0}>
-              <p className="text-4xl sm:text-7xl w-full sm:w-fit">that turns</p>
+          {/* Mobile version */}
+          <div className="flex flex-col items-center gap-1 sm:hidden">
+            <Reveal className="w-full" threshold={0}>
+              <p>that turns</p>
             </Reveal>
 
-            <Reveal threshold={0} className="inline-flex items-center gap-1">
+            <Reveal threshold={0} className="w-full inline-flex items-center gap-1">
               <img className="size-12 sm:size-max" src={timeIcon} alt="time" />
-              <p className="text-4xl sm:text-7xl">time into value</p>
+              <p>time into value</p>
             </Reveal>
           </div>
         </div>
 
-        <p className="max-w-[519px] text-[24px] font-inter leading-[1.4] tracking-[-0.03em] text-white mt-4">
+        <p className="max-w-[519px] text-2xl font-inter text-white mt-4">
           <Reveal threshold={0} duration={2}>
             Every minute of life becomes{" "}
             <span className="text-[#B6FF00]">real value</span>
@@ -125,12 +133,12 @@ export function HeroSection({
         </div>
       </div>
 
-      <Button
-        variant={"ghost"}
-        className="hidden sm:flex absolute bottom-0 right-0 size-14 rounded-none border-2 border-[#B6FF00] text-[#B6FF00] hover:bg-transparent hover:text-[#B6FF00]"
+      <a
+        href="#mission"
+        className="hidden sm:flex items-center justify-center absolute bottom-0 right-0 size-14 rounded-none border-2 border-[#B6FF00] text-[#B6FF00] hover:bg-transparent hover:text-[#B6FF00]"
       >
         <FaAngleDown />
-      </Button>
+      </a>
     </div>
   );
 }

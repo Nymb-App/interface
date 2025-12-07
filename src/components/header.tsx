@@ -2,9 +2,9 @@ import logoNymbWhite from "../assets/logo-nymb-white.svg";
 import { SocialLinks } from "../lib/constants";
 import { cn } from "../lib/utils";
 import { ConnectButton } from "./connect-wallet";
-import { InstagramIconSvg } from "./icons/instagram-icon-svg";
-import { TelegramIconSvg } from "./icons/telegram-icon-svg";
-import { TwitterIconSvg } from "./icons/twitter-icon-svg";
+import { InstagramIconSvg } from "@/assets/icons/instagram-icon-svg";
+import { TelegramIconSvg } from "@/assets/icons/telegram-icon-svg";
+import { TwitterIconSvg } from "@/assets/icons/twitter-icon-svg";
 
 export function Header({
   className,
@@ -20,16 +20,16 @@ export function Header({
       <div className="inline-flex items-center gap-12 text-white">
         <ul className="gap-8 font-pixel uppercase hidden lg:inline-flex">
           <li>
-            <a href="#mission">mission</a>
+            <a href="#mission" className="transition hover:text-[#B6FF00]">mission</a>
           </li>
           <li>
-            <a href="#phases">phases</a>
+            <a href="#phases" className="transition hover:text-[#B6FF00]">phases</a>
           </li>
           <li>
-            <a href="#founders">founders</a>
+            <a href="#founders" className="transition hover:text-[#B6FF00]">founders</a>
           </li>
           <li>
-            <a href="#nft">nft</a>
+            <a href="#nft" className="transition hover:text-[#B6FF00]">nft</a>
           </li>
         </ul>
 

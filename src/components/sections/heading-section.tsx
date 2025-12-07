@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 export const HeadingSection = ({
     title,
@@ -61,7 +61,7 @@ export const HeadingSection = ({
             <h2
                 ref={ref}
                 id={navLink}
-                className={cn("font-pixel text-white/40 sm:text-[#B6FF00] text-sm sm:text-base", className)}
+                className={cn("font-pixel text-white/40 sm:text-[#B6FF00] text-sm sm:text-base scroll-mt-32", className)}
                 style={{
                     opacity: visible ? 1 : 0,
                     animation: visible ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards` : 'none',

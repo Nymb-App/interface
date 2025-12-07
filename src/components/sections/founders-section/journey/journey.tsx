@@ -6,7 +6,7 @@ import { useRef } from "react";
 import UnicornScene from "unicornstudio-react";
 import journeyBg from "@/assets/journey-bg.png";
 import plusImg from "@/assets/union.png";
-import { Container } from "../../container";
+import { Container } from "@/components/container";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -142,7 +142,7 @@ export function Journey({ className }: { className?: string }) {
       {/* Мобильная версия - вертикальный список */}
       <div className="md:hidden relative mt-20">
         {/* Фон на всю ширину pinned-секции */}
-        <div className="absolute -top-41 w-full flex items-center justify-center overflow-hidden">
+        <div className="absolute -top-[345px] w-full flex items-center justify-center overflow-hidden">
           <UnicornScene
             showPlaceholderOnError
             showPlaceholderWhileLoading
@@ -157,19 +157,19 @@ export function Journey({ className }: { className?: string }) {
             lazyLoad={true}
             altText="WebGL huli net lazer journey scene"
             ariaLabel="Animated WebGL huli net lazer journey scene"
-            className="rotate-90 min-w-[450px] min-h-[450px]"
+            className="rotate-90 min-w-[800px] w-full min-h-[850px]"
           />
         </div>
         <Container className="relative">
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-8 px-4">
               <div className="space-y-10 text-center">
-                <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-white">
+                <p className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
                   all key launches,
                 </p>
-                <p className="text-[32px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                <p className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-[#B6FF00]">
                   Nymb&apos;s journey
                   <br />
                   only begins.
@@ -177,23 +177,25 @@ export function Journey({ className }: { className?: string }) {
               </div>
             </div>
 
-            {journeyHighlights.map((item, index) => (
-              <div
-                key={index}
-                className={cn("relative w-full flex flex-col justify-center items-center", index > 0 && "-mt-15")}
-              >
-                <img
-                  src={plusImg}
-                  alt="+"
-                  className="size-[200px]"
-                />
-                <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
-                  {item.lines[0]}
-                  <br />
-                  {item.lines[1]}
-                </p>
-              </div>
-            ))}
+            <div className="-mt-10 flex flex-col gap-5">
+              {journeyHighlights.map((item, index) => (
+                <div
+                  key={index}
+                  className={cn("relative w-full flex flex-col justify-center items-center", index > 0 && "-mt-15")}
+                >
+                  <img
+                    src={plusImg}
+                    alt="+"
+                    className="size-[180px] sm:size-[200px]"
+                  />
+                  <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
+                    {item.lines[0]}
+                    <br />
+                    {item.lines[1]}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </div>

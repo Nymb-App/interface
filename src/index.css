@@ -3,8 +3,7 @@
 
 @font-face {
   font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-VariableFont_opsz,wght.ttf")
-    format("truetype");
+  src: url("/fonts/dm_sans.ttf") format("truetype");
   font-weight: 100 900; /* variable: все веса */
   font-style: normal;
   font-display: swap;
@@ -12,8 +11,7 @@
 
 @font-face {
   font-family: "DM Sans";
-  src: url("/fonts/dm-sans/DMSans-Italic-VariableFont_opsz,wght.ttf")
-    format("truetype");
+  src: url("/fonts/dm_sans_italic.ttf") format("truetype");
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
@@ -162,7 +160,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 font-dm-sans;
   }
   body {
     @apply bg-black text-foreground scroll-smooth;

@@ -1,9 +1,9 @@
 import Marquee from "react-fast-marquee";
-import { SocialLinks } from "../lib/constants";
-import { cn } from "../lib/utils";
-import { InstagramIconSvg } from "./icons/instagram-icon-svg";
-import { TelegramIconSvg } from "./icons/telegram-icon-svg";
-import { TwitterIconSvg } from "./icons/twitter-icon-svg";
+import { SocialLinks } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+import { InstagramIconSvg } from "@/assets/icons/instagram-icon-svg";
+import { TelegramIconSvg } from "@/assets/icons/telegram-icon-svg";
+import { TwitterIconSvg } from "@/assets/icons/twitter-icon-svg";
 
 export function Footer({ className }: { className?: string }) {
   return (

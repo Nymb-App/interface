@@ -1,20 +1,26 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import UnicornScene from 'unicornstudio-react';
-import { cn } from "../../lib/utils";
-import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
 
+import { Button } from "@/components/ui/button";
+import { Container } from "@/components/container";
+import { HeadingWithDescription } from "@/components/ui/heading-with-description";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger
+} from "@/components/ui/accordion";
 
-import { Container } from "../container";
-
-
-import NymbLogo from '../../assets/brand/logo.png';
-import nftN2Placeholder from "../../assets/nft-n2.png";
-import nftN3Placeholder from "../../assets/nft-n3.png";
-import nftN1Placeholder from "../../assets/nft-n1.png";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
+import NymbLogo from '@/assets/brand/logo.png';
+import nftN2Placeholder from "@/assets/nft-n2.png";
+import nftN3Placeholder from "@/assets/nft-n3.png";
+import nftN1Placeholder from "@/assets/nft-n1.png";
 
 import { LuShieldCheck } from "react-icons/lu";
-import { HeadingWithDescription } from "../ui/heading-with-description";
+
+
+
 
 export function NftSection({ className }: { className?: string }) {
   return (
@@ -84,7 +90,7 @@ export function NftSection({ className }: { className?: string }) {
               annualGains="Up to 60-180%"
               discount={10}
               stakingBoost={10}
-              delay={0.6}
+              delay={0}
             />
             <Card
               id={1}
@@ -104,7 +110,7 @@ export function NftSection({ className }: { className?: string }) {
               annualGains="42-126%"
               discount={40}
               stakingBoost={60}
-              delay={0}
+              delay={0.6}
             />
           </div>
         </div>
@@ -235,6 +241,8 @@ function CardMobile({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  
+  const [isAccordionOpened0, setAccordionOpened0] = useState(id === 0);
 
   useEffect(() => {
     const element = ref.current;
@@ -452,8 +460,8 @@ function CardMobile({
               </div>
             </AccordionContent>
 
-            <AccordionTrigger className="w-full border border-white/15 text-white/70 rounded-none px-6">
-              Minimize
+            <AccordionTrigger onClick={() => setAccordionOpened0(!isAccordionOpened0)} className="w-full border-l border-r border-white/15 text-white/70 rounded-none px-6">
+              {!isAccordionOpened0 ? "View all plan features" : "Minimize"}
             </AccordionTrigger>
             <div className="w-full inline-flex justify-between">
               <div className={cn(
