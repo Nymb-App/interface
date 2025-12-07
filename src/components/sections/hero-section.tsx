@@ -135,7 +135,7 @@ export function HeroSection({
 
       <a
         href="#mission"
-        className="hidden sm:flex items-center justify-center absolute bottom-0 right-0 size-14 rounded-none border-2 border-[#B6FF00] text-[#B6FF00] hover:bg-transparent hover:text-[#B6FF00]"
+        className="hidden sm:flex items-center justify-center absolute bottom-0 right-0 size-14 rounded-none border-l-2 border-t-2 border-[#B6FF00] text-[#B6FF00] hover:bg-transparent hover:text-[#B6FF00]"
       >
         <FaAngleDown />
       </a>
