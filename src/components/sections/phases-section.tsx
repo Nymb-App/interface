@@ -54,7 +54,6 @@ const phases = [
 export function PhasesSection() {
     const [api, setApi] = useState<CarouselApi | undefined>();
     const [current, setCurrent] = useState(0);
-
     const intervalRef = useRef<any | null>(null);
 
     const startAutoScroll = useCallback(() => {
@@ -116,7 +115,7 @@ export function PhasesSection() {
                     {phases.map((phase) => (
                         <CarouselItem
                             key={phase.id}
-                            className={cn('relative border-2 border-white/10 max-w-[300px] sm:max-w-none', phase.id === current && "border-[#B6FF00]")}
+                            className={cn('relative border-2 border-white/10 max-w-[300px] sm:max-w-none', phase.id === 0 && "border-[#B6FF00]")}
                         >
                             <img
                                 className={cn(

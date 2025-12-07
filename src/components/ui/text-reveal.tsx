@@ -48,15 +48,15 @@ export const Reveal = ({
     <>
       <style>
         {`
-                    @keyframes reveal {
-                        0% {
-                            transform: translate(0, 100%);
-                        }
-                        100% {
-                            transform: translate(0, 0);
-                        }
-                    }
-                `}
+          @keyframes reveal {
+              0% {
+                  transform: translate(0, 100%);
+              }
+              100% {
+                  transform: translate(0, 0);
+              }
+          }
+        `}
       </style>
       <div className="w-full overflow-hidden">
         <div

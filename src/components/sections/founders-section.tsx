@@ -6,7 +6,7 @@ import VitaliiTereshchenko from "@/assets/founders/vitalii-tereshchenko.png";
 
 export function FoundersSection({ className }: { className?: string }) {
     return (
-        <section className={cn("flex flex-col items-end gap-5 sm:gap-20 px-8 text-white", className)}>
+        <section className={cn("flex flex-col justify-between items-center gap-5 sm:gap-20 px-8 text-white w-full", className)}>
             <HeadingWithDescription
                 title='FOUNDERS'
                 navLink='founders'
@@ -25,7 +25,7 @@ export function FoundersSection({ className }: { className?: string }) {
                 ]}
             />
 
-            <div className="inline-flex items-center justify-around w-full sm:justify-center sm:gap-10">
+            <div className="relative inline-flex items-center justify-around w-full sm:justify-center sm:gap-10 xl:left-20">
                 <AvatarCard
                     image={IgorIvanov}
                     title="Igor Ivanov"

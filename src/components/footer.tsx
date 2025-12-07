@@ -21,7 +21,7 @@ export function Footer({ className }: { className?: string }) {
         </Marquee>
       </div>
 
-      <div className="mt-4 flex flex-col-reverse justify-between sm:flex-row text-white px-4 w-full max-w-[1440px] gap-10 mx-auto">
+      <div className="mt-4 flex flex-col-reverse justify-between sm:flex-row text-white px-8 w-full max-w-[1440px] gap-10 mx-auto">
         <span className="font-inter opacity-70 text-center">
           Nymb. All Rights Reserved 2025
         </span>

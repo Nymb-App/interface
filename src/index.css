@@ -164,7 +164,7 @@
     @apply border-border outline-ring/50 font-dm-sans;
   }
   body {
-    @apply bg-black text-foreground scroll-smooth;
+    @apply bg-[#070707] text-foreground scroll-smooth;
   }
 }
 html {

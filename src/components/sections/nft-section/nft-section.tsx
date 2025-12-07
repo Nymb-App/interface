@@ -30,7 +30,7 @@ export function NftSection({ className }: { className?: string }) {
   });
   return (
     <section ref={sectionRef} className={cn("text-white", className)}>
-      <Container>
+      <Container className="px-8">
         <div className="flex flex-col gap-20">
           <HeadingWithDescription
             title="NFT"
