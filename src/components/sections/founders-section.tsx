@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { HeadingWithDescription } from "@/components/ui/heading-with-description";
-import IgorIvanov from "@/assets/founders/igor-ivanov.png";
-import VitaliiTereshchenko from "@/assets/founders/vitalii-tereshchenko.png";
+import IgorIvanov from "@/assets/sections/founders/igor-ivanov.webp";
+import VitaliiTereshchenko from "@/assets/sections/founders/vitalii-tereshchenko.webp";
 
 export function FoundersSection({ className }: { className?: string }) {
     return (
@@ -107,7 +107,7 @@ function AvatarCard({
                 }}
             >
                 <img
-                    className="h-auto max-w-44 sm:max-w-[320px]"
+                    className="h-auto max-w-44 rounded-[68px] sm:rounded-[120px] sm:max-w-[320px]"
                     src={image}
                     alt="Avatar"
                 />
