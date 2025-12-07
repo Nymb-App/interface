@@ -2,12 +2,17 @@ import { cn } from "@/lib/utils";
 import { HeadingWithDescription } from "@/components/ui/heading-with-description";
 
 export function TMASection({ className }: { className?: string }) {
-    return (
-        <section className={cn("flex flex-col gap-6 px-8 w-full max-w-[1440px] mx-auto", className)}>
-            <HeadingWithDescription
-                title='TELEGRAM MINI-APP'
-                navLink='tma'
-                description="Join Nymb's Telegram mini-app now.
+  return (
+    <section
+      className={cn(
+        "flex flex-col gap-6 px-8 w-full max-w-[1440px] mx-auto",
+        className
+      )}
+    >
+      <HeadingWithDescription
+        title="TELEGRAM MINI-APP"
+        navLink="tma"
+        description="Join Nymb's Telegram mini-app now.
                     Start swiping, invite friends, complete tasks, battle players,
                     and climb the leaderboards. Every second counts.
                     Start earning yours today."

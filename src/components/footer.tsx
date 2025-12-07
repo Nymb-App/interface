@@ -26,13 +26,28 @@ export function Footer({ className }: { className?: string }) {
           Nymb. All Rights Reserved 2025
         </span>
         <div className="flex gap-10 mx-auto sm:mx-0">
-          <a href={SocialLinks.Instagram}>
+          <a
+            href={SocialLinks.Instagram}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb Instagram profile"
+          >
             <InstagramIconSvg />
           </a>
-          <a href={SocialLinks.Twitter}>
+          <a
+            href={SocialLinks.Twitter}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb X (Twitter) profile"
+          >
             <TwitterIconSvg />
           </a>
-          <a href={SocialLinks.Telegram}>
+          <a
+            href={SocialLinks.Telegram}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Open Nymb Telegram channel"
+          >
             <TelegramIconSvg />
           </a>
         </div>

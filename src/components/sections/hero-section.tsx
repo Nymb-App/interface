@@ -63,27 +63,27 @@ export function HeroSection({
       >
         <div className="space-y-1 sm:space-y-4 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
           <Reveal threshold={0}>
-            <p>Nymb Ecosystem</p>
+            <h1>Nymb Ecosystem</h1>
           </Reveal>
 
           {/* Pc version */}
           <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
-            <p className="w-full inline-flex items-center gap-3">
+            <h1 className="w-full inline-flex items-center gap-3">
               that turns
               <img className="size-16 lg:size-max" src={timeIcon} alt="time" />
               time into value
-            </p>
+            </h1>
           </Reveal>
 
           {/* Mobile version */}
           <div className="flex flex-col items-center gap-1 sm:hidden">
             <Reveal className="w-full" threshold={0}>
-              <p>that turns</p>
+              <h1>that turns</h1>
             </Reveal>
 
             <Reveal threshold={0} className="w-full inline-flex items-center gap-1">
               <img className="size-12 sm:size-max" src={timeIcon} alt="time" />
-              <p>time into value</p>
+              <h1>time into value</h1>
             </Reveal>
           </div>
         </div>
