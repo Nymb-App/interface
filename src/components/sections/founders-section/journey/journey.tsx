@@ -100,8 +100,8 @@ export function Journey({ className }: { className?: string }) {
               fps={60}
               production={false}
               lazyLoad={true}
-              altText="WebGL huli net lazer journey scene"
-              ariaLabel="Animated WebGL huli net lazer journey scene"
+              altText="WebGL lazer journey scene"
+              ariaLabel="Animated WebGL lazer journey scene"
               className="rotate-90 min-w-[760px] min-h-[100vw]"
             />
           )}
