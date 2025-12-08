@@ -360,7 +360,7 @@ function CardMobile({
             </span>
 
             <div className="flex flex-col gap-4 w-full h-full justify-end pb-10">
-              <span
+              <h3
                 className={cn(
                   "font-pixel text-6xl text-[#B6FF00]",
                   id === 1 && "text-[#35F4FF]",
@@ -368,7 +368,7 @@ function CardMobile({
                 )}
               >
                 N{id + 1}
-              </span>
+              </h3>
               <p className="font-[550] text-xl font-dm-sans text-white">
                 {id === 0 && (
                   <>
@@ -692,7 +692,7 @@ function Card({
             </span>
 
             <div className="flex flex-col gap-8 w-full h-full justify-end pb-10">
-              <span
+              <h3
                 className={cn(
                   "font-pixel text-7xl text-[#B6FF00]",
                   id === 1 && "text-[#35F4FF]",
@@ -700,7 +700,7 @@ function Card({
                 )}
               >
                 N{id + 1}
-              </span>
+              </h3>
               <p className="font-[550] font-dm-sans text-white">
                 {id === 0 && (
                   <>

@@ -114,16 +114,16 @@ export function Journey({ className }: { className?: string }) {
             {/* Первый блок - заголовок */}
             <div className="grid place-items-center px-8">
               <div className="space-y-26 text-center">
-                <p className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
+                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
                   all key launches,
-                </p>
-                <p className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                </h2>
+                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
                   Nymb&apos;s journey
                   <br />
                   only begins.
-                </p>
+                </h2>
               </div>
             </div>
 
@@ -181,16 +181,16 @@ export function Journey({ className }: { className?: string }) {
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-8 px-4 max-sm:relative max-sm:top-[-25px]">
               <div className="space-y-10 text-center">
-                <p className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-white">
+                <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-white">
                   Even after
                   <br />
                   all key launches,
-                </p>
-                <p className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-[#B6FF00]">
+                </h2>
+                <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-[#B6FF00]">
                   Nymb&apos;s journey
                   <br />
                   only begins.
-                </p>
+                </h2>
               </div>
             </div>
 

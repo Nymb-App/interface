@@ -112,9 +112,9 @@ function AvatarCard({
                     alt="Avatar"
                 />
                 <div className="w-full space-y-1">
-                    <h1 className="font-dm-sans text-lg sm:text-3xl leading-[1.2] tracking-[-0.06em] text-white">
+                    <h3 className="font-dm-sans text-lg sm:text-3xl leading-[1.2] tracking-[-0.06em] text-white">
                         {title}
-                    </h1>
+                    </h3>
                     <p className="font-inter text-xs sm:text-sm text-white/70">
                         {description}
                     </p>

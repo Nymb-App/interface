@@ -136,11 +136,11 @@ export function PhasesSection() {
                                 </div>
 
                                 <div className="relative flex flex-col gap-4">
-                                    <p className="text-2xl sm:text-[40px] font-medium leading-8 sm:leading-11 text-white">
+                                    <h2 className="text-2xl sm:text-[40px] font-medium leading-8 sm:leading-11 text-white">
                                         {phase.titleLines[0]}
                                         <br />
                                         {phase.titleLines[1]}
-                                    </p>
+                                    </h2>
                                     <p className="text-white/70 text-sm sm:text-xl font-inter">
                                         {phase.description[0]}
                                         <br />

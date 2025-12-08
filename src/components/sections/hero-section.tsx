@@ -105,9 +105,9 @@ export function HeroSection({
           delay={1}
           className="mt-10 hidden sm:flex flex-row"
         >
-          <Button className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-[26px] rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
+          <a href="#nft" className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
             Become our Partner
-          </Button>
+          </a>
           <Button
             variant={"ghost"}
             className="text-base sm:w-fit w-full sm:text-lg font-pixel px-4 py-6 text-[#B6FF00] rounded-none border-2 border-[#B6FF00] font-normal uppercase tracking-[0.12rem] hover:bg-transparent hover:text-[#B6FF00]"

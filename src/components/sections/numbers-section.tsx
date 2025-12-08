@@ -57,9 +57,9 @@ function NumbersWithSubtitle({
                     />
                 )}
             </CountUp>
-            <span className="font-inter text-base sm:text-2xl font-light tracking-wide text-white">
+            <p className="font-inter text-base sm:text-2xl font-light tracking-wide text-white">
                 {subtitle}
-            </span>
+            </p>
         </div>
     );
 }
