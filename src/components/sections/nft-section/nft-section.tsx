@@ -29,8 +29,7 @@ export function NftSection({ className }: { className?: string }) {
     threshold: 0,
   });
   return (
-    <section ref={sectionRef} className={cn("text-white", className)}>
-      <Container className="px-8">
+    <section ref={sectionRef} className={cn("text-white w-full", className)}>
         <div className="flex flex-col gap-20">
           <HeadingWithDescription
             title="NFT"
@@ -84,8 +83,8 @@ export function NftSection({ className }: { className?: string }) {
           </div>
 
           {/* PC version of cards */}
-          <div className="w-full hidden md:inline-flex">
-            <CardPCTitles className="mt-[430px] max-w-[200px]" delay={0.6} />
+          <div className="w-full hidden md:inline-flex mx-auto">
+            <CardPCTitles className="mt-[430px]" delay={0.6} />
 
             <Card
               id={0}
@@ -120,7 +119,6 @@ export function NftSection({ className }: { className?: string }) {
             />
           </div>
         </div>
-      </Container>
     </section>
   );
 }
@@ -187,27 +185,27 @@ function CardPCTitles({
             : "none",
         }}
       >
-        <Row className="text-base">Supply</Row>
-        <Row className="text-base">
+        <Row className="px-0! pr-6! text-sm">Supply</Row>
+        <Row className="px-0! pr-6! text-sm">
           Lock Period
           <span className="font-dm-sans text-white/40 text-xs">
             Tradeable After
           </span>
         </Row>
-        <Row className="text-base">
+        <Row className="px-0! pr-6! text-sm">
           Income from
           <br />
           Community Pool
         </Row>
-        <Row className="text-base mt-2">Annual Gains</Row>
-        <Row className="text-base mt-3">Token Drops</Row>
-        <Row className="text-base mt-3">TGE Whitelist</Row>
-        <Row className="text-base mt-3">Discounts Up to</Row>
-        <Row className="text-base">
+        <Row className="px-0! pr-6! text-sm mt-2">Annual Gains</Row>
+        <Row className="px-0! pr-6! text-sm mt-3">Token Drops</Row>
+        <Row className="px-0! pr-6! text-sm mt-3">TGE Whitelist</Row>
+        <Row className="px-0! pr-6! text-sm mt-3">Discounts Up to</Row>
+        <Row className="px-0! pr-6! text-sm">
           Staking Boost
           <span className="font-dm-sans text-white/40 text-xs">On Base</span>
         </Row>
-        <Row className="text-base -mt-4">DAO Power</Row>
+        <Row className="px-0! pr-6! text-sm -mt-4">DAO Power</Row>
       </div>
     </>
   );

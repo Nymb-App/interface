@@ -21,7 +21,7 @@ function HeroPage() {
         <PhasesSection />
         <FoundersSection className="max-w-[1440px] mx-auto sm:mt-18"/>
         <Journey className="mt-[50px]" />
-        <NftSection className="mt-[50px]" />
+        <NftSection className="mt-[50px] max-w-[1440px] mx-auto px-8" />
         <TMASection className="mt-14 sm:mt-28" />
         <Footer className="mt-10" /> 
       </main>
