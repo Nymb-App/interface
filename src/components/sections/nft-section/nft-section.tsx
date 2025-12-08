@@ -4,7 +4,6 @@ import UnicornScene from 'unicornstudio-react';
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/container";
 import { HeadingWithDescription } from "@/components/ui/heading-with-description";
 import {
   Accordion,

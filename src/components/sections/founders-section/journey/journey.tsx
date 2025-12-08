@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import UnicornScene from "unicornstudio-react";
 import journeyBg from "@/assets/journey-bg.png";
 import plusImg from "@/assets/union.png";
@@ -56,12 +56,12 @@ export function Journey({ className }: { className?: string }) {
       if (!distance) return;
 
       gsap.to(trackEl, {
-        x: () => -getScrollDistance()/ 3,
+        x: () => -getScrollDistance() / 3,
         ease: "none",
         scrollTrigger: {
           trigger: pinEl,
           start: "center center",
-          end: () => `+=${getScrollDistance()/3}`,
+          end: () => `+=${getScrollDistance() / 3}`,
           scrub: 1,
           pin: true,
           pinSpacing: true,
@@ -128,28 +128,13 @@ export function Journey({ className }: { className?: string }) {
 
             {/* Блоки с highlights */}
             {journeyHighlights.map((item, index) => (
-              <div
+              <JourneyItems
                 key={index}
-                className={cn(
-                  "flex flex-col justify-center mb-[210px]",
-                  "ml-100"
-                )}
-              >
-                <div className="flex flex-col justify-start">
-                  <p className="font-dm-sans text-4xl mt-5 lg:mt-0 lg:text-[48px] leading-[120%] tracking-[-0.06em] text-white text-nowrap">
-                    {item.lines[0]}
-                    <br />
-                    {item.lines[1]}
-                  </p>
-                </div>
-                <div className="relative h-[100px] w-[200px]">
-                  <img
-                    src={plusImg}
-                    alt="+"
-                    className="absolute w-full h-[200px] -left-[70px] top-0"
-                  />
-                </div>
-              </div>
+                text0={item.lines[0]}
+                text1={item.lines[1]}
+                className={"flex flex-col justify-center mb-[210px] ml-100"}
+                isPc={true}
+              />
             ))}
           </div>
         </div>
@@ -192,22 +177,50 @@ export function Journey({ className }: { className?: string }) {
             </div>
 
             <div className="-mt-10 flex flex-col gap-5">
+              <style>
+                {`
+                  @keyframes fade-in {
+                      0% {
+                          opacity: 0;
+                          transform: translateY(10px);
+                      }
+                      100% {
+                          opacity: 1;
+                          transform: translateY(0);
+                      }
+                  }
+                `}
+              </style>
               {journeyHighlights.map((item, index) => (
-                <div
+                <JourneyItems
+                  threshold={0}
                   key={index}
-                  className={cn("relative w-full flex flex-col justify-center items-center", index > 0 && "-mt-15")}
-                >
-                  <img
-                    src={plusImg}
-                    alt="+"
-                    className="size-[180px] sm:size-[200px]"
-                  />
-                  <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
-                    {item.lines[0]}
-                    <br />
-                    {item.lines[1]}
-                  </p>
-                </div>
+                  text0={item.lines[0]}
+                  text1={item.lines[1]}
+                  className={cn(index > 0 && "-mt-15")}
+                  isPc={false}
+                />
+                // <div
+                //   key={index}
+                //   className={cn("relative w-full flex flex-col justify-center items-center ", index > 0 && "-mt-15")}
+                //   style={{
+                //     opacity: visible ? 1 : 0,
+                //     animation: visible
+                //       ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards`
+                //       : "none",
+                //   }}
+                // >
+                //   <img
+                //     src={plusImg}
+                //     alt="+"
+                //     className="size-[180px] sm:size-[200px]"
+                //   />
+                //   <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
+                //     {item.lines[0]}
+                //     <br />
+                //     {item.lines[1]}
+                //   </p>
+                // </div>
               ))}
             </div>
           </div>
@@ -215,4 +228,102 @@ export function Journey({ className }: { className?: string }) {
       </div>
     </section>
   );
+}
+
+
+function JourneyItems({
+  className,
+  duration = 0.8,
+  delay = 0,
+  threshold = 1,
+  text0,
+  text1,
+  isPc = true,
+}: {
+  isPc?: boolean;
+  className?: string;
+  duration?: number;
+  delay?: number;
+  threshold?: number;
+  text0: string;
+  text1: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(element); // анимация 1 раз
+        }
+      },
+      {
+        threshold, // ← контролируешь процент видимости
+      }
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return (
+    <>
+      {/* Mobile */}
+      <div
+        ref={ref}
+        className={cn("relative w-full flex flex-col justify-center items-center",
+          isPc && 'hidden!',
+          className
+        )}
+      >
+        <img
+          src={plusImg}
+          alt="+"
+          className="size-[180px] sm:size-[200px]"
+        />
+        <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
+          {text0}
+          <br />
+          {text1}
+        </p>
+      </div>
+
+      {/* PC */}
+      <div
+        ref={ref}
+        className={cn(
+          "flex flex-col justify-center mb-[210px] ml-100",
+          !isPc && 'hidden!',
+        )}
+        style={{
+          opacity: visible ? 1 : 0,
+          animation: visible
+            ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards`
+            : "none",
+        }}
+      >
+        <div className="flex flex-col justify-start">
+          <p className="font-dm-sans text-4xl mt-5 lg:mt-0 lg:text-[48px] leading-[120%] tracking-[-0.06em] text-white text-nowrap">
+            {text0}
+            <br />
+            {text1}
+          </p>
+        </div>
+        <div className="relative h-[100px] w-[200px]">
+          <img
+            src={plusImg}
+            alt="+"
+            className="absolute w-full h-[200px] -left-[70px] top-0"
+          />
+        </div>
+      </div>
+    </>
+  )
 }
