@@ -2,9 +2,11 @@ import logoNymbWhite from "../assets/logo-nymb-white.svg";
 import { SocialLinks } from "../lib/constants";
 import { cn } from "../lib/utils";
 import { ConnectButton } from "./connect-wallet";
-import { InstagramIconSvg } from "@/assets/icons/instagram-icon-svg";
-import { TelegramIconSvg } from "@/assets/icons/telegram-icon-svg";
-import { TwitterIconSvg } from "@/assets/icons/twitter-icon-svg";
+
+import { IoLogoInstagram } from "react-icons/io5";
+import { FaXTwitter } from "react-icons/fa6";
+import { RiTelegram2Fill } from "react-icons/ri";
+
 
 export function Header({ className }: { className?: string }) {
   return (
@@ -37,24 +39,27 @@ export function Header({ className }: { className?: string }) {
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Open Nymb Instagram profile"
+            className="hover:text-[#B6FF00] text-2xl"
           >
-            <InstagramIconSvg />
+            <IoLogoInstagram />
           </a>
           <a
             href={SocialLinks.Twitter}
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Open Nymb X (Twitter) profile"
+            className="hover:text-[#B6FF00] text-2xl"
           >
-            <TwitterIconSvg />
+            <FaXTwitter />
           </a>
           <a
             href={SocialLinks.Telegram}
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Open Nymb Telegram channel"
+            className="hover:text-[#B6FF00] text-2xl"
           >
-            <TelegramIconSvg />
+            <RiTelegram2Fill />
           </a>
         </div>
 
