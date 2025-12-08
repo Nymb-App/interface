@@ -61,7 +61,7 @@ export function HeroSection({
       <div
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
-        <div className="space-y-1 sm:space-y-4 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
+        <div className="space-y-1 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
           <Reveal threshold={0}>
             <h1>Nymb Ecosystem</h1>
           </Reveal>
