@@ -74,9 +74,11 @@ export function NumbersSection({ className }: { className?: string }) {
                 hideParagraph
                 classNameContainer="w-full inline-flex items-end"
             >
-                <div className="inline-flex w-full max-w-[954px] justify-between">
-                    <NumbersWithSubtitle value={460} subtitle="Industry" />
-                    <NumbersWithSubtitle value={5} subtitle="Users" />
+                <div className="inline-flex w-full justify-start max-w-[954px]">
+                    <div className="inline-flex w-full max-w-[654px] items-start justify-between">
+                        <NumbersWithSubtitle value={460} subtitle="Industry" />
+                        <NumbersWithSubtitle value={5} subtitle="Users" />
+                    </div>
                 </div>
             </HeadingWithDescription>
         </section>
