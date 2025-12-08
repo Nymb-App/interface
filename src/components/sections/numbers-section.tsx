@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 import { cn } from "@/lib/utils";
 import { HeadingSection } from "./heading-section";
+import { HeadingWithDescription } from "../ui/heading-with-description";
 
 
 interface NumbersWithSubtitleProps {
@@ -67,11 +68,16 @@ function NumbersWithSubtitle({
 export function NumbersSection({ className }: { className?: string }) {
     return (
         <section className={cn("w-full px-8 flex flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between", className)}>
-            <HeadingSection title="NUMBERS" />
-            <div className="inline-flex justify-between lg:justify-around w-full max-w-[954px] gap-10 lg:mr-35">
-                <NumbersWithSubtitle value={460} subtitle="Industry" />
-                <NumbersWithSubtitle value={5} subtitle="Users" />
-            </div>
+            <HeadingWithDescription
+                title="NUMBERS"
+                hideParagraph
+                classNameContainer="w-full"
+            >
+                <div className="inline-flex w-full max-w-[600px] justify-between">
+                    <NumbersWithSubtitle value={460} subtitle="Industry" />
+                    <NumbersWithSubtitle value={5} subtitle="Users" />
+                </div>
+            </HeadingWithDescription>
         </section>
     );
 }

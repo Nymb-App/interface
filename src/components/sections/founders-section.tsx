@@ -23,20 +23,21 @@ export function FoundersSection({ className }: { className?: string }) {
                     "new",
                     "currency.",
                 ]}
-            />
-
-            <div className="relative inline-flex items-center justify-around w-full sm:justify-center sm:gap-10 xl:left-20">
-                <AvatarCard
-                    image={IgorIvanov}
-                    title="Igor Ivanov"
-                    description="Founder"
-                />
-                <AvatarCard
-                    image={VitaliiTereshchenko}
-                    title="Vitalii Tereshchenko"
-                    description="CO - Founder"
-                />
-            </div>
+                classNameContainer="gap-6 sm:gap-20"
+            >
+                <div className="relative inline-flex items-center justify-around w-full sm:justify-start sm:gap-10">
+                    <AvatarCard
+                        image={IgorIvanov}
+                        title="Igor Ivanov"
+                        description="Founder"
+                    />
+                    <AvatarCard
+                        image={VitaliiTereshchenko}
+                        title="Vitalii Tereshchenko"
+                        description="CO - Founder"
+                    />
+                </div>
+            </HeadingWithDescription>
         </section>
     );
 }

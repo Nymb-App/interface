@@ -8,6 +8,7 @@ import UnicornScene from "unicornstudio-react";
 import journeyBg from "@/assets/journey-bg.png";
 import plusImg from "@/assets/union.png";
 import { Container } from "@/components/container";
+import { Reveal } from "@/components/ui/text-reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,12 +56,12 @@ export function Journey({ className }: { className?: string }) {
       if (!distance) return;
 
       gsap.to(trackEl, {
-        x: () => -getScrollDistance(),
+        x: () => -getScrollDistance()/ 3,
         ease: "none",
         scrollTrigger: {
           trigger: pinEl,
           start: "center center",
-          end: () => `+=${getScrollDistance()}`,
+          end: () => `+=${getScrollDistance()/3}`,
           scrub: 1,
           pin: true,
           pinSpacing: true,
@@ -109,20 +110,18 @@ export function Journey({ className }: { className?: string }) {
         <div className="relative z-10 w-full h-full">
           <div
             ref={horizontalRef}
-            className="grid grid-flow-col auto-cols-[100vw] will-change-transform h-full"
+            className="grid grid-flow-col auto-cols-[40vw] will-change-transform h-full"
           >
             {/* Первый блок - заголовок */}
             <div className="grid place-items-center px-8">
               <div className="space-y-26 text-center">
                 <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
-                  Even after
-                  <br />
-                  all key launches,
+                  <Reveal threshold={0.6}>Even after</Reveal>
+                  <Reveal threshold={0.6}>all key launches,</Reveal>
                 </h2>
                 <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
-                  Nymb&apos;s journey
-                  <br />
-                  only begins.
+                  <Reveal threshold={0.6}>Nymb&apos;s journey</Reveal>
+                  <Reveal threshold={0.6}>only begins.</Reveal>
                 </h2>
               </div>
             </div>
@@ -137,7 +136,7 @@ export function Journey({ className }: { className?: string }) {
                 )}
               >
                 <div className="flex flex-col justify-start">
-                  <p className="font-dm-sans text-[48px] leading-[120%] tracking-[-0.06em] text-white">
+                  <p className="font-dm-sans text-4xl mt-5 lg:mt-0 lg:text-[48px] leading-[120%] tracking-[-0.06em] text-white text-nowrap">
                     {item.lines[0]}
                     <br />
                     {item.lines[1]}
@@ -159,7 +158,7 @@ export function Journey({ className }: { className?: string }) {
       {/* Мобильная версия - вертикальный список */}
       <div className="md:hidden relative mt-20">
         {/* Фон на всю ширину pinned-секции */}
-        <div className="absolute -top-[345px] w-full flex items-center justify-center overflow-hidden">
+        <div className="absolute -top-[370px] w-full flex items-center justify-center overflow-hidden">
           <UnicornScene
             showPlaceholderOnError
             showPlaceholderWhileLoading
@@ -172,8 +171,8 @@ export function Journey({ className }: { className?: string }) {
             fps={60}
             production={false}
             lazyLoad={true}
-            altText="WebGL huli net lazer journey scene"
-            ariaLabel="Animated WebGL huli net lazer journey scene"
+            altText="WebGL"
+            ariaLabel="Animated WebGL"
             className="rotate-90 min-w-[800px] w-full min-h-[850px]"
           />
         </div>
@@ -182,14 +181,12 @@ export function Journey({ className }: { className?: string }) {
             <div className="flex flex-col items-center gap-8 px-4 max-sm:relative max-sm:top-[-25px]">
               <div className="space-y-10 text-center">
                 <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-white">
-                  Even after
-                  <br />
-                  all key launches,
+                  <Reveal threshold={0.6}>Even after</Reveal>
+                  <Reveal threshold={0.6}>all key launches,</Reveal>
                 </h2>
                 <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-[#B6FF00]">
-                  Nymb&apos;s journey
-                  <br />
-                  only begins.
+                  <Reveal threshold={0.6}>Nymb&apos;s journey</Reveal>
+                  <Reveal threshold={0.6}>only begins.</Reveal>
                 </h2>
               </div>
             </div>
