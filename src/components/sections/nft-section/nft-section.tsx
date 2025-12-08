@@ -185,27 +185,27 @@ function CardPCTitles({
             : "none",
         }}
       >
-        <Row className="px-0! pr-6! text-sm">Supply</Row>
-        <Row className="px-0! pr-6! text-sm">
+        <Row className="px-0! pr-6! text-sm text-nowrap">Supply</Row>
+        <Row className="px-0! pr-6! text-sm text-nowrap">
           Lock Period
           <span className="font-dm-sans text-white/40 text-xs">
             Tradeable After
           </span>
         </Row>
-        <Row className="px-0! pr-6! text-sm">
+        <Row className="px-0! pr-6! text-sm text-nowrap">
           Income from
           <br />
           Community Pool
         </Row>
-        <Row className="px-0! pr-6! text-sm mt-2">Annual Gains</Row>
-        <Row className="px-0! pr-6! text-sm mt-3">Token Drops</Row>
-        <Row className="px-0! pr-6! text-sm mt-3">TGE Whitelist</Row>
-        <Row className="px-0! pr-6! text-sm mt-3">Discounts Up to</Row>
-        <Row className="px-0! pr-6! text-sm">
+        <Row className="px-0! pr-6! text-sm mt-2 text-nowrap">Annual Gains</Row>
+        <Row className="px-0! pr-6! text-sm mt-3 text-nowrap">Token Drops</Row>
+        <Row className="px-0! pr-6! text-sm mt-3 text-nowrap">TGE Whitelist</Row>
+        <Row className="px-0! pr-6! text-sm mt-3 text-nowrap">Discounts Up to</Row>
+        <Row className="px-0! pr-6! text-sm text-nowrap">
           Staking Boost
-          <span className="font-dm-sans text-white/40 text-xs">On Base</span>
+          <span className="font-dm-sans text-white/40 text-xs text-nowrap">On Base</span>
         </Row>
-        <Row className="px-0! pr-6! text-sm -mt-4">DAO Power</Row>
+        <Row className="px-0! pr-6! text-sm -mt-4 text-nowrap">DAO Power</Row>
       </div>
     </>
   );
