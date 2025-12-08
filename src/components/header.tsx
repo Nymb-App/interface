@@ -18,18 +18,18 @@ export function Header({ className }: { className?: string }) {
       </a>
 
       <div className="inline-flex items-center gap-12 text-white">
-        <ul className="gap-8 font-pixel uppercase hidden lg:inline-flex">
+        <ul className="gap-8 uppercase hidden lg:inline-flex">
           <li>
-            <a href="#mission" className="transition hover:text-[#B6FF00]">mission</a>
+            <a href="#mission" className="text-sm font-pixel transition hover:text-[#B6FF00]">mission</a>
           </li>
           <li>
-            <a href="#phases" className="transition hover:text-[#B6FF00]">phases</a>
+            <a href="#phases" className="text-sm font-pixel transition hover:text-[#B6FF00]">phases</a>
           </li>
           <li>
-            <a href="#founders" className="transition hover:text-[#B6FF00]">founders</a>
+            <a href="#founders" className="text-sm font-pixel transition hover:text-[#B6FF00]">founders</a>
           </li>
           <li>
-            <a href="#nft" className="transition hover:text-[#B6FF00]">nft</a>
+            <a href="#nft" className="text-sm font-pixel transition hover:text-[#B6FF00]">nft</a>
           </li>
         </ul>
 
