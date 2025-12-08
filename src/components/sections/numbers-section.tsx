@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CountUp from "react-countup";
 import { cn } from "@/lib/utils";
-import { HeadingSection } from "./heading-section";
 import { HeadingWithDescription } from "../ui/heading-with-description";
 
 
