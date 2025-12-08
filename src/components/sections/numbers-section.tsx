@@ -72,7 +72,7 @@ export function NumbersSection({ className }: { className?: string }) {
                 hideParagraph
                 classNameContainer="w-full"
             >
-                <div className="inline-flex w-full max-w-[600px] justify-between">
+                <div className="inline-flex w-full max-w-[900px] justify-between">
                     <NumbersWithSubtitle value={460} subtitle="Industry" />
                     <NumbersWithSubtitle value={5} subtitle="Users" />
                 </div>
