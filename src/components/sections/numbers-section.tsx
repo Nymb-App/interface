@@ -9,6 +9,7 @@ interface NumbersWithSubtitleProps {
     valueLabel?: string;
     subtitle?: string;
     threshold?: number; // добавим threshold
+    className?: string;
 }
 
 function NumbersWithSubtitle({
@@ -16,6 +17,7 @@ function NumbersWithSubtitle({
     valueLabel = "B",
     subtitle,
     threshold = 1,
+    className,
 }: NumbersWithSubtitleProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [startCount, setStartCount] = useState<boolean>(false);
@@ -40,7 +42,7 @@ function NumbersWithSubtitle({
     }, [threshold]);
 
     return (
-        <div ref={containerRef} className="flex flex-col gap-3">
+        <div ref={containerRef} className={cn("flex flex-col gap-3", className)}>
             <CountUp
                 start={0}
                 end={startCount ? value : 0} // если ещё не видно, показываем 0
@@ -70,9 +72,9 @@ export function NumbersSection({ className }: { className?: string }) {
             <HeadingWithDescription
                 title="NUMBERS"
                 hideParagraph
-                classNameContainer="w-full"
+                classNameContainer="w-full inline-flex items-end"
             >
-                <div className="inline-flex w-full max-w-[900px] justify-between">
+                <div className="inline-flex w-full max-w-[954px] justify-between">
                     <NumbersWithSubtitle value={460} subtitle="Industry" />
                     <NumbersWithSubtitle value={5} subtitle="Users" />
                 </div>
