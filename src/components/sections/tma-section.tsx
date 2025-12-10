@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { HeadingWithDescription } from "@/components/ui/heading-with-description";
+import { HeadingWithDescription, HeadingWithDescriptionTMA } from "@/components/ui/heading-with-description";
 
 export function TMASection({ className }: { className?: string }) {
   return (
@@ -9,19 +9,9 @@ export function TMASection({ className }: { className?: string }) {
         className
       )}
     >
-      <HeadingWithDescription
+      <HeadingWithDescriptionTMA
         title="TELEGRAM MINI-APP"
         navLink="tma"
-        description="Join Nymb's Telegram mini-app now.
-                    Start swiping, invite friends, complete tasks, battle players,
-                    and climb the leaderboards. Every second counts.
-                    Start earning yours today."
-        highlightWords={[
-          "Join Nymb's",
-          "now.",
-          "swiping, invite friends, complete tasks, battle players,",
-          "Every second counts.",
-        ]}
         className="mb-5"
         classNameContainer="gap-10"
       >
@@ -32,7 +22,7 @@ export function TMASection({ className }: { className?: string }) {
         >
           OPEN APP
         </a>
-      </HeadingWithDescription>
+      </HeadingWithDescriptionTMA>
     </section>
   );
 }
