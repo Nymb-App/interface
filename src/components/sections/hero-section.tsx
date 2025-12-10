@@ -7,7 +7,7 @@ import timeIcon from "@/assets/hero/time.png";
 import { FlickeringGrid } from "@/components/flickering-grid";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/text-reveal";
+import { Reveal, TextReveal } from "@/components/ui/text-reveal";
 
 export function HeroSection({
   className,
@@ -62,18 +62,33 @@ export function HeroSection({
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
         <div className="space-y-1 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
-          <Reveal threshold={0}>
-            <h1>Nymb Ecosystem</h1>
-          </Reveal>
+          <TextReveal
+            delay={0.5}
+            className="w-full"
+          >
+            <h1 className="leading-tight">
+              Nymb Ecosystem<br/>
+              that turns{" "}
+              <span className="inline-block align-middle">
+                <img
+                  src={timeIcon}
+                  alt="time"
+                  className="size-16 lg:size-max object-contain"
+                />
+              </span>
+              {" "}time into value
+            </h1>
+          </TextReveal>
+
 
           {/* Pc version */}
-          <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
+          {/* <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
             <h1 className="w-full inline-flex items-center gap-3">
               that turns
               <img className="size-16 lg:size-max" src={timeIcon} alt="time" />
               time into value
             </h1>
-          </Reveal>
+          </Reveal> */}
 
           {/* Mobile version */}
           <div className="flex flex-col items-center gap-1 sm:hidden">

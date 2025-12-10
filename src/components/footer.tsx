@@ -15,7 +15,7 @@ export function Footer({ className }: { className?: string }) {
     >
       <div className="relative w-full overflow-hidden">
         <Marquee className="overflow-hidden">
-          <span className="text-[#B6FF00] mx-4 font-dm-sans font-bold text-4xl sm:text-[145px]">
+          <span className="text-[#B6FF00] mx-4 font-medium text-4xl sm:text-[145px]">
             turns time into value turns time into value turns time into value
           </span>
         </Marquee>

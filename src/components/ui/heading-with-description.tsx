@@ -47,16 +47,16 @@ export function HeadingWithDescription({
     return (
         <div className={cn("flex flex-col w-full gap-6 sm:flex-row sm:justify-between", className)}>
             <HeadingSection className=" text-nowrap w-1/5" title={title} navLink={navLink} />
-            <Reveal className="inline-flex justify-end w-full" threshold={0.2}>
-                <div className={cn("flex flex-col w-fit", classNameContainer)}>
-                    {!hideParagraph &&
+            <div className={cn("flex flex-col w-fit", classNameContainer)}>
+                {!hideParagraph &&
+                    <Reveal className="inline-flex justify-end w-full" threshold={0.2}>
                         <p aria-hidden className="indent-16 font-medium sm:indent-28 max-w-[954px] text-2xl sm:text-[48px] font-dm-sans leading-8 sm:leading-13 text-white sm:-mt-2">
                             {getHighlightedText(description, highlightWords)}
                         </p>
-                    }
-                    {children}
-                </div>
-            </Reveal>
+                    </Reveal>
+                }
+                {children}
+            </div>
         </div>
     );
 }
