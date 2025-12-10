@@ -30,11 +30,13 @@ export function FoundersSection({ className }: { className?: string }) {
                         image={IgorIvanov}
                         title="Igor Ivanov"
                         description="Founder"
+                        
                     />
                     <AvatarCard
                         image={VitaliiTereshchenko}
                         title="Vitalii Tereshchenko"
                         description="CO - Founder"
+                        
                     />
                 </div>
             </HeadingWithDescription>
@@ -49,6 +51,7 @@ function AvatarCard({
     duration = 0.8,
     delay = 0,
     threshold = 0.8,
+    className,
 }: {
     image: string;
     title: string;
@@ -56,6 +59,7 @@ function AvatarCard({
     duration?: number;
     delay?: number;
     threshold?: number;
+    className?: string;
 }) {
     const ref = useRef<HTMLDivElement>(null);
     const [visible, setVisible] = useState(false);
@@ -101,14 +105,14 @@ function AvatarCard({
             </style>
             <div
                 ref={ref}
-                className="flex flex-col gap-5"
+                className={cn("flex flex-col gap-5", className)}
                 style={{
                     opacity: visible ? 1 : 0,
                     animation: visible ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards` : 'none',
                 }}
             >
                 <img
-                    className="h-auto max-w-44 rounded-[68px] sm:rounded-[120px] sm:max-w-[320px]"
+                    className="h-auto max-w-40 rounded-[68px] sm:rounded-[120px] sm:max-w-[320px]"
                     src={image}
                     alt="Avatar"
                 />

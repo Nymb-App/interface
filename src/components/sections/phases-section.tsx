@@ -101,7 +101,7 @@ export function PhasesSection() {
             onMouseLeave={startAutoScroll}
             onTouchEnd={startAutoScroll}
             onTouchCancel={startAutoScroll}
-            className={cn("flex flex-col items-center gap-6 overflow-x-hidden select-none py-10")}
+            className={cn("flex flex-col items-center gap-6 select-none py-10")}
         >
             <Carousel
                 setApi={setApi}
@@ -109,9 +109,9 @@ export function PhasesSection() {
                     align: "center",
                     loop: false,
                 }}
-                className=""
+                className={cn("transition-all left-24", current === 1 && "left-0", current === 2 && "-left-20")}
             >
-                <CarouselContent className="xl:ml-120">
+                <CarouselContent className="">
                     {phases.map((phase) => (
                         <CarouselItem
                             key={phase.id}

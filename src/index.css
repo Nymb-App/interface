@@ -169,8 +169,8 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden !important;
 }
-
 
 /* Анимация для построчного появления текста */
 @keyframes line-reveal {

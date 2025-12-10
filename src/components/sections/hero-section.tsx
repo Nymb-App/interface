@@ -61,10 +61,10 @@ export function HeroSection({
       <div
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
-        <div className="space-y-1 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
+        <div className="space-y-1 font-medium tracking-wide text-white text-[44px] sm:text-6xl md:text-7xl lg:text-[88px]">
           <TextReveal
             delay={0.5}
-            className="w-full"
+            className="w-full hidden md:block"
           >
             <h1 className="leading-tight">
               Nymb Ecosystem<br/>
@@ -80,30 +80,26 @@ export function HeroSection({
             </h1>
           </TextReveal>
 
-
-          {/* Pc version */}
-          {/* <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
-            <h1 className="w-full inline-flex items-center gap-3">
-              that turns
-              <img className="size-16 lg:size-max" src={timeIcon} alt="time" />
-              time into value
+          <TextReveal
+            delay={0.5}
+            className="w-full md:hidden"
+          >
+            <h1 className="leading-tight tracking-tight">
+              Nymb Ecosystem<br/>
+              that turns<br/>
+              <span className="inline-block align-middle">
+                <img
+                  src={timeIcon}
+                  alt="time"
+                  className="size-14 lg:size-max object-contain"
+                />
+              </span>
+              {" "}time into value
             </h1>
-          </Reveal> */}
-
-          {/* Mobile version */}
-          <div className="flex flex-col items-center gap-1 sm:hidden">
-            <Reveal className="w-full" threshold={0}>
-              <h1>that turns</h1>
-            </Reveal>
-
-            <Reveal threshold={0} className="w-full inline-flex items-center gap-1">
-              <img className="size-12 sm:size-max" src={timeIcon} alt="time" />
-              <h1>time into value</h1>
-            </Reveal>
-          </div>
+          </TextReveal>
         </div>
 
-        <p className="max-w-[519px] text-2xl font-inter text-white mt-4">
+        <p className="max-w-[519px] text-lg sm:text-2xl font-inter text-white mt-4">
           <Reveal threshold={0} duration={2}>
             Every minute of life becomes{" "}
             <span className="text-[#B6FF00]">real value</span>

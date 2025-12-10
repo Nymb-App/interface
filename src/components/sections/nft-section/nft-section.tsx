@@ -366,7 +366,7 @@ function CardMobile({
               >
                 N{id + 1}
               </h3>
-              <p className="font-[550] text-xl font-dm-sans text-white">
+              <p className="font-[550] text-xl font-dm-sans text-white tracking-tight">
                 {id === 0 && (
                   <>
                     Starting Your Journey
@@ -821,7 +821,7 @@ function Row({
   return (
     <div
       className={cn(
-        "w-full font-dm-sans text-sm md:text-xl px-6 py-3 md:px-6 md:py-3 text-white flex flex-col",
+        "w-full font-dm-sans text-sm md:text-xl px-6 py-2 md:px-6 md:py-3 text-white flex flex-col",
         className
       )}
     >

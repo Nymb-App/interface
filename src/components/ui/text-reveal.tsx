@@ -1,13 +1,8 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode
-} from "react";
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
-import CustomEase from "gsap/CustomEase";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import CustomEase from "gsap/CustomEase";
+import SplitText from "gsap/SplitText";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 interface Props {
   children: ReactNode;
@@ -16,7 +11,6 @@ interface Props {
   duration?: number;
   threshold?: number;
 }
-
 
 export const Reveal = ({
   className,
@@ -81,7 +75,6 @@ export const Reveal = ({
     </>
   );
 };
-
 
 gsap.registerPlugin(SplitText, CustomEase);
 
@@ -161,7 +154,6 @@ export const TextReveal = ({
     </div>
   );
 };
-
 
 export const TextRevealP = ({
   children,

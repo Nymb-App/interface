@@ -107,7 +107,7 @@ export function Journey({ className }: { className?: string }) {
             />
           )}
         </div>
-        <div className="relative z-10 w-full h-full">
+        <div className="relative z-10 w-full h-full left-1/3">
           <div
             ref={horizontalRef}
             className="grid grid-flow-col auto-cols-[40vw] will-change-transform h-full"
@@ -115,11 +115,11 @@ export function Journey({ className }: { className?: string }) {
             {/* Первый блок - заголовок */}
             <div className="grid place-items-center px-8">
               <div className="space-y-26 text-center">
-                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-white">
+                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-tight text-white text-nowrap">
                   <Reveal threshold={0.6}>Even after</Reveal>
                   <Reveal threshold={0.6}>all key launches,</Reveal>
                 </h2>
-                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                <h2 className="text-[32px] sm:text-[80px] font-medium leading-none tracking-tight text-[#B6FF00]">
                   <Reveal threshold={0.6}>Nymb&apos;s journey</Reveal>
                   <Reveal threshold={0.6}>only begins.</Reveal>
                 </h2>

@@ -2,12 +2,13 @@ import { cn } from "@/lib/utils";
 import { FlickeringGrid } from "../flickering-grid";
 
 import LogoAssetImg from "@/assets/sections/idea/logo.png";
+import { Reveal } from "../ui/text-reveal";
 
 export function IdeaSection({ className }: { className?: string }) {
     return (
         <section className={cn("w-full min-h-[500px] px-8 flex flex-col justify-center items-center", className)}>
             <FlickeringGrid
-                className="absolute  size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
+                className="absolute size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
                 squareSize={2}
                 gridGap={12}
                 color="#b7ff01"
@@ -21,8 +22,8 @@ export function IdeaSection({ className }: { className?: string }) {
             />
 
             <div className="relative top-10 text-center text-white text-[32px] font-medium leading-8 sm:text-[64px] sm:leading-15 sm:top-20">
-                <p><span className="text-[#B6FF00]">1 idea</span> to make</p>
-                <p>every second count</p>
+                <p><Reveal><span className="text-[#B6FF00]">1 idea</span> to make</Reveal></p>
+                <p><Reveal>every second count</Reveal></p>
             </div>
         </section>
     );
