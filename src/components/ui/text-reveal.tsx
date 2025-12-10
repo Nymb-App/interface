@@ -1,13 +1,155 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode
-} from "react";
-import gsap from "gsap";
-import SplitText from "gsap/SplitText";
-import CustomEase from "gsap/CustomEase";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import CustomEase from "gsap/CustomEase";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+
+// Функция для разбиения текста на строки на основе offsetTop
+function splitTextIntoLines(element: HTMLElement): HTMLElement[][] {
+  const words: HTMLElement[] = [];
+
+  // Сохраняем HTML разметку (например, highlighted spans)
+  const tempDiv = document.createElement("div");
+  tempDiv.innerHTML = element.innerHTML;
+
+  // Копируем все вычисленные стили
+  const computedStyle = window.getComputedStyle(element);
+  tempDiv.style.cssText = computedStyle.cssText;
+
+  // ВАЖНО: устанавливаем точную ширину оригинального элемента
+  tempDiv.style.width = `${element.offsetWidth}px`;
+  tempDiv.style.position = "absolute";
+  tempDiv.style.visibility = "hidden";
+  tempDiv.style.whiteSpace = "pre-wrap";
+  tempDiv.style.left = "-9999px";
+  tempDiv.style.top = "0";
+  tempDiv.style.color = "white";
+
+  document.body.appendChild(tempDiv);
+
+  // Разбиваем на слова, сохраняя HTML структуру
+  const walker = document.createTreeWalker(tempDiv, NodeFilter.SHOW_TEXT, null);
+
+  const textNodes: Text[] = [];
+  let node;
+  while ((node = walker.nextNode())) {
+    textNodes.push(node as Text);
+  }
+
+  textNodes.forEach((textNode) => {
+    const parentElement = textNode.parentElement;
+    if (!parentElement) return;
+
+    const wordsArray = (textNode.textContent || "").split(/(\s+)/);
+    const fragment = document.createDocumentFragment();
+
+    wordsArray.forEach((word) => {
+      if (word.trim()) {
+        const span = document.createElement("span");
+        span.textContent = word;
+        span.style.display = "inline-block";
+
+        // Копируем все inline стили от родителя
+        const parentStyles = window.getComputedStyle(parentElement);
+        if (parentStyles.color && parentStyles.color !== "rgb(255, 255, 255)") {
+          span.style.color = parentStyles.color;
+        }
+
+        // Копируем классы
+        if (parentElement.className) {
+          span.className = parentElement.className;
+        }
+
+        fragment.appendChild(span);
+        words.push(span);
+      } else if (word) {
+        // Пробелы
+        const space = document.createTextNode(word);
+        fragment.appendChild(space);
+      }
+    });
+
+    parentElement.replaceChild(fragment, textNode);
+  });
+
+  // Группируем слова по строкам на основе offsetTop
+  const lines: HTMLElement[][] = [];
+  let currentLine: HTMLElement[] = [];
+  let lastTop = -1;
+
+  words.forEach((word) => {
+    const top = word.offsetTop;
+    // console.log(`Word: "${word.textContent}", Top: ${top}`);
+
+    // Используем допуск в 5px для определения новой строки
+    if (
+      lastTop !== -1 &&
+      Math.abs(top - lastTop) > 5 &&
+      currentLine.length > 0
+    ) {
+      lines.push(currentLine);
+      currentLine = [];
+    }
+    currentLine.push(word);
+    lastTop = top;
+  });
+
+  if (currentLine.length > 0) {
+    lines.push(currentLine);
+  }
+
+  console.log(`Найдено строк: ${lines.length}`);
+  lines.forEach((line, i) => {
+    console.log(`Строка ${i + 1}:`, line.map((w) => w.textContent).join(" "));
+  });
+
+  document.body.removeChild(tempDiv);
+  return lines;
+}
+
+// Функция для оборачивания строк в span'ы для анимации
+function wrapLinesInSpans(element: HTMLElement): HTMLElement[] {
+  const lines = splitTextIntoLines(element);
+  const lineWrappers: HTMLElement[] = [];
+
+  console.log(`Оборачиваем ${lines.length} строк`);
+
+  // Очищаем элемент
+  element.innerHTML = "";
+
+  lines.forEach((lineWords) => {
+    // Внешний wrapper с overflow: hidden
+    const outerWrapper = document.createElement("span");
+    outerWrapper.style.display = "block";
+    outerWrapper.style.overflow = "hidden";
+    outerWrapper.className = "line-wrapper";
+
+    // Внутренний wrapper для анимации
+    const innerWrapper = document.createElement("span");
+    innerWrapper.style.display = "block";
+    innerWrapper.className = "line-inner";
+
+    // Собираем текст строки из слов, воссоздавая оригинальную разметку
+    lineWords.forEach((word, wordIndex) => {
+      // Клонируем узел со всеми стилями и классами
+      const clonedWord = word.cloneNode(true) as HTMLElement;
+      // Меняем display обратно на inline для естественного потока
+      clonedWord.style.display = "inline";
+
+      innerWrapper.appendChild(clonedWord);
+
+      // Добавляем пробел после каждого слова, кроме последнего
+      if (wordIndex < lineWords.length - 1) {
+        innerWrapper.appendChild(document.createTextNode(" "));
+      }
+    });
+
+    outerWrapper.appendChild(innerWrapper);
+    element.appendChild(outerWrapper);
+    lineWrappers.push(innerWrapper);
+  });
+
+  return lineWrappers;
+}
 
 interface Props {
   children: ReactNode;
@@ -16,7 +158,6 @@ interface Props {
   duration?: number;
   threshold?: number;
 }
-
 
 export const Reveal = ({
   className,
@@ -82,8 +223,7 @@ export const Reveal = ({
   );
 };
 
-
-gsap.registerPlugin(SplitText, CustomEase);
+gsap.registerPlugin(CustomEase);
 
 export const TextReveal = ({
   children,
@@ -94,6 +234,7 @@ export const TextReveal = ({
 }: Props) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [readyToAnimate, setReadyToAnimate] = useState(threshold === 0);
+  const [isSplit, setIsSplit] = useState(false);
 
   useEffect(() => {
     if (threshold === 0) return; // запуск сразу
@@ -121,24 +262,28 @@ export const TextReveal = ({
     if (!readyToAnimate) return;
     if (!ref.current) return;
 
-    // 🎯 ВАЖНО: сплитим не div (inline-flex), а его ребёнка — <p> / <h1>
+    // Находим целевой элемент (параграф)
     const target =
       (ref.current.firstElementChild as HTMLElement | null) || ref.current;
 
-    const split = new SplitText(target, {
-      type: "lines",
-      linesClass: "line",
-    });
+    // Используем нашу функцию для разбиения на строки
+    const lines = wrapLinesInSpans(target);
 
+    console.log(`Анимируем ${lines.length} строк`);
+    console.log("Элементы для анимации:", lines);
+
+    // Показываем контент после разбиения
+    setIsSplit(true);
+
+    // Анимируем строки
     const tl = gsap.timeline({
       delay,
       defaults: {
         ease: CustomEase.create("custom", "M0,0 C0,1 0.504,1 1,1 "),
       },
-      onComplete: () => split.revert(),
     });
 
-    tl.from(split.lines, {
+    tl.from(lines, {
       y: 80,
       opacity: 0,
       duration: duration,
@@ -147,7 +292,6 @@ export const TextReveal = ({
 
     return () => {
       tl.kill();
-      split.revert();
     };
   }, [readyToAnimate, delay, duration]);
 
@@ -155,13 +299,12 @@ export const TextReveal = ({
     <div
       ref={ref}
       className={cn("w-full", className)}
-      style={{ opacity: readyToAnimate ? 100 : 0 }}
+      style={{ visibility: isSplit ? "visible" : "hidden" }}
     >
       {children}
     </div>
   );
 };
-
 
 export const TextRevealP = ({
   children,

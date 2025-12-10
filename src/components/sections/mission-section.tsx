@@ -1,7 +1,6 @@
 import { HeadingWithDescription } from "@/components/ui/heading-with-description";
 import { cn } from "@/lib/utils";
 
-
 export function MissionSection({ className }: { className?: string }) {
   return (
     <section className={cn("w-full px-8", className)}>

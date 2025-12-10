@@ -1,13 +1,13 @@
-import { FaAngleDown } from "react-icons/fa";
-import UnicornScene from "unicornstudio-react";
-import { cn } from "@/lib/utils";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import HeroFallbackImage from "@/assets/hero/hero-fallback.png";
 import timeIcon from "@/assets/hero/time.png";
 import { FlickeringGrid } from "@/components/flickering-grid";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Reveal, TextReveal } from "@/components/ui/text-reveal";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { cn } from "@/lib/utils";
+import { FaAngleDown } from "react-icons/fa";
+import UnicornScene from "unicornstudio-react";
 
 export function HeroSection({
   className,
@@ -62,12 +62,10 @@ export function HeroSection({
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
         <div className="space-y-1 font-medium tracking-wide text-white text-5xl sm:text-6xl md:text-7xl lg:text-[88px]">
-          <TextReveal
-            delay={0.5}
-            className="w-full"
-          >
+          <TextReveal delay={0.5} className="w-full">
             <h1 className="leading-tight">
-              Nymb Ecosystem<br/>
+              Nymb Ecosystem
+              <br />
               that turns{" "}
               <span className="inline-block align-middle">
                 <img
@@ -75,11 +73,10 @@ export function HeroSection({
                   alt="time"
                   className="size-16 lg:size-max object-contain"
                 />
-              </span>
-              {" "}time into value
+              </span>{" "}
+              time into value
             </h1>
           </TextReveal>
-
 
           {/* Pc version */}
           {/* <Reveal className="w-full hidden sm:inline-flex items-center" threshold={0}>
@@ -96,7 +93,10 @@ export function HeroSection({
               <h1>that turns</h1>
             </Reveal>
 
-            <Reveal threshold={0} className="w-full inline-flex items-center gap-1">
+            <Reveal
+              threshold={0}
+              className="w-full inline-flex items-center gap-1"
+            >
               <img className="size-12 sm:size-max" src={timeIcon} alt="time" />
               <h1>time into value</h1>
             </Reveal>
@@ -120,7 +120,10 @@ export function HeroSection({
           delay={1}
           className="mt-10 hidden sm:flex flex-row"
         >
-          <a href="#nft" className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
+          <a
+            href="#nft"
+            className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]"
+          >
             Become our Partner
           </a>
           <Button
