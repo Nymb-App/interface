@@ -59,7 +59,7 @@ export function Presentation({ className }: { className?: string }) {
 
     useEffect(() => {
         if (!api) return;
-        startAutoScroll();
+        // startAutoScroll();
 
         return () => {
             stopAutoScroll();
@@ -91,18 +91,18 @@ export function Presentation({ className }: { className?: string }) {
                 </DialogHeader>
 
                 {/* Content Carousel */}
-                <div className="absolute top-1/2 left-1/2 -translate-1/2 flex items-center gap-2 aspect-video w-full max-w-[1200px] overflow-hidden">
-                    <Carousel setApi={setApi} className="w-full h-full">
-                        <CarouselContent className="w-full h-full aspect-video ">
+                <div className="absolute top-1/2 left-1/2 -translate-1/2 w-full max-w-[1200px] overflow-hidden">
+                    <Carousel setApi={setApi} className="size-full">
+                        <CarouselContent className="size-full">
                             {Array.from({ length: 3 }).map((_, index) => (
                                 <CarouselItem
-                                    className="aspect-video w-full h-full md:basis-full"
+                                    className="relative size-full md:basis-full aspect-video ml-0"
                                     key={index}
                                 >
                                     <img
                                         src={slide0}
                                         alt="Slide"
-                                        className="aspect-video size-full"
+                                        className="absolute h-auto w-full"
                                     />
                                 </CarouselItem>
                             ))}

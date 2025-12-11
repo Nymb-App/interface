@@ -79,12 +79,12 @@ export function Journey({ className }: { className?: string }) {
         sectionRef.current = node;
         revealRef(node);
       }}
-      className={cn(className)}
+      className={cn("overflow-hidden", className)}
     >
       {/* Десктопная версия - горизонтальный скролл */}
       <div
         ref={pinRef}
-        className="hidden md:flex relative items-center justify-center h-screen"
+        className="hidden md:flex relative items-center justify-center min-h-screen"
       >
         {/* Фон на всю ширину pinned-секции */}
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
@@ -127,7 +127,7 @@ export function Journey({ className }: { className?: string }) {
             </div>
 
             {/* Блоки с highlights */}
-            {/* {journeyHighlights.map((item, index) => (
+            {journeyHighlights.map((item, index) => (
               <JourneyItems
                 key={index}
                 text0={item.lines[0]}
@@ -135,7 +135,7 @@ export function Journey({ className }: { className?: string }) {
                 className={"flex flex-col justify-center mb-[210px] ml-100"}
                 isPc={true}
               />
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
@@ -165,11 +165,11 @@ export function Journey({ className }: { className?: string }) {
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-8 px-4 max-sm:relative max-sm:top-[-25px]">
               <div className="space-y-10 text-center">
-                <h2 className="text-[40px] font-medium leading-none tracking-[-0.06em] text-white">
+                <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-white">
                   <Reveal threshold={0.6}>Even after</Reveal>
                   <Reveal threshold={0.6}>all key launches,</Reveal>
                 </h2>
-                <h2 className="text-[40px] font-medium leading-none tracking-[-0.06em] text-[#B6FF00]">
+                <h2 className="text-[40px] font-[550] leading-none tracking-[-0.06em] text-[#B6FF00]">
                   <Reveal threshold={0.6}>Nymb&apos;s journey</Reveal>
                   <Reveal threshold={0.6}>only begins.</Reveal>
                 </h2>
@@ -215,7 +215,7 @@ export function Journey({ className }: { className?: string }) {
                 //     alt="+"
                 //     className="size-[180px] sm:size-[200px]"
                 //   />
-                //   <p className="font-medium font-dm-sans text-center text-2xl text-white -mt-15">
+                //   <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
                 //     {item.lines[0]}
                 //     <br />
                 //     {item.lines[1]}
@@ -288,7 +288,7 @@ function JourneyItems({
           alt="+"
           className="size-[180px] sm:size-[200px]"
         />
-        <p className="font-medium font-dm-sans text-center text-2xl text-white -mt-15">
+        <p className="font-[550] font-dm-sans text-center text-2xl text-white -mt-15">
           {text0}
           <br />
           {text1}
