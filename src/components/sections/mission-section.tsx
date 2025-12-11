@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export function MissionSection({ className }: { className?: string }) {
   return (
-    <section className={cn("w-full px-8", className)}>
+    <section className={cn("w-full", className)}>
       <HeadingWithDescription
         title="MISSION"
         navLink="mission"

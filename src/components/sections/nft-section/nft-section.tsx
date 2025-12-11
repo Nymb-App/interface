@@ -365,7 +365,7 @@ function CardMobile({
               >
                 N{id + 1}
               </h3>
-              <p className="font-[550] text-xl font-dm-sans text-white tracking-tight">
+              <p className="font- text-xl text-white tracking-tight">
                 {id === 0 && (
                   <>
                     Starting Your Journey
@@ -698,7 +698,7 @@ function Card({
               >
                 N{id + 1}
               </h3>
-              <p className="font-[550] font-dm-sans text-white">
+              <p className="font-medium font-dm-sans text-white">
                 {id === 0 && (
                   <>
                     Starting Your Journey

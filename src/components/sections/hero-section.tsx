@@ -8,6 +8,7 @@ import { FlickeringGrid } from "@/components/flickering-grid";
 import { Header } from "@/components/header";
 import { Button } from "@/components/ui/button";
 import { Reveal, TextReveal } from "@/components/ui/text-reveal";
+import { Presentation } from "../presentation";
 
 export function HeroSection({
   className,
@@ -119,12 +120,7 @@ export function HeroSection({
           <a href="#nft" className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
             Become our Partner
           </a>
-          <Button
-            variant={"ghost"}
-            className="text-base sm:w-fit w-full sm:text-lg font-pixel px-4 py-6 text-[#B6FF00] rounded-none border-2 border-[#B6FF00] font-normal uppercase tracking-[0.12rem] hover:bg-transparent hover:text-[#B6FF00]"
-          >
-            Presentation
-          </Button>
+          <Presentation />
         </Reveal>
 
         <div className="mt-10 flex flex-col sm:hidden">
@@ -134,12 +130,7 @@ export function HeroSection({
             </Button>
           </Reveal>
           <Reveal threshold={0} className="flex" duration={1} delay={1}>
-            <Button
-              variant={"ghost"}
-              className="text-base sm:w-fit w-full sm:text-lg font-pixel px-4 py-6 text-[#B6FF00] rounded-none border-2 border-[#B6FF00] font-normal uppercase tracking-[0.12rem] hover:bg-transparent hover:text-[#B6FF00]"
-            >
-              Presentation
-            </Button>
+            <Presentation />
           </Reveal>
         </div>
       </div>

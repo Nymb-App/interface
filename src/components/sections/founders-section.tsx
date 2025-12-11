@@ -6,7 +6,7 @@ import VitaliiTereshchenko from "@/assets/sections/founders/vitalii-tereshchenko
 
 export function FoundersSection({ className }: { className?: string }) {
     return (
-        <section className={cn("flex flex-col justify-between items-center gap-5 sm:gap-20 px-8 text-white w-full", className)}>
+        <section className={cn("flex flex-col justify-between items-center gap-5 sm:gap-20 text-white w-full", className)}>
             <HeadingWithDescription
                 title='FOUNDERS'
                 navLink='founders'

@@ -15,16 +15,16 @@ function HeroPage() {
     <>
       <main className="w-full min-h-screen flex flex-col">
         <HeroSection classNameContainer="max-w-[1440px] mx-auto" />
-        <MissionSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
-        <NumbersSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
+        <MissionSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28 px-6" />
+        <NumbersSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28 px-6" />
         <IdeaSection className="sm:mt-28 overflow-x-clip" />
         <PhasesSection className="overflow-x-hidden" />
-        <FoundersSection className="max-w-[1440px] mx-auto sm:mt-18" />
+        <FoundersSection className="max-w-[1440px] mx-auto sm:mt-18 px-6" />
         <Journey className="mt-[50px]" />
-        <NftSection className="mt-[50px] max-w-[1440px] mx-auto px-8" />
-        <TMASection className="mt-14 sm:mt-28" />
+        <NftSection className="mt-[50px] max-w-[1440px] mx-auto px-6" />
+        <TMASection className="mt-14 sm:mt-28 px-6" />
         <Footer className="mt-10" />
-        
+
       </main>
     </>
   );

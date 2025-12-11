@@ -63,7 +63,7 @@ export function Header({ className }: { className?: string }) {
           </a>
         </div>
 
-        <ConnectButton className="h-10 hidden sm:block" />
+        <ConnectButton className="h-10 " />
       </div>
     </header>
   );

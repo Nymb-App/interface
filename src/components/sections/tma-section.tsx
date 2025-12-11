@@ -5,7 +5,7 @@ export function TMASection({ className }: { className?: string }) {
   return (
     <section
       className={cn(
-        "flex flex-col gap-6 px-8 w-full max-w-[1440px] mx-auto",
+        "flex flex-col gap-6 w-full max-w-[1440px] mx-auto",
         className
       )}
     >

@@ -54,7 +54,7 @@ function NumbersWithSubtitle({
             >
                 {({ countUpRef }) => (
                     <span
-                        className="font-dm-sans text-6xl sm:text-7xl font-[550] text-[#B6FF00]"
+                        className="font-dm-sans text-6xl sm:text-7xl font-medium text-[#B6FF00]"
                         ref={countUpRef}
                     />
                 )}
@@ -68,7 +68,7 @@ function NumbersWithSubtitle({
 
 export function NumbersSection({ className }: { className?: string }) {
     return (
-        <section className={cn("w-full px-8 flex flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between", className)}>
+        <section className={cn("w-full flex flex-col gap-10 border-t border-white/10 pt-16 md:flex-row md:items-start md:justify-between", className)}>
             <HeadingWithDescription
                 title="NUMBERS"
                 hideParagraph

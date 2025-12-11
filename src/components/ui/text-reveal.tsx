@@ -127,7 +127,7 @@ export const TextReveal = ({
       defaults: {
         ease: CustomEase.create("custom", "M0,0 C0,1 0.504,1 1,1 "),
       },
-      onComplete: () => split.revert(),
+      // onComplete: () => split.revert(),
     });
 
     tl.from(split.lines, {

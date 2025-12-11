@@ -76,7 +76,7 @@ export const CarouselItem = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "min-w-0 shrink-0 grow-0 basis-full pl-4 md:basis-[576px]",
+      "min-w-0 shrink-0 grow-0 basis-full pl-4 md:basis-xl",
       className
     )}
     {...props}
