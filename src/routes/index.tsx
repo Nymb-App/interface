@@ -18,7 +18,7 @@ function HeroPage() {
         <MissionSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
         <NumbersSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
         <IdeaSection className="mt-10 sm:mt-28" />
-        <PhasesSection />
+        <PhasesSection className="overflow-x-hidden" />
         <FoundersSection className="max-w-[1440px] mx-auto sm:mt-18" />
         <Journey className="mt-[50px]" />
         <NftSection className="mt-[50px] max-w-[1440px] mx-auto px-8" />
