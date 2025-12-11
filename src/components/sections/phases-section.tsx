@@ -51,7 +51,7 @@ const phases = [
     },
 ];
 
-export function PhasesSection() {
+export function PhasesSection({className}:{className?: string}) {
     const [api, setApi] = useState<CarouselApi | undefined>();
     const [current, setCurrent] = useState(0);
     const intervalRef = useRef<any | null>(null);
@@ -102,7 +102,7 @@ export function PhasesSection() {
             onMouseLeave={startAutoScroll}
             onTouchEnd={startAutoScroll}
             onTouchCancel={startAutoScroll}
-            className={cn("flex flex-col items-center gap-6 select-none py-10")}
+            className={cn("flex flex-col items-center gap-6 select-none py-10", className)}
         >
             <Carousel
                 setApi={setApi}
