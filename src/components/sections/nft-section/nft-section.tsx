@@ -602,54 +602,6 @@ function Card({
   }, [threshold]);
 
 
-
-
-  const contentRef = useRef<HTMLDivElement | null>(null);
-const sliderRef = useRef<HTMLDivElement | null>(null);
-const [btnTop, setBtnTop] = useState(0);
-
-  useEffect(() => {
-  const parent = contentRef.current;
-  const slider = sliderRef.current;
-  if (!parent || !slider) return;
-
-  const handleScroll = () => {
-    const parentRect = parent.getBoundingClientRect();
-    const parentHeight = parent.offsetHeight;
-    const sliderHeight = slider.offsetHeight;
-
-    const viewportBottom = window.innerHeight;
-
-    // Точка, когда анимация начинается:
-    // нижняя граница экрана касается начала родителя
-    const start = parentRect.top;
-
-    // Точка, когда анимация заканчивается:
-    // нижняя граница экрана дошла до конца родителя
-    const end = parentRect.bottom;
-
-    // Нормализуем прогресс [0..1]
-    const rawProgress = (viewportBottom - start) / (end - start);
-    const progress = Math.min(1, Math.max(0, rawProgress));
-
-    // 0 → кнопка внизу, 1 → кнопка вверху
-    const maxOffset = parentHeight - sliderHeight;
-    const top = maxOffset * (1 - progress); // снизу → вверх
-
-    setBtnTop(top);
-  };
-
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
-  handleScroll();
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    window.removeEventListener("resize", handleScroll);
-  };
-}, []);
-
-
   return (
     <>
       <style>
@@ -775,7 +727,6 @@ const [btnTop, setBtnTop] = useState(0);
 
         {/* Content Card */}
         <div
-          ref={contentRef}
           className={cn(
             "flex relative flex-col w-full border-l border-b",
             id === 0 && "border-[#B6FF00]",
