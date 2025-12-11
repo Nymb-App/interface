@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { HeadingSection } from "../sections/heading-section";
-import { Reveal } from "./text-reveal";
+import { Reveal, TextReveal } from "./text-reveal";
 
 export function HeadingWithDescription({
     title,
@@ -44,16 +44,17 @@ export function HeadingWithDescription({
         });
     };
 
+
     return (
         <div className={cn("flex flex-col w-full gap-6 sm:flex-row sm:justify-between", className)}>
             <HeadingSection className=" text-nowrap w-1/5" title={title} navLink={navLink} />
             <div className={cn("flex flex-col w-fit", classNameContainer)}>
                 {!hideParagraph &&
-                    <Reveal className="inline-flex justify-end w-full" threshold={0.2}>
-                        <p aria-hidden className="indent-16 font-medium sm:indent-28 max-w-[954px] text-2xl sm:text-[48px] font-dm-sans leading-7 sm:leading-13 text-white sm:-mt-2">
-                            {getHighlightedText(description, highlightWords)}
+                    <TextReveal className="inline-flex justify-end w-full" threshold={0.2}>
+                        <p aria-hidden className="text-white font-medium max-w-[960px] text-2xl sm:text-[48px]" >
+                            <span className="opacity-0 select-none touch-none">{"-----"}</span>{getHighlightedText(description, highlightWords)}
                         </p>
-                    </Reveal>
+                    </TextReveal>
                 }
                 {children}
             </div>

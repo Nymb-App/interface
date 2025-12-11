@@ -120,7 +120,6 @@ export const TextReveal = ({
 
     const split = new SplitText(target, {
       type: "lines",
-      linesClass: "line",
     });
 
     const tl = gsap.timeline({
@@ -145,80 +144,12 @@ export const TextReveal = ({
   }, [readyToAnimate, delay, duration]);
 
   return (
-    <div
+    <span
       ref={ref}
-      className={cn("w-full", className)}
+      className={cn(className)}
       style={{ opacity: readyToAnimate ? 100 : 0 }}
     >
       {children}
-    </div>
-  );
-};
-
-export const TextRevealP = ({
-  children,
-  className = "",
-  duration = 1,
-  delay = 0,
-  threshold = 0,
-}: Props) => {
-  const ref = useRef<HTMLParagraphElement | null>(null);
-  const [ready, setReady] = useState(threshold === 0);
-
-  // Intersection Observer
-  useEffect(() => {
-    if (threshold === 0) {
-      setReady(true);
-      return;
-    }
-
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry.isIntersecting && entry.intersectionRatio >= threshold) {
-          setReady(true);
-          observer.disconnect();
-        }
-      },
-      { threshold }
-    );
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  // GSAP mask animation
-  useEffect(() => {
-    if (!ready || !ref.current) return;
-
-    const el = ref.current;
-
-    // IMPORTANT: must have overflow:hidden so mask works properly
-    el.style.overflow = "hidden";
-
-    // Start fully hidden (mask covers everything)
-    gsap.set(el, {
-      maskImage: "linear-gradient(to bottom, black 0%, black 0%)",
-      maskSize: "100% 200%",
-      maskPosition: "0 100%",
-    });
-
-    // Animate mask upwards => reveal text line-by-line effect
-    gsap.to(el, {
-      maskPosition: "0 0%",
-      duration,
-      delay,
-      ease: "power3.out",
-    });
-  }, [ready, duration, delay]);
-
-  return (
-    <p ref={ref} className={className} style={{ display: "block" }}>
-      {children}
-    </p>
+    </span>
   );
 };

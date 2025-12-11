@@ -10,7 +10,7 @@ export function MissionSection({ className }: { className?: string }) {
         navLink="mission"
         description="Bring meaning back to time spent online. To
                   make social media useful, rewarding, and alive again. We
-                  integrate Web3 technology, tokenized rewards, and real-
+                  integrate Web3 technology, tokenized rewards, and real -
                   world products into a seamless experience - where living,
                   creating, and connecting finally have tangible worth."
         highlightWords={[
