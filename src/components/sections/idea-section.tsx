@@ -6,7 +6,7 @@ import { Reveal } from "../ui/text-reveal";
 
 export function IdeaSection({ className }: { className?: string }) {
     return (
-        <section className={cn("w-full min-h-[500px] px-8 flex flex-col justify-center items-center", className)}>
+        <section className={cn("relative w-full min-h-[600px] px-8 flex flex-col justify-center items-center", className)}>
             <FlickeringGrid
                 className="absolute size-full mask-[radial-gradient(ellipse_350px_250px_at_center,black_50%,transparent_100%)]"
                 squareSize={2}
