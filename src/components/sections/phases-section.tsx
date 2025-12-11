@@ -96,6 +96,7 @@ export function PhasesSection() {
 
     return (
         <section
+            id="phases"
             onMouseEnter={stopAutoScroll}
             onTouchStart={stopAutoScroll}
             onMouseLeave={startAutoScroll}
