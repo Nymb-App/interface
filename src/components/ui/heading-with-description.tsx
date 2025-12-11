@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
-import { useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { HeadingSection } from "../sections/heading-section";
-import { Reveal, TextReveal } from "./text-reveal";
+import { TextReveal } from "./text-reveal";
 
 export function HeadingWithDescription({
     title,
