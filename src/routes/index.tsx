@@ -13,7 +13,7 @@ import { PhasesSection } from "@/components/sections/phases-section";
 function HeroPage() {
   return (
     <>
-      <main className="w-full min-h-screen flex flex-col">
+      <main className="w-full min-h-screen flex flex-col overflow-x-hidden sm:overflow-x-auto">
         <HeroSection classNameContainer="max-w-[1440px] mx-auto" />
         <MissionSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
         <NumbersSection className="max-w-[1440px] mx-auto mt-20 sm:mt-28" />
