@@ -59,7 +59,7 @@ export function Presentation({ className }: { className?: string }) {
 
     useEffect(() => {
         if (!api) return;
-        // startAutoScroll();
+        startAutoScroll();
 
         return () => {
             stopAutoScroll();
