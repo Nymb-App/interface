@@ -21,7 +21,6 @@ import { LuShieldCheck } from "react-icons/lu";
 
 
 
-
 export function NftSection({ className }: { className?: string }) {
   const { ref: sectionRef, hasRevealed } = useSectionReveal({
     rootMargin: "300px",
@@ -602,6 +601,55 @@ function Card({
     return () => observer.disconnect();
   }, [threshold]);
 
+
+
+
+  const contentRef = useRef<HTMLDivElement | null>(null);
+const sliderRef = useRef<HTMLDivElement | null>(null);
+const [btnTop, setBtnTop] = useState(0);
+
+  useEffect(() => {
+  const parent = contentRef.current;
+  const slider = sliderRef.current;
+  if (!parent || !slider) return;
+
+  const handleScroll = () => {
+    const parentRect = parent.getBoundingClientRect();
+    const parentHeight = parent.offsetHeight;
+    const sliderHeight = slider.offsetHeight;
+
+    const viewportBottom = window.innerHeight;
+
+    // Точка, когда анимация начинается:
+    // нижняя граница экрана касается начала родителя
+    const start = parentRect.top;
+
+    // Точка, когда анимация заканчивается:
+    // нижняя граница экрана дошла до конца родителя
+    const end = parentRect.bottom;
+
+    // Нормализуем прогресс [0..1]
+    const rawProgress = (viewportBottom - start) / (end - start);
+    const progress = Math.min(1, Math.max(0, rawProgress));
+
+    // 0 → кнопка внизу, 1 → кнопка вверху
+    const maxOffset = parentHeight - sliderHeight;
+    const top = maxOffset * (1 - progress); // снизу → вверх
+
+    setBtnTop(top);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleScroll);
+  handleScroll();
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+  };
+}, []);
+
+
   return (
     <>
       <style>
@@ -727,8 +775,9 @@ function Card({
 
         {/* Content Card */}
         <div
+          ref={contentRef}
           className={cn(
-            "flex flex-col w-full border-l border-b",
+            "flex relative flex-col w-full border-l border-b",
             id === 0 && "border-[#B6FF00]",
             id === 1 && "border-[#35F4FF]",
             id === 2 && "border-[#FF3BFF]"
@@ -748,6 +797,7 @@ function Card({
               per nft
             </span>
           </div>
+          <div>
           <Row>{supply.toLocaleString("en-US")}</Row>
           <Row>
             {lockPeriod.toLocaleString("en-US")}%
@@ -794,7 +844,7 @@ function Card({
           <Button
             variant={"ghost"}
             className={cn(
-              "w-full h-14 font-pixel text-xl gap-1 rounded-none  hover:bg-transparent cursor-pointer",
+              "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707] hover:bg-transparent cursor-pointer",
               id === 0 &&
                 "text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]",
               id === 1 &&
@@ -805,6 +855,7 @@ function Card({
           >
             MINT N{id + 1}
           </Button>
+          </div>
         </div>
       </div>
     </>
