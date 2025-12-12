@@ -110,7 +110,7 @@ export function PhasesSection({className}:{className?: string}) {
                     align: "center",
                     loop: false,
                 }}
-                className={cn("transition-all left-24", current === 1 && "left-0", current === 2 && "-left-20")}
+                className={cn("transition-all left-24 sm:w-full", current === 1 && "left-0", current === 2 && "-left-20")}
             >
                 <CarouselContent className="">
                     {phases.map((phase) => (
