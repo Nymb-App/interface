@@ -133,9 +133,9 @@ export function HeroSection({
 
         <div className="mt-10 flex flex-col sm:hidden">
           <Reveal threshold={0} className="flex" duration={1} delay={1}>
-            <Button className="w-full sm:w-fit text-base sm:text-lg font-pixel text-black px-4 py-[26px] rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
+            <a href="#nft" className="w-full sm:w-fit text-base text-center sm:text-lg font-pixel text-black px-4 py-3 rounded-none bg-linear-to-b from-[#ADFA4B] via-[#B6FF00] to-[#B6FF00] font-normal uppercase tracking-[0.12rem]">
               Become our Partner
-            </Button>
+            </a>
           </Reveal>
           <Reveal threshold={0} className="flex" duration={1} delay={1}>
             <Presentation />
