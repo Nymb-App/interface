@@ -62,10 +62,10 @@ export function HeroSection({
       <div
         className={cn("relative z-10 w-full p-6 sm:mb-20", classNameContainer)}
       >
-        <div className="space-y-1 font-medium tracking-wide text-white text-[44px] sm:text-6xl md:text-7xl lg:text-[88px]">
+        <div className="space-y-1 font-medium tracking-wide text-white text-[min(2.75rem,11.2vw)] sm:text-6xl md:text-7xl lg:text-[88px]">
           <TextReveal
             delay={0.5}
-            className="w-full hidden md:block"
+            className="w-full"
           >
             <h1 className="leading-tight">
               Nymb Ecosystem<br/>
@@ -81,7 +81,7 @@ export function HeroSection({
             </h1>
           </TextReveal>
 
-          <TextReveal
+          {/* <TextReveal
             delay={0.5}
             className="w-full md:hidden"
           >
@@ -97,10 +97,10 @@ export function HeroSection({
               </span>
               {" "}time into value
             </h1>
-          </TextReveal>
+          </TextReveal> */}
         </div>
 
-        <p className="max-w-[519px] text-lg sm:text-2xl font-inter text-white mt-4">
+        {/* <p className="max-w-[519px] text-lg sm:text-2xl font-inter text-white mt-4">
           <Reveal threshold={0} duration={2}>
             Every minute of life becomes{" "}
             <span className="text-[#B6FF00]">real value</span>
@@ -109,7 +109,15 @@ export function HeroSection({
             through <span className="text-[#B6FF00]">gamification</span> and{" "}
             <span className="text-[#B6FF00]">tokenization.</span>
           </Reveal>
-        </p>
+        </p> */}
+          <TextReveal threshold={0} duration={2}>
+            <p className="max-w-[519px] text-lg sm:text-2xl font-inter text-white mt-4">
+                Every minute of life becomes{" "}
+                <span className="text-[#B6FF00]">real value</span>{" "}
+                through <span className="text-[#B6FF00]">gamification</span> and{" "}
+                <span className="text-[#B6FF00]">tokenization.</span>
+            </p>
+          </TextReveal>
 
         <Reveal
           threshold={0}
