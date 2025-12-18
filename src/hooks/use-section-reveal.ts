@@ -50,7 +50,7 @@ export function useSectionReveal(
       return;
     }
 
-    let timer: ReturnType<typeof window.setTimeout> | undefined;
+    let timer: any;
 
     if (observer.isIntersecting) {
       if (revealDelay && revealDelay > 0) {

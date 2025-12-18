@@ -3,7 +3,6 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import UnicornScene from 'unicornstudio-react';
 import { cn } from "@/lib/utils";
 
-import { Button } from "@/components/ui/button";
 import { HeadingWithDescription } from "@/components/ui/heading-with-description";
 import {
   Accordion,
