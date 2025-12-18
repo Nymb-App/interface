@@ -6,7 +6,6 @@ import HeroFallbackImage from "@/assets/hero/hero-fallback.png";
 import timeIcon from "@/assets/hero/time.png";
 import { FlickeringGrid } from "@/components/flickering-grid";
 import { Header } from "@/components/header";
-import { Button } from "@/components/ui/button";
 import { Reveal, TextReveal } from "@/components/ui/text-reveal";
 import { Presentation } from "../presentation";
 

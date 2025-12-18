@@ -9,8 +9,28 @@ import { NftSection } from "@/components/sections/nft-section/nft-section";
 import { NumbersSection } from "@/components/sections/numbers-section";
 import { IdeaSection } from "@/components/sections/idea-section";
 import { PhasesSection } from "@/components/sections/phases-section";
+import { useEffect } from "react";
+import { useAuth } from "@/hooks/use-api";
 
 function HeroPage() {
+  const { login } = useAuth()
+  
+  useEffect(() => {
+    // if (isAuthenticated) return
+    ;(async () => {
+      await login()
+    })()
+
+    const intervalId = setInterval(async () => {
+      await login();
+    }, 3 * 60 * 1000) // 3 минуты
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [login])
+
+
   return (
     <>
       <main className="w-full min-h-screen flex flex-col">

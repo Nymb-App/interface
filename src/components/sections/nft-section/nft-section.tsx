@@ -18,6 +18,10 @@ import nftN3Placeholder from "@/assets/nft-n3.png";
 import nftN1Placeholder from "@/assets/nft-n1.png";
 
 import { LuShieldCheck } from "react-icons/lu";
+import { TransferTonButton } from "@/components/transfer-ton-button";
+import { useMint } from "@/hooks/use-mint";
+// import { useBalance } from "@/hooks/use-balance";
+import { PRICE_PER_NFT_N1_USD, PRICE_PER_NFT_N2_USD, PRICE_PER_NFT_N3_USD, RECEIVER_ADDRESS } from "@/lib/constants";
 
 
 
@@ -86,7 +90,7 @@ export function NftSection({ className }: { className?: string }) {
 
             <Card
               id={0}
-              pricePerNft={100}
+              pricePerNft={PRICE_PER_NFT_N1_USD}
               supply={5000}
               income={10}
               annualGains="Up to 60-180%"
@@ -96,7 +100,7 @@ export function NftSection({ className }: { className?: string }) {
             />
             <Card
               id={1}
-              pricePerNft={2000}
+              pricePerNft={PRICE_PER_NFT_N2_USD}
               supply={250}
               income={20}
               annualGains="15-45%"
@@ -107,7 +111,7 @@ export function NftSection({ className }: { className?: string }) {
             />
             <Card
               id={2}
-              pricePerNft={5000}
+              pricePerNft={PRICE_PER_NFT_N3_USD}
               supply={100}
               income={70}
               annualGains="42-126%"
@@ -240,6 +244,9 @@ function CardMobile({
   const [visible, setVisible] = useState(false);
   
   const [isAccordionOpened0, setAccordionOpened0] = useState(id === 0);
+
+  const { mint } = useMint();
+  // const { balance } = useBalance();
 
   useEffect(() => {
     const element = ref.current;
@@ -527,7 +534,7 @@ function CardMobile({
                   per nft
                 </span>
               </div>
-              <Button
+              {/* <Button
                 variant={"ghost"}
                 className={cn(
                   "w-full basis-1/2 h-full font-pixel text-xl gap-1 rounded-none px-3 py-5 hover:bg-transparent cursor-pointer border",
@@ -540,7 +547,29 @@ function CardMobile({
                 )}
               >
                 MINT N{id + 1}
-              </Button>
+              </Button> */}
+              <TransferTonButton
+            recipient={RECEIVER_ADDRESS}
+            // amount={pricePerNft / (balance || 0)}
+            amount={0.05}
+            connectWalletText={`MINT N${id + 1}`}
+            className={cn(
+              "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",
+              id === 0 &&
+                "text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]",
+              id === 1 &&
+                "text-[#35F4FF] border-t border-l border-b border-[#35F4FF] hover:text-[#35F4FF]",
+              id === 2 &&
+                "text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]"
+            )}
+            onTransferSuccess={async (hash) => {
+              console.log('Transaction hash:', hash);
+              console.log('Transaction hash:', `nft_n${id + 1}`);
+              await mint(hash, `nft_n${id + 1}` as any);
+            }}
+          >
+            MINT N{id + 1}
+          </TransferTonButton>
             </div>
           </AccordionItem>
         </Accordion>
@@ -578,6 +607,8 @@ function Card({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const { mint } = useMint();
+  // const { balance } = useBalance();
 
   useEffect(() => {
     const element = ref.current;
@@ -792,7 +823,7 @@ function Card({
                 : "VIP priority votes"}
           </Row>
 
-          <Button
+          {/* <Button
             variant={"ghost"}
             className={cn(
               "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707] hover:bg-transparent cursor-pointer",
@@ -805,7 +836,29 @@ function Card({
             )}
           >
             MINT N{id + 1}
-          </Button>
+          </Button> */}
+          <TransferTonButton
+            recipient={RECEIVER_ADDRESS}
+            // amount={pricePerNft / (balance || 0)}
+            amount={0.05}
+            connectWalletText={`MINT N${id + 1}`}
+            className={cn(
+              "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",
+              id === 0 &&
+                "text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]",
+              id === 1 &&
+                "text-[#35F4FF] border-t border-l border-b border-[#35F4FF] hover:text-[#35F4FF]",
+              id === 2 &&
+                "text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]"
+            )}
+            onTransferSuccess={async (hash) => {
+              console.log('Transaction hash:', hash);
+              console.log('Transaction hash:', `nft_n${id + 1}`);
+              await mint(hash, `nft_n${id + 1}` as any);
+            }}
+          >
+            MINT N{id + 1}
+          </TransferTonButton>
           </div>
         </div>
       </div>
