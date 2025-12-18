@@ -31,95 +31,95 @@ export function NftSection({ className }: { className?: string }) {
   });
   return (
     <section ref={sectionRef} className={cn("text-white w-full", className)}>
-        <div className="flex flex-col gap-20">
-          <HeadingWithDescription
-            title="NFT"
-            navLink="nft"
-            description="Become a strategic partner in Nymb
+      <div className="flex flex-col gap-20">
+        <HeadingWithDescription
+          title="NFT"
+          navLink="nft"
+          description="Become a strategic partner in Nymb
               through exclusive NFT ownership - unlocking equity
               rights, revenue sharing, priority access
               to drops, and boosted ecosystem rewards."
-            highlightWords={[
-              "partner",
-              "Nymb",
-              "exclusive NFT",
-              "revenue sharing, priority access",
-              "boosted",
-              "rewards.",
-            ]}
+          highlightWords={[
+            "partner",
+            "Nymb",
+            "exclusive NFT",
+            "revenue sharing, priority access",
+            "boosted",
+            "rewards.",
+          ]}
+        />
+
+        {/* Mobile version of cards */}
+        <div className="w-full flex flex-col md:hidden gap-20">
+          <CardMobile
+            id={0}
+            pricePerNft={100}
+            supply={5000}
+            income={10}
+            annualGains="Up to 60-180%"
+            discount={10}
+            stakingBoost={10}
+            isActive={hasRevealed}
           />
-
-          {/* Mobile version of cards */}
-          <div className="w-full flex flex-col md:hidden gap-20">
-            <CardMobile
-              id={0}
-              pricePerNft={100}
-              supply={5000}
-              income={10}
-              annualGains="Up to 60-180%"
-              discount={10}
-              stakingBoost={10}
-              isActive={hasRevealed}
-            />
-            <CardMobile
-              id={1}
-              pricePerNft={2000}
-              supply={250}
-              income={20}
-              annualGains="15-45%"
-              discount={15}
-              stakingBoost={25}
-              isActive={hasRevealed}
-            />
-            <CardMobile
-              id={2}
-              pricePerNft={5000}
-              supply={100}
-              income={70}
-              annualGains="42-126%"
-              discount={40}
-              stakingBoost={60}
-              isActive={hasRevealed}
-            />
-          </div>
-
-          {/* PC version of cards */}
-          <div className="w-full hidden md:inline-flex mx-auto">
-            <CardPCTitles className="mt-[430px]" delay={0.6} />
-
-            <Card
-              id={0}
-              pricePerNft={PRICE_PER_NFT_N1_USD}
-              supply={5000}
-              income={10}
-              annualGains="Up to 60-180%"
-              discount={10}
-              stakingBoost={10}
-              delay={0}
-            />
-            <Card
-              id={1}
-              pricePerNft={PRICE_PER_NFT_N2_USD}
-              supply={250}
-              income={20}
-              annualGains="15-45%"
-              discount={15}
-              stakingBoost={25}
-              delay={0.3}
-              isActive={hasRevealed}
-            />
-            <Card
-              id={2}
-              pricePerNft={PRICE_PER_NFT_N3_USD}
-              supply={100}
-              income={70}
-              annualGains="42-126%"
-              discount={40}
-              stakingBoost={60}
-              delay={0.6}
-            />
-          </div>
+          <CardMobile
+            id={1}
+            pricePerNft={2000}
+            supply={250}
+            income={20}
+            annualGains="15-45%"
+            discount={15}
+            stakingBoost={25}
+            isActive={hasRevealed}
+          />
+          <CardMobile
+            id={2}
+            pricePerNft={5000}
+            supply={100}
+            income={70}
+            annualGains="42-126%"
+            discount={40}
+            stakingBoost={60}
+            isActive={hasRevealed}
+          />
         </div>
+
+        {/* PC version of cards */}
+        <div className="w-full hidden md:inline-flex mx-auto">
+          <CardPCTitles className="mt-[430px]" delay={0.6} />
+
+          <Card
+            id={0}
+            pricePerNft={PRICE_PER_NFT_N1_USD}
+            supply={5000}
+            income={10}
+            annualGains="Up to 60-180%"
+            discount={10}
+            stakingBoost={10}
+            delay={0}
+          />
+          <Card
+            id={1}
+            pricePerNft={PRICE_PER_NFT_N2_USD}
+            supply={250}
+            income={20}
+            annualGains="15-45%"
+            discount={15}
+            stakingBoost={25}
+            delay={0.3}
+            isActive={hasRevealed}
+          />
+          <Card
+            id={2}
+            pricePerNft={PRICE_PER_NFT_N3_USD}
+            supply={100}
+            income={70}
+            annualGains="42-126%"
+            discount={40}
+            stakingBoost={60}
+            delay={0.6}
+          />
+        </div>
+      </div>
     </section>
   );
 }
@@ -241,7 +241,7 @@ function CardMobile({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  
+
   const [isAccordionOpened0, setAccordionOpened0] = useState(id === 0);
 
   const { mint } = useMint();
@@ -548,27 +548,27 @@ function CardMobile({
                 MINT N{id + 1}
               </Button> */}
               <TransferTonButton
-            recipient={RECEIVER_ADDRESS}
-            // amount={pricePerNft / (balance || 0)}
-            amount={0.05}
-            connectWalletText={`MINT N${id + 1}`}
-            className={cn(
-              "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",
-              id === 0 &&
-                "text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]",
-              id === 1 &&
-                "text-[#35F4FF] border-t border-l border-b border-[#35F4FF] hover:text-[#35F4FF]",
-              id === 2 &&
-                "text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]"
-            )}
-            onTransferSuccess={async (hash) => {
-              console.log('Transaction hash:', hash);
-              console.log('Transaction hash:', `nft_n${id + 1}`);
-              await mint(hash, `nft_n${id + 1}` as any);
-            }}
-          >
-            MINT N{id + 1}
-          </TransferTonButton>
+                recipient={RECEIVER_ADDRESS}
+                // amount={pricePerNft / (balance || 0)}
+                amount={0.05}
+                connectWalletText={`MINT N${id + 1}`}
+                className={cn(
+                  "w-full basis-1/2 h-full font-pixel text-xl gap-1 rounded-none px-3 py-5 bg-transparent hover:bg-transparent cursor-pointer border",
+                  id === 0 &&
+                    "text-[#B6FF00] border-[#B6FF00] hover:text-[#B6FF00]",
+                  id === 1 &&
+                    "text-[#35F4FF] border-[#35F4FF] hover:text-[#35F4FF]",
+                  id === 2 &&
+                    "text-[#FF3BFF] border-[#FF3BFF] hover:text-[#FF3BFF]"
+                )}
+                onTransferSuccess={async (hash) => {
+                  console.log('Transaction hash:', hash);
+                  console.log('Transaction hash:', `nft_n${id + 1}`);
+                  await mint(hash, `nft_n${id + 1}` as any);
+                }}
+              >
+                MINT N{id + 1}
+              </TransferTonButton>
             </div>
           </AccordionItem>
         </Accordion>
@@ -679,9 +679,9 @@ function Card({
           className={cn(
             "relative flex flex-col w-full overflow-hidden ",
             id === 0 &&
-              "h-[348px] border-t border-l border-b border-[#B6FF00]/40",
+            "h-[348px] border-t border-l border-b border-[#B6FF00]/40",
             id === 1 &&
-              "h-[368px] border-t border-l border-b -mt-5 border-[#35F4FF]/40",
+            "h-[368px] border-t border-l border-b -mt-5 border-[#35F4FF]/40",
             id === 2 && "h-[388px] border -mt-10 border-[#FF3BFF]/40"
           )}
         >
@@ -779,50 +779,50 @@ function Card({
             </span>
           </div>
           <div>
-          <Row>{supply.toLocaleString("en-US")}</Row>
-          <Row>
-            {lockPeriod.toLocaleString("en-US")}%
-            <span className="font-dm-sans text-white/40 text-base">month</span>
-          </Row>
-          <Row>
-            {income.toLocaleString("en-US")}%
-            <span className="font-dm-sans text-white/40 text-base">
-              when you hit
-            </span>
-          </Row>
-          <Row>
-            {annualGains}
-            <span className="font-dm-sans text-white/40 text-base">
-              when you hit
-            </span>
-          </Row>
-          <Row>
-            <div className="inline-flex items-center gap-2">
-              <img className="size-6" src={NymbLogo} alt="Logo" />
-              <span className="">Nymb</span>
-            </div>
-          </Row>
-          <Row>
-            {id === 0
-              ? "Priority"
-              : id === 1
-                ? "Bigger allocation"
-                : "VIP allocation"}
-            <span className="font-dm-sans text-white/40 text-base">
-              + Priority
-            </span>
-          </Row>
-          <Row>{discount.toLocaleString("en-US")}%</Row>
-          <Row>+{stakingBoost.toLocaleString("en-US")}%</Row>
-          <Row className="pb-4">
-            {id === 0
-              ? "Limited voting"
-              : id === 1
-                ? "Standard voting"
-                : "VIP priority votes"}
-          </Row>
+            <Row>{supply.toLocaleString("en-US")}</Row>
+            <Row>
+              {lockPeriod.toLocaleString("en-US")}%
+              <span className="font-dm-sans text-white/40 text-base">month</span>
+            </Row>
+            <Row>
+              {income.toLocaleString("en-US")}%
+              <span className="font-dm-sans text-white/40 text-base">
+                when you hit
+              </span>
+            </Row>
+            <Row>
+              {annualGains}
+              <span className="font-dm-sans text-white/40 text-base">
+                when you hit
+              </span>
+            </Row>
+            <Row>
+              <div className="inline-flex items-center gap-2">
+                <img className="size-6" src={NymbLogo} alt="Logo" />
+                <span className="">Nymb</span>
+              </div>
+            </Row>
+            <Row>
+              {id === 0
+                ? "Priority"
+                : id === 1
+                  ? "Bigger allocation"
+                  : "VIP allocation"}
+              <span className="font-dm-sans text-white/40 text-base">
+                + Priority
+              </span>
+            </Row>
+            <Row>{discount.toLocaleString("en-US")}%</Row>
+            <Row>+{stakingBoost.toLocaleString("en-US")}%</Row>
+            <Row className="pb-4">
+              {id === 0
+                ? "Limited voting"
+                : id === 1
+                  ? "Standard voting"
+                  : "VIP priority votes"}
+            </Row>
 
-          {/* <Button
+            {/* <Button
             variant={"ghost"}
             className={cn(
               "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707] hover:bg-transparent cursor-pointer",
@@ -836,28 +836,28 @@ function Card({
           >
             MINT N{id + 1}
           </Button> */}
-          <TransferTonButton
-            recipient={RECEIVER_ADDRESS}
-            // amount={pricePerNft / (balance || 0)}
-            amount={0.05}
-            connectWalletText={`MINT N${id + 1}`}
-            className={cn(
-              "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",
-              id === 0 &&
+            <TransferTonButton
+              recipient={RECEIVER_ADDRESS}
+              // amount={pricePerNft / (balance || 0)}
+              amount={0.05}
+              connectWalletText={`MINT N${id + 1}`}
+              className={cn(
+                "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",
+                id === 0 &&
                 "text-[#B6FF00] border-t border-l border-b border-[#B6FF00] hover:text-[#B6FF00]",
-              id === 1 &&
+                id === 1 &&
                 "text-[#35F4FF] border-t border-l border-b border-[#35F4FF] hover:text-[#35F4FF]",
-              id === 2 &&
+                id === 2 &&
                 "text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]"
-            )}
-            onTransferSuccess={async (hash) => {
-              console.log('Transaction hash:', hash);
-              console.log('Transaction hash:', `nft_n${id + 1}`);
-              await mint(hash, `nft_n${id + 1}` as any);
-            }}
-          >
-            MINT N{id + 1}
-          </TransferTonButton>
+              )}
+              onTransferSuccess={async (hash) => {
+                console.log('Transaction hash:', hash);
+                console.log('Transaction hash:', `nft_n${id + 1}`);
+                await mint(hash, `nft_n${id + 1}` as any);
+              }}
+            >
+              MINT N{id + 1}
+            </TransferTonButton>
           </div>
         </div>
       </div>
