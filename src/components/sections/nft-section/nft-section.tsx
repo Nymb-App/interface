@@ -649,14 +649,14 @@ function Card({
         `}
       </style>
       <div
-        // ref={ref}
+        ref={ref}
         className="relative flex flex-col w-full"
-        // style={{
-        //   opacity: visible ? 1 : 0,
-        //   animation: visible
-        //     ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards`
-        //     : "none",
-        // }}
+        style={{
+          opacity: visible ? 1 : 0,
+          animation: visible
+            ? `fade-in ${duration}s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s backwards`
+            : "none",
+        }}
       >
         {/* Top card */}
         <img

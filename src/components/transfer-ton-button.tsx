@@ -31,7 +31,7 @@ export function TransferTonButton({
   const [isTransferTonSuccess, setIsTransferTonSuccess] =
     useState<boolean>(false)
   const address = useTonAddress()
-  const { open, state } = useTonConnectModal()
+  const { open } = useTonConnectModal()
   const restoreScrollBehaviorTimerRef = useRef<number | null>(null)
   const { getBalance } = useBalance()
   const {
