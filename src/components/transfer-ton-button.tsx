@@ -2,7 +2,7 @@ import { useBalance } from '@/hooks/use-balance'
 import { useTransferTon } from '@/hooks/use-transfer-ton'
 import { cn } from '@/lib/utils'
 import { useTonAddress, useTonConnectModal } from '@tonconnect/ui-react'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 export type TransferTonButtonProps =
@@ -31,7 +31,8 @@ export function TransferTonButton({
   const [isTransferTonSuccess, setIsTransferTonSuccess] =
     useState<boolean>(false)
   const address = useTonAddress()
-  const { open } = useTonConnectModal()
+  const { open, state } = useTonConnectModal()
+  const restoreScrollBehaviorTimerRef = useRef<number | null>(null)
   const { getBalance } = useBalance()
   const {
     transfer,
@@ -59,6 +60,15 @@ export function TransferTonButton({
       return
     }
   }, [address, isTransactionError, onError])
+
+  useEffect(() => {
+    return () => {
+      if (restoreScrollBehaviorTimerRef.current) {
+        window.clearTimeout(restoreScrollBehaviorTimerRef.current)
+        restoreScrollBehaviorTimerRef.current = null
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (!isTransactionLoading) {
@@ -91,6 +101,10 @@ export function TransferTonButton({
 
   const handleTransfer = useCallback(async () => {
     onClick?.()
+
+    const html = document.documentElement
+    html.style.scrollBehavior = 'auto'
+
     if (!address) {
       onConnect?.()
       open()
@@ -116,6 +130,7 @@ export function TransferTonButton({
     onConnect,
     getBalance,
   ])
+
 
   return (
     <>
