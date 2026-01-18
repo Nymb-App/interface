@@ -1,5 +1,5 @@
 import { useSectionReveal } from "@/hooks/use-section-reveal";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import UnicornScene from 'unicornstudio-react';
 import { cn } from "@/lib/utils";
 
@@ -19,8 +19,8 @@ import nftN1Placeholder from "@/assets/nft-n1.png";
 import { LuShieldCheck } from "react-icons/lu";
 import { TransferTonButton } from "@/components/transfer-ton-button";
 import { useMint } from "@/hooks/use-mint";
-// import { useBalance } from "@/hooks/use-balance";
 import { PRICE_PER_NFT_N1_USD, PRICE_PER_NFT_N2_USD, PRICE_PER_NFT_N3_USD, RECEIVER_ADDRESS } from "@/lib/constants";
+import { usePricePerToken } from "@/hooks/use-price-per-token";
 
 
 
@@ -29,6 +29,41 @@ export function NftSection({ className }: { className?: string }) {
     rootMargin: "300px",
     threshold: 0,
   });
+  const {
+    isError,
+    isLoading,
+    calculateTokenAmount,
+  } = usePricePerToken();
+
+  const {
+    pricePerNftN1Ton,
+    pricePerNftN2Ton,
+    pricePerNftN3Ton,
+  } = useMemo(() => {
+    return {
+      pricePerNftN1Ton: 0.05,
+      pricePerNftN2Ton: 0.05,
+      pricePerNftN3Ton: 0.05,
+    }
+    // if (isLoading || isError) {
+    //   return {
+    //     pricePerNftN1Ton: 50,
+    //     pricePerNftN2Ton: 1000,
+    //     pricePerNftN3Ton: 2000,
+    //   };
+    // }
+
+    // return {
+    //   pricePerNftN1Ton: calculateTokenAmount(PRICE_PER_NFT_N1_USD) ?? 50,
+    //   pricePerNftN2Ton: calculateTokenAmount(PRICE_PER_NFT_N2_USD) ?? 1000,
+    //   pricePerNftN3Ton: calculateTokenAmount(PRICE_PER_NFT_N3_USD) ?? 2000,
+    // }
+  }, [
+    calculateTokenAmount,
+    isLoading,
+    isError,
+  ]);
+
   return (
     <section ref={sectionRef} className={cn("text-white w-full", className)}>
       <div className="flex flex-col gap-20">
@@ -53,7 +88,8 @@ export function NftSection({ className }: { className?: string }) {
         <div className="w-full flex flex-col md:hidden gap-20">
           <CardMobile
             id={0}
-            pricePerNft={100}
+            pricePerNft={PRICE_PER_NFT_N1_USD}
+            pricePerNftTon={pricePerNftN1Ton}
             supply={5000}
             income={10}
             annualGains="Up to 60-180%"
@@ -63,7 +99,8 @@ export function NftSection({ className }: { className?: string }) {
           />
           <CardMobile
             id={1}
-            pricePerNft={2000}
+            pricePerNft={PRICE_PER_NFT_N2_USD}
+            pricePerNftTon={pricePerNftN2Ton}
             supply={250}
             income={20}
             annualGains="15-45%"
@@ -73,7 +110,8 @@ export function NftSection({ className }: { className?: string }) {
           />
           <CardMobile
             id={2}
-            pricePerNft={5000}
+            pricePerNft={PRICE_PER_NFT_N3_USD}
+            pricePerNftTon={pricePerNftN3Ton}
             supply={100}
             income={70}
             annualGains="42-126%"
@@ -90,6 +128,7 @@ export function NftSection({ className }: { className?: string }) {
           <Card
             id={0}
             pricePerNft={PRICE_PER_NFT_N1_USD}
+            pricePerNftTon={pricePerNftN1Ton}
             supply={5000}
             income={10}
             annualGains="Up to 60-180%"
@@ -100,6 +139,7 @@ export function NftSection({ className }: { className?: string }) {
           <Card
             id={1}
             pricePerNft={PRICE_PER_NFT_N2_USD}
+            pricePerNftTon={pricePerNftN2Ton}
             supply={250}
             income={20}
             annualGains="15-45%"
@@ -111,6 +151,7 @@ export function NftSection({ className }: { className?: string }) {
           <Card
             id={2}
             pricePerNft={PRICE_PER_NFT_N3_USD}
+            pricePerNftTon={pricePerNftN3Ton}
             supply={100}
             income={70}
             annualGains="42-126%"
@@ -215,6 +256,7 @@ function CardPCTitles({
 function CardMobile({
   id = 0,
   pricePerNft = 100,
+  pricePerNftTon = 20,
   supply = 5000,
   lockPeriod = 6,
   income = 10,
@@ -228,6 +270,7 @@ function CardMobile({
 }: {
   id?: number;
   pricePerNft?: number;
+  pricePerNftTon?: number;
   supply?: number;
   lockPeriod?: number;
   income?: number;
@@ -245,7 +288,6 @@ function CardMobile({
   const [isAccordionOpened0, setAccordionOpened0] = useState(id === 0);
 
   const { mint } = useMint();
-  // const { balance } = useBalance();
 
   useEffect(() => {
     const element = ref.current;
@@ -550,7 +592,7 @@ function CardMobile({
               <TransferTonButton
                 recipient={RECEIVER_ADDRESS}
                 // amount={pricePerNft / (balance || 0)}
-                amount={0.05}
+                amount={pricePerNftTon}
                 connectWalletText={`MINT N${id + 1}`}
                 className={cn(
                   "w-full basis-1/2 h-full font-pixel text-xl gap-1 rounded-none px-3 py-5 bg-transparent hover:bg-transparent cursor-pointer border",
@@ -580,6 +622,7 @@ function CardMobile({
 function Card({
   id = 0,
   pricePerNft = 100,
+  pricePerNftTon = 20,
   supply = 5000,
   lockPeriod = 6,
   income = 10,
@@ -593,6 +636,7 @@ function Card({
 }: {
   id?: number;
   pricePerNft?: number;
+  pricePerNftTon?: number;
   supply?: number;
   lockPeriod?: number;
   income?: number;
@@ -607,7 +651,6 @@ function Card({
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const { mint } = useMint();
-  // const { balance } = useBalance();
 
   useEffect(() => {
     const element = ref.current;
@@ -839,7 +882,7 @@ function Card({
             <TransferTonButton
               recipient={RECEIVER_ADDRESS}
               // amount={pricePerNft / (balance || 0)}
-              amount={0.05}
+              amount={pricePerNftTon}
               connectWalletText={`MINT N${id + 1}`}
               className={cn(
                 "sticky bottom-0 w-full h-14 font-pixel text-xl gap-1 rounded-none bg-[#070707]! hover:bg-transparent cursor-pointer",

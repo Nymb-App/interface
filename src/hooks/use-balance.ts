@@ -1,6 +1,7 @@
 import { useTonAddress } from "@tonconnect/ui-react";
 import { useCallback, useEffect, useState } from "react";
 import TonWeb from 'tonweb';
+import { usePricePerToken } from "./use-price-per-token";
 
 
 const apiKey = '500d5f18a2d043083498831e72f2ae65d81428990fb622c64f5d661e14f4bcbc';
@@ -10,6 +11,10 @@ const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/
 
 export const useBalance = () => {
     const address = useTonAddress();
+    const {
+        calculateUsd,
+        isLoading: isPriceLoading
+    } = usePricePerToken();
     const [balance, setBalance] = useState<number | undefined>(undefined);
     const [balanceInUsd, setBalanceInUsd] = useState<number | undefined>(undefined);
     const [isLoading, setLoading] = useState<boolean>(false);
@@ -31,31 +36,14 @@ export const useBalance = () => {
 
     useEffect(() => {
         if (!address) return;
-
-        const fetchPrice = async (amountTon: number) => {
-            const res = await fetch(
-                "https://api.coingecko.com/api/v3/simple/price?ids=the-open-network&vs_currencies=usd"
-            );
-            if (!res.ok) {
-                throw new Error("Failed to fetch TON price");
-            }
-
-            const data = await res.json();
-            const tonPrice = data["the-open-network"]?.usd;
-
-            if (typeof tonPrice !== "number") {
-                throw new Error("Invalid TON price");
-            }
-
-            return amountTon * tonPrice;
-        };
+        if (isPriceLoading) return;
 
         (async () => {
             try {
                 const balance = await getBalance();
                 if (balance !== undefined) {
                     const fBal = parseFloat(TonWeb.utils.fromNano(balance));
-                    const balanceInUsd = await fetchPrice(fBal);
+                    const balanceInUsd = calculateUsd(fBal) ?? 0;
                     setBalanceInUsd(balanceInUsd);
                     setBalance(fBal);
                 }
@@ -65,7 +53,7 @@ export const useBalance = () => {
                 setLoading(false);
             }
         })();
-    }, [address, getBalance]);
+    }, [address, getBalance, isPriceLoading, calculateUsd]);
 
     return { balance, balanceInUsd, isLoading, isError, getBalance };
 }
