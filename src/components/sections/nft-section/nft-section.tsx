@@ -18,7 +18,6 @@ import nftN1Placeholder from "@/assets/nft-n1.png";
 
 import { LuShieldCheck } from "react-icons/lu";
 import { TransferTonButton } from "@/components/transfer-ton-button";
-import { useMint } from "@/hooks/use-mint";
 import { PRICE_PER_NFT_N1_USD, PRICE_PER_NFT_N2_USD, PRICE_PER_NFT_N3_USD, RECEIVER_ADDRESS } from "@/lib/constants";
 import { usePricePerToken } from "@/hooks/use-price-per-token";
 
@@ -655,7 +654,6 @@ function Card({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const { mint } = useMint();
 
   useEffect(() => {
     const element = ref.current;
