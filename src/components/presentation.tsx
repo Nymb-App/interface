@@ -17,9 +17,22 @@ import { RiCloseLargeLine } from "react-icons/ri";
 import { Button } from "./ui/button";
 import { ChevronIcon } from "@/assets/icons/chevron";
 
-import slide0 from "@/assets/presentation/slide-0.png";
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useRef, useState } from "react";
+
+const slides = import.meta.glob(
+    '/src/assets/presentation/slide_*.jpg',
+    {
+        eager: true,
+        query: '?url',
+        import: 'default',
+    }
+);
+const slideImages: string[] = Object
+    .entries(slides)
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([, value]) => value as string);
+
 
 export function Presentation({ className }: { className?: string }) {
     const [api, setApi] = useState<CarouselApi | undefined>();
@@ -94,13 +107,13 @@ export function Presentation({ className }: { className?: string }) {
                 <div className="absolute top-1/2 left-1/2 -translate-1/2 w-full max-w-[1200px] overflow-hidden">
                     <Carousel setApi={setApi} className="size-full">
                         <CarouselContent className="size-full">
-                            {Array.from({ length: 3 }).map((_, index) => (
+                            {slideImages.map((slide, index) => (
                                 <CarouselItem
                                     className="relative size-full md:basis-full aspect-video ml-0"
                                     key={index}
                                 >
                                     <img
-                                        src={slide0}
+                                        src={slide}
                                         alt="Slide"
                                         className="absolute h-auto w-full"
                                     />
