@@ -96,6 +96,7 @@ export function NftSection({ className }: { className?: string }) {
             discount={10}
             stakingBoost={10}
             isActive={hasRevealed}
+            comment={"nymb.mint?type=nft_n1"}
           />
           <CardMobile
             id={1}
@@ -107,6 +108,7 @@ export function NftSection({ className }: { className?: string }) {
             discount={15}
             stakingBoost={25}
             isActive={hasRevealed}
+            comment={"nymb.mint?type=nft_n2"}
           />
           <CardMobile
             id={2}
@@ -118,6 +120,7 @@ export function NftSection({ className }: { className?: string }) {
             discount={40}
             stakingBoost={60}
             isActive={hasRevealed}
+            comment={"nymb.mint?type=nft_n3"}
           />
         </div>
 
@@ -135,6 +138,7 @@ export function NftSection({ className }: { className?: string }) {
             discount={10}
             stakingBoost={10}
             delay={0}
+            comment={"nymb.mint?type=nft_n1"}
           />
           <Card
             id={1}
@@ -147,6 +151,7 @@ export function NftSection({ className }: { className?: string }) {
             stakingBoost={25}
             delay={0.3}
             isActive={hasRevealed}
+            comment={"nymb.mint?type=nft_n2"}
           />
           <Card
             id={2}
@@ -158,6 +163,7 @@ export function NftSection({ className }: { className?: string }) {
             discount={40}
             stakingBoost={60}
             delay={0.6}
+            comment={"nymb.mint?type=nft_n3"}
           />
         </div>
       </div>
@@ -267,6 +273,7 @@ function CardMobile({
   delay = 0,
   threshold = 0.2,
   isActive = true,
+  comment,
 }: {
   id?: number;
   pricePerNft?: number;
@@ -281,13 +288,13 @@ function CardMobile({
   delay?: number;
   threshold?: number;
   isActive?: boolean;
+  comment?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   const [isAccordionOpened0, setAccordionOpened0] = useState(id === 0);
 
-  const { mint } = useMint();
 
   useEffect(() => {
     const element = ref.current;
@@ -590,6 +597,7 @@ function CardMobile({
                 MINT N{id + 1}
               </Button> */}
               <TransferTonButton
+                comment={comment}
                 recipient={RECEIVER_ADDRESS}
                 // amount={pricePerNft / (balance || 0)}
                 amount={pricePerNftTon}
@@ -603,11 +611,6 @@ function CardMobile({
                   id === 2 &&
                     "text-[#FF3BFF] border-[#FF3BFF] hover:text-[#FF3BFF]"
                 )}
-                onTransferSuccess={async (hash) => {
-                  console.log('Transaction hash:', hash);
-                  console.log('Transaction hash:', `nft_n${id + 1}`);
-                  await mint(hash, `nft_n${id + 1}` as any);
-                }}
               >
                 MINT N{id + 1}
               </TransferTonButton>
@@ -633,6 +636,7 @@ function Card({
   delay = 0,
   threshold = 0.2,
   isActive = true,
+  comment,
 }: {
   id?: number;
   pricePerNft?: number;
@@ -647,6 +651,7 @@ function Card({
   delay?: number;
   threshold?: number;
   isActive?: boolean;
+  comment?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -880,6 +885,7 @@ function Card({
             MINT N{id + 1}
           </Button> */}
             <TransferTonButton
+              comment={comment}
               recipient={RECEIVER_ADDRESS}
               // amount={pricePerNft / (balance || 0)}
               amount={pricePerNftTon}
@@ -893,11 +899,6 @@ function Card({
                 id === 2 &&
                 "text-[#FF3BFF] border border-[#FF3BFF] hover:text-[#FF3BFF]"
               )}
-              onTransferSuccess={async (hash) => {
-                console.log('Transaction hash:', hash);
-                console.log('Transaction hash:', `nft_n${id + 1}`);
-                await mint(hash, `nft_n${id + 1}` as any);
-              }}
             >
               MINT N{id + 1}
             </TransferTonButton>

@@ -13,6 +13,7 @@ export type TransferTonButtonProps =
     onError?: (error: any) => void
     recipient: string
     amount: number
+    comment?: string
     connectWalletText?: string
   }
 
@@ -25,6 +26,7 @@ export function TransferTonButton({
   recipient,
   amount,
   className,
+  comment,
   connectWalletText = 'CONNECT WALLET',
   ...props
 }: TransferTonButtonProps) {
@@ -119,7 +121,7 @@ export function TransferTonButton({
       return
     }
     setIsTransferTonSuccess(false)
-    await transfer(recipient, amount)
+    await transfer(recipient, amount, comment)
   }, [
     address,
     amount,
