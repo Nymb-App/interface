@@ -2,6 +2,16 @@ import { useEffect, useState } from "react";
 import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import { beginCell, Cell } from 'ton-core';
 
+
+function encodeJsonPayload(data: Record<string, any>) {
+    const json = JSON.stringify(data);
+    const bytes = Buffer.from(json, 'utf-8');
+
+    return beginCell()
+        .storeBuffer(bytes)
+        .endCell();
+}
+
 export const useTransferTon = () => {
     const NANO = 1e9;
     const address = useTonAddress();
@@ -30,10 +40,7 @@ export const useTransferTon = () => {
         setError(false);
         setSuccess(false);
         try {
-            const body = comment === undefined ? undefined : beginCell()
-                .storeUint(0, 32)          // op = 0 → text comment
-                .storeStringTail(comment) // сам текст
-                .endCell();
+            const body = comment === undefined ? undefined : encodeJsonPayload({ comment });
 
             const { boc } = await tonConnectUI.sendTransaction({
                 validUntil: Math.floor(Date.now() / 1000) + 3600,
