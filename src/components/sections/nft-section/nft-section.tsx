@@ -39,24 +39,19 @@ export function NftSection({ className }: { className?: string }) {
     pricePerNftN2Ton,
     pricePerNftN3Ton,
   } = useMemo(() => {
-    return {
-      pricePerNftN1Ton: 0.05,
-      pricePerNftN2Ton: 0.05,
-      pricePerNftN3Ton: 0.05,
+    if (isLoading || isError) {
+      return {
+        pricePerNftN1Ton: 50,
+        pricePerNftN2Ton: 1000,
+        pricePerNftN3Ton: 2000,
+      };
     }
-    // if (isLoading || isError) {
-    //   return {
-    //     pricePerNftN1Ton: 50,
-    //     pricePerNftN2Ton: 1000,
-    //     pricePerNftN3Ton: 2000,
-    //   };
-    // }
 
-    // return {
-    //   pricePerNftN1Ton: calculateTokenAmount(PRICE_PER_NFT_N1_USD) ?? 50,
-    //   pricePerNftN2Ton: calculateTokenAmount(PRICE_PER_NFT_N2_USD) ?? 1000,
-    //   pricePerNftN3Ton: calculateTokenAmount(PRICE_PER_NFT_N3_USD) ?? 2000,
-    // }
+    return {
+      pricePerNftN1Ton: calculateTokenAmount(PRICE_PER_NFT_N1_USD) ?? 50,
+      pricePerNftN2Ton: calculateTokenAmount(PRICE_PER_NFT_N2_USD) ?? 1000,
+      pricePerNftN3Ton: calculateTokenAmount(PRICE_PER_NFT_N3_USD) ?? 2000,
+    }
   }, [
     calculateTokenAmount,
     isLoading,
