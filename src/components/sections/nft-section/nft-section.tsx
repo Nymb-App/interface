@@ -466,9 +466,9 @@ function CardMobile({
                   </span>
                 </Row>
                 <Row>
-                  {lockPeriod.toLocaleString("en-US")}%
+                  Unlocks with Nymb launch.
                   <span className="font-dm-sans text-white/40 text-xs">
-                    month
+                    Rewards active now.
                   </span>
                 </Row>
               </div>
@@ -822,8 +822,10 @@ function Card({
           <div>
             <Row>{supply.toLocaleString("en-US")}</Row>
             <Row>
-              {lockPeriod.toLocaleString("en-US")}%
-              <span className="font-dm-sans text-white/40 text-base">month</span>
+              Unlocks with Nymb launch
+              <span className="font-dm-sans text-white/40 text-base">
+                Rewards active now.
+              </span>
             </Row>
             <Row>
               {income.toLocaleString("en-US")}%
