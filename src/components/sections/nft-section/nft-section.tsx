@@ -468,7 +468,7 @@ function CardMobile({
                 <Row>
                   Unlocks with Nymb launch.
                   <span className="font-dm-sans text-white/40 text-xs">
-                    Rewards active now.
+                    Rewards active now
                   </span>
                 </Row>
               </div>
@@ -824,7 +824,7 @@ function Card({
             <Row>
               Unlocks with Nymb launch
               <span className="font-dm-sans text-white/40 text-base">
-                Rewards active now.
+                Rewards active now
               </span>
             </Row>
             <Row>
