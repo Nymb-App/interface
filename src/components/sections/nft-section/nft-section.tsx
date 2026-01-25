@@ -258,7 +258,7 @@ function CardMobile({
   pricePerNft = 100,
   pricePerNftTon = 20,
   supply = 5000,
-  lockPeriod = 6,
+  // lockPeriod = 6,
   income = 10,
   annualGains = "Up to 60-180%",
   discount = 10,
@@ -273,7 +273,7 @@ function CardMobile({
   pricePerNft?: number;
   pricePerNftTon?: number;
   supply?: number;
-  lockPeriod?: number;
+  // lockPeriod?: number;
   income?: number;
   annualGains?: string;
   discount?: number;
@@ -621,7 +621,7 @@ function Card({
   pricePerNft = 100,
   pricePerNftTon = 20,
   supply = 5000,
-  lockPeriod = 6,
+  // lockPeriod = 6,
   income = 10,
   annualGains = "Up to 60-180%",
   discount = 10,
@@ -636,7 +636,7 @@ function Card({
   pricePerNft?: number;
   pricePerNftTon?: number;
   supply?: number;
-  lockPeriod?: number;
+  // lockPeriod?: number;
   income?: number;
   annualGains?: string;
   discount?: number;
